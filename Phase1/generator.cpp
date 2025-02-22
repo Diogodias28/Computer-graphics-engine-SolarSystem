@@ -6,13 +6,9 @@
 using namespace std;
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "ponto.cpp"
 
 string fileName;
-
-struct Point {
-    float x, y, z;
-    Point(float x, float y, float z) : x(x), y(y), z(z) {}
-};
 
 void writeToFile(const std::vector<std::vector<int>>& patches, 
     const std::vector<Point>& controlPoints, 
@@ -60,7 +56,7 @@ void genPlane(int length, int divisions) {
         for (int j = 0; j <= divisions; j++) {
             float x = -halfLength + i * step;
             float z = -halfLength + j * step;
-            controlPoints.push_back(Point(x, 0, z));
+            controlPoints.push_back(Point(x, 0.0f, z));
         }
     }
 
@@ -89,13 +85,13 @@ void genBox(int length, int grid) {
     std::vector<Point> controlPoints;
 
     float step = (float)length / grid;
-    float halfLength = length / 2.0f;
+    float halfLength = (float)length / 2.0f;
 
     // Generate control points for all 6 faces
     for (int i = 0; i <= grid; i++) {
         for (int j = 0; j <= grid; j++) {
             // Add points for each face (front, back, top, bottom, left, right)
-            controlPoints.push_back(Point(-halfLength + i * step, -halfLength + j * step, halfLength)); // Front
+            controlPoints.push_back(Point(-halfLength + i * step, (float)(-halfLength + j * step), (float)halfLength)); // Front
             controlPoints.push_back(Point(-halfLength + i * step, -halfLength + j * step, -halfLength)); // Back
             controlPoints.push_back(Point(-halfLength + i * step, halfLength, -halfLength + j * step)); // Top
             controlPoints.push_back(Point(-halfLength + i * step, -halfLength, -halfLength + j * step)); // Bottom

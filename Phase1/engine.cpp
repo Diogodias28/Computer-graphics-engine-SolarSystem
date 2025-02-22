@@ -6,6 +6,26 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <vector>
+#include "ponto.cpp"
+#include "Settings.hpp"
+
+// Variáveis da câmara
+float alpha = M_PI / 4;
+float beta_ = M_PI / 4;
+float radius = 5.0f;
+float camx = 5.0f;
+float camy = 5.0f;
+float camz = 5.0f;
+float lookAtx = 0.0f;
+float lookAty = 0.0f;
+float lookAtz = 0.0f;
+float upx = 0.0f;
+float upy = 0.0f;
+float upz = 0.0f;
+
+Settings set;
+std::vector<Point> pontos = {};
 
 float r = 5.0f, alpha_cam = M_PI / 4, beta_cam = M_PI / 4;
 
@@ -37,10 +57,13 @@ void changeSize(int w, int h) {
 }
 
 
-void drawFigures(float radius, float height, int slices) {
-
-//colocar código para desenhar todas as figuras que temos
-
+void drawFigures(std::vector<Point> pontos) {
+	//colocar código para desenhar todas as figuras que temos
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < pontos.size(); i++) {
+		glVertex3f(pontos[i].x, pontos[i].y, pontos[i].z);
+	}
+	glEnd();
 }
 
 
@@ -75,7 +98,7 @@ void renderScene(void) {
     glEnd();
           
 	glPolygonMode(GL_FRONT_AND_BACK, drawmode);
-	drawFigures(1,2,10); //trocar o argumento pra alguma coisa, colocar o glbegin(GL_TRIANGLE aqui ou no drawFigures?)
+	drawFigures(pontos); //trocar o argumento pra alguma coisa, colocar o glbegin(GL_TRIANGLE aqui ou no drawFigures?)
 
 	// End of frame
 	glutSwapBuffers();
@@ -88,10 +111,10 @@ void processKeys(unsigned char c, int xx, int yy) {
 // put code to process regular keys in here
 	switch (c) {
 		case 'w':
-			if (beta_cam + 0.2f < (M_PI / 2)) beta_cam += 0.5f;
+			if (beta_cam <= (M_PI / 2)) beta_cam += 0.5f;
 			break;
 		case 's':
-			if (beta_cam - 0.2f > (-M_PI / 2)) beta_cam -= 0.5;
+			if (beta_cam >= (-M_PI / 2)) beta_cam -= 0.5;
 			break;
 		case 'd':
 			alpha_cam -= 0.2f;
@@ -124,12 +147,34 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 int main(int argc, char **argv) {
 
+	Settings set= xmlToSettings(argv[1]);
+
+	for (int i = 0; i < getModels(set).size(); i++) {
+		std::vector<Point> pontos = readFromFile(getModels(set)[i]);
+		for (int j = 0; j < pontos.size(); j++) {
+			pontos.push_back(pontos[j]);
+		}
+	}
+
+	camx    = getXPosCam(set);
+	camy    = getYPosCam(set);
+	camz    = getZPosCam(set);
+	radius  = sqrt(camx*camx + camy*camy + camz*camz);
+	lookAtx = getXLookAt(set);
+	lookAty = getYLookAt(set);
+	lookAtz = getZLookAt(set);
+	upx 	= getXUp(set);
+	upy 	= getYUp(set);
+	upz 	= getZUp(set);
+	alpha   = acos(camz/sqrt(camx*camx + camz*camz));
+	beta_   = asin(camy/radius);
+
 // init GLUT and the window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
 	glutInitWindowPosition(100,100);
 	glutInitWindowSize(800,800);
-	glutCreateWindow("CG@DI-UM");
+	glutCreateWindow("Projeto CG");
 		
 // Required callback registry 
 	glutDisplayFunc(renderScene);
