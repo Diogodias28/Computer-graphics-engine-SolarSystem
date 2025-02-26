@@ -1,6 +1,6 @@
 #include "Point.hpp"
 
-struct Point {
+struct point {
     float x, y, z;
 };
 
@@ -9,11 +9,13 @@ Point createPoint() {
 }
 
 Point makePoint(float x, float y, float z){
-    Point p;
+    Point p = (Point) malloc (sizeof(struct point));
 
-    p->x = x;
-    p->y = y;
-    p->z = z;
+    if (p != NULL) {
+        p->x = x;
+        p->y = y;
+        p->z = z;
+    }
 
     return p;
 }

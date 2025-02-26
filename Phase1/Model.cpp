@@ -1,6 +1,6 @@
 #include "Model.hpp"
 
-struct Model{
+struct model{
     std::vector<Point> points;
 };
 

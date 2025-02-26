@@ -11,7 +11,7 @@
 
 using namespace std;
 
-typedef struct Model* Model;
+typedef struct model* Model;
 
 Model createModel();
 
