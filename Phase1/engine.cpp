@@ -25,8 +25,8 @@ float upx = 0.0f;
 float upy = 0.0f;
 float upz = 0.0f;
 
-Settings set;
-std::vector<Model> models = {};
+Settings set = newSettings();
+std::vector<Model> models = std::vector<Model>();
 
 float r = 5.0f, alpha_cam = M_PI / 4, beta_cam = M_PI / 4;
 
