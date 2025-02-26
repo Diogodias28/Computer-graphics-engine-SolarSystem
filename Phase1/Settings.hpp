@@ -1,10 +1,10 @@
 #ifndef SETTINGS
 #define SETTINGS
-#include "../TinyXML/tinyxml.h"
+#include "TinyXML/tinyxml.h"
 #include <stdlib.h>
 #include "Model.hpp"
 
-typedef struct Settings* Settings;
+typedef struct settings* Settings;
 
 Settings newSettings();
 

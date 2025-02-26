@@ -1,10 +1,10 @@
 #include "Settings.hpp"
-#include <vector>;
-#include <string>;
+#include <vector>
+#include <string>
 
 using namespace std;
 
-struct Settings{
+struct settings{
     // Câmara
     float poscam[3];
     float lookAt[3];
