@@ -3,48 +3,18 @@
 #include <string>
 #include <string.h> 
 #include <stdio.h>
-using namespace std;
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "ponto.cpp"
+#include "Point.hpp"
+#include "Model.hpp"
+
+using namespace std;
 
 string fileName;
 
-void writeToFile(const std::vector<std::vector<int>>& patches, 
-    const std::vector<Point>& controlPoints, 
-    string fileName) {
-    std::ofstream file(fileName);
-
-    if (!file.is_open()) {
-        printf("Error opening file: %s\n", fileName.c_str());
-        return;
-    }
-
-    // Number of patches
-    file << patches.size() << std::endl;
-
-    // Write patches (indices of control points)
-    for (const auto& patch : patches) {
-        for (size_t i = 0; i < patch.size(); i++) {
-            file << patch[i];
-            if (i < patch.size() - 1) file << ", ";
-        }
-        file << std::endl;
-    }
-
-    // Number of control points
-    file << controlPoints.size() << std::endl;
-
-    // Write control points
-    for (const auto& p : controlPoints) {
-        file << p.x << ", " << p.y << ", " << p.z << std::endl;
-    }
-
-    file.close();
-}
-
-
-void genPlane(int length, int divisions) {
+/*
+void genPlane(int length, int divisions) { //está com o Point anterior, mudar para que fique com o point e o model (aka figura) de agora.
+                                            //NÃO FAZER OS PATCHES
     std::vector<std::vector<int>> patches; // To store the patches' indices
     std::vector<Point> controlPoints; // To store the control points
 
@@ -76,12 +46,11 @@ void genPlane(int length, int divisions) {
     }
 
     // Write the patch data to file (indices and control points)
-    writeToFile(patches, controlPoints, fileName);
+    writeToFile(controlPoints, fileName);
 }
+*/
 
-
-void genBox(int length, int grid) {
-    std::vector<std::vector<int>> patches;
+void genBox(int length, int grid, std::string fileName) {
     std::vector<Point> controlPoints;
 
     float step = (float)length / grid;
@@ -90,23 +59,20 @@ void genBox(int length, int grid) {
     // Generate control points for all 6 faces
     for (int i = 0; i <= grid; i++) {
         for (int j = 0; j <= grid; j++) {
-            // Add points for each face (front, back, top, bottom, left, right)
-            controlPoints.push_back(Point(-halfLength + i * step, (float)(-halfLength + j * step), (float)halfLength)); // Front
-            controlPoints.push_back(Point(-halfLength + i * step, -halfLength + j * step, -halfLength)); // Back
-            controlPoints.push_back(Point(-halfLength + i * step, halfLength, -halfLength + j * step)); // Top
-            controlPoints.push_back(Point(-halfLength + i * step, -halfLength, -halfLength + j * step)); // Bottom
-            controlPoints.push_back(Point(halfLength, -halfLength + i * step, -halfLength + j * step)); // Right
-            controlPoints.push_back(Point(-halfLength, -halfLength + i * step, -halfLength + j * step)); // Left
+            // Add points for each face using makePoint()
+            controlPoints.push_back(makePoint(-halfLength + i * step, -halfLength + j * step, halfLength)); // Front
+            controlPoints.push_back(makePoint(-halfLength + i * step, -halfLength + j * step, -halfLength)); // Back
+            controlPoints.push_back(makePoint(-halfLength + i * step, halfLength, -halfLength + j * step)); // Top
+            controlPoints.push_back(makePoint(-halfLength + i * step, -halfLength, -halfLength + j * step)); // Bottom
+            controlPoints.push_back(makePoint(halfLength, -halfLength + i * step, -halfLength + j * step)); // Right
+            controlPoints.push_back(makePoint(-halfLength, -halfLength + i * step, -halfLength + j * step)); // Left
         }
     }
 
-    // Add patches similarly for each face
-
-    // Write to file
-    writeToFile(patches, controlPoints, fileName);
+    // Write control points to file using writeToFile()
+    writeToFile(controlPoints, fileName);
 }
-
-
+/*
 void genSphere(int radius, int slices, int stacks) {
     std::vector<std::vector<int>> patches;
     std::vector<Point> controlPoints;
@@ -139,12 +105,11 @@ void genSphere(int radius, int slices, int stacks) {
     }
 
     // Write to file
-    writeToFile(patches, controlPoints, fileName);
+    writeToFile(controlPoints, fileName);
 }
 
 
 void genCone(int radius, int height, int slices, int stacks) {
-    std::vector<std::vector<int>> patches;
     std::vector<Point> controlPoints;
 
     // Add points for the cone's base and top
@@ -168,13 +133,15 @@ void genCone(int radius, int height, int slices, int stacks) {
     });
 
     // Write to file
-    writeToFile(patches, controlPoints, fileName);
+    writeToFile(controlPoints, fileName);
 }
+*/
 
 int main(int argc, char *argv[]) {
 
     if (argc >= 5) { // no minimo tem sempre 5 argumentos
 
+        /*
         // plane
         if(strcmp(argv[1], "plane") == 0) {
             int length = atoi(argv[2]);
@@ -201,13 +168,13 @@ int main(int argc, char *argv[]) {
             fileName = argv[5];
             genSphere(radius, slices, stacks);
         }
-
+        */
         // box
-        else if(strcmp(argv[1], "box") == 0) {
+        if(strcmp(argv[1], "box") == 0) {
             int length = atoi(argv[2]);
             int grid = atoi(argv[3]);
             fileName = argv[4];
-            genBox(length, grid);
+            genBox(length, grid, fileName);
         }
 
         else {

@@ -7,7 +7,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
-#include "ponto.cpp"
+#include "Point.hpp"
+#include "Model.hpp"
 #include "Settings.hpp"
 
 // Variáveis da câmara
@@ -25,7 +26,7 @@ float upy = 0.0f;
 float upz = 0.0f;
 
 Settings set;
-std::vector<Point> pontos = {};
+std::vector<Model> models = {};
 
 float r = 5.0f, alpha_cam = M_PI / 4, beta_cam = M_PI / 4;
 
@@ -57,11 +58,14 @@ void changeSize(int w, int h) {
 }
 
 
-void drawFigures(std::vector<Point> pontos) {
-	//colocar código para desenhar todas as figuras que temos
+void drawFigures(std::vector<Model> models) {
+
 	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < pontos.size(); i++) {
-		glVertex3f(pontos[i].x, pontos[i].y, pontos[i].z);
+	for (int i = 0; i < models.size(); i++) {
+		std::vector<Point> m_points = getPoints(models[i]);
+		for (int j = 0; j<m_points.size(); j++){
+			glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
+		}
 	}
 	glEnd();
 }
@@ -98,7 +102,7 @@ void renderScene(void) {
     glEnd();
           
 	glPolygonMode(GL_FRONT_AND_BACK, drawmode);
-	drawFigures(pontos); //trocar o argumento pra alguma coisa, colocar o glbegin(GL_TRIANGLE aqui ou no drawFigures?)
+	drawFigures(models); 
 
 	// End of frame
 	glutSwapBuffers();
@@ -147,12 +151,14 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 int main(int argc, char **argv) {
 
-	Settings set= xmlToSettings(argv[1]);
+	set = xmlToSettings(argv[1]);
+	std::vector<std::string> paths = getModels(set);
+	models = std::vector<Model>();
 
 	for (int i = 0; i < getModels(set).size(); i++) {
-		std::vector<Point> pontos = readFromFile(getModels(set)[i]);
-		for (int j = 0; j < pontos.size(); j++) {
-			pontos.push_back(pontos[j]);
+		std::vector<Point> points = readFromFile(getModels(set)[i]);
+		for (int j = 0; j < points.size(); j++) {
+			addPoint(models[i], points[j]);
 		}
 	}
 
