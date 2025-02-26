@@ -22,7 +22,7 @@ Settings newSettings(){
     return newSettings;
 }
 
-Settings xmlTosetig(const char* filePath){
+Settings xmlToSettings(const char* filePath){
     Settings result = newSettings();
     if(result != NULL){
         TiXmlDocument doc;

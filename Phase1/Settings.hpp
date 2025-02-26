@@ -1,6 +1,7 @@
 #ifndef SETTINGS
 #define SETTINGS
-#include "TinyXML/tinyxml.h"
+#include "./TinyXML/tinyxml.h"
+#include "./TinyXML/tinystr.h"
 #include <stdlib.h>
 #include "Model.hpp"
 
