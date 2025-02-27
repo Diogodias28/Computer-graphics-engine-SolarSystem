@@ -5,11 +5,9 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-# Define os executáveis a serem construídos neste projecto
 add_executable(engine engine/engine.cpp)
 add_executable(generator gen/generator.cpp)
 
-# Biblioteca das figuras e dos pontos
 add_library(
 	data_structs
 	data_structs/Point.cpp
@@ -20,7 +18,6 @@ add_library(
 	data_structs/Settings.hpp
 )
 
-# Biblioteca de parsing de XML
 add_library(
 	tinyXML
 	TinyXML/tinystr.cpp
@@ -34,7 +31,6 @@ add_library(
 
 target_link_libraries(data_structs tinyXML)
 
-# Associa a biblioteca das figuras e dos pontos aos executáveis
 target_link_libraries(generator data_structs)
 target_link_libraries(engine data_structs tinyXML)
 
