@@ -108,34 +108,78 @@ void genSphere(int radius, int slices, int stacks) {
     writeToFile(controlPoints, fileName);
 }
 
+*/
 
 void genCone(int radius, int height, int slices, int stacks) {
     std::vector<Point> controlPoints;
 
-    // Add points for the cone's base and top
-    controlPoints.push_back(Point(0, 0, 0)); // top point of cone
+    float anglePerSlice = (float) 2 * M_PI / slices;
+    float stackHeight = height / stacks;
 
-    for (int i = 0; i < slices; i++) {
-        float theta = 2 * M_PI * i / slices;
-        controlPoints.push_back(Point(radius * cos(theta), 0, radius * sin(theta))); // base points
+    float currRadius = radius;
+    float prevRadius; 
+
+    float alpha;
+    float beta;
+
+    float currHeight;
+    float prevHeight;
+
+    for (int j = 1; j <= stacks; j++) {
+
+        currHeight = stackHeight * j;
+        currRadius = currRadius - (radius / stacks);
+
+        for (int i = 1; i <= slices; i++) {
+
+            alpha = anglePerSlice * i;
+            beta = alpha + anglePerSlice;
+
+            // Stack 1
+
+            if (j == 1) {
+
+                // Base
+
+                controlPoints.push_back(makePoint(0.0f,0.0f,0.0f));
+                controlPoints.push_back(makePoint(radius * sinf(beta),0.0f,radius * cosf(beta)));
+                controlPoints.push_back(makePoint(radius * sinf(alpha),0.0f,radius * cosf(alpha)));
+
+                controlPoints.push_back(makePoint(radius * sinf(beta), 0.0f, radius * cosf(beta)));
+                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
+                controlPoints.push_back(makePoint(radius * sinf(alpha), 0.0f, radius * cosf(alpha)));
+
+                controlPoints.push_back(makePoint(radius * sinf(alpha), 0.0f, radius * cosf(alpha)));
+                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
+                controlPoints.push_back(makePoint(currRadius * sinf(alpha), currHeight, currRadius * cosf(alpha)));
+
+            }
+            
+            else if (j != stacks) {
+                controlPoints.push_back(makePoint(prevRadius * sinf(beta), prevHeight, prevRadius * cosf(beta)));
+                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
+                controlPoints.push_back(makePoint(prevRadius * sinf(alpha), prevHeight, prevRadius * cosf(alpha)));
+
+                controlPoints.push_back(makePoint(prevRadius * sinf(alpha), prevHeight, prevRadius * cosf(alpha)));
+                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
+                controlPoints.push_back(makePoint(currRadius * sinf(alpha), currHeight, currRadius * cosf(alpha)));
+
+            }
+
+            else {
+                controlPoints.push_back(makePoint(prevRadius * sinf(beta), prevHeight, prevRadius * cosf(beta)));
+                controlPoints.push_back(makePoint(0.0f, currHeight, 0.0f));
+                controlPoints.push_back(makePoint(prevRadius * sinf(alpha), prevHeight, prevRadius * cosf(alpha)));
+            }
+        }
+
+        prevHeight = currHeight;
+        prevRadius = currRadius;
     }
-
-    // Create patches (indices for each slice forming the cone)
-    for (int i = 1; i < slices; i++) {
-        patches.push_back({
-            0, i, i + 1
-        });
-    }
-
-    // Connect last slice to first
-    patches.push_back({
-        0, slices, 1
-    });
-
     // Write to file
     writeToFile(controlPoints, fileName);
 }
-*/
+
 
 int main(int argc, char *argv[]) {
 
@@ -149,9 +193,10 @@ int main(int argc, char *argv[]) {
             fileName = argv[4];
             genPlane(length, divisions);
         }
+        */
 
         // cone
-        else if(strcmp(argv[1], "cone") == 0) {
+        if(strcmp(argv[1], "cone") == 0) {
             int radius = atoi(argv[2]);
             int height = atoi(argv[3]);
             int slices = atoi(argv[4]);
@@ -160,6 +205,7 @@ int main(int argc, char *argv[]) {
             genCone(radius, height, slices, stacks);
         }
 
+        /*
         // sphere
         else if(strcmp(argv[1], "sphere") == 0) {
             int radius = atoi(argv[2]);
@@ -169,8 +215,9 @@ int main(int argc, char *argv[]) {
             genSphere(radius, slices, stacks);
         }
         */
+        
         // box
-        if(strcmp(argv[1], "box") == 0) {
+        else if(strcmp(argv[1], "box") == 0) {
             int length = atoi(argv[2]);
             int grid = atoi(argv[3]);
             fileName = argv[4];
