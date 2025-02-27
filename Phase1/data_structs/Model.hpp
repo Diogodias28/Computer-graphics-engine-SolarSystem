@@ -4,9 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
-#include <fstream>
-#include <iostream>
-#include <sstream>
+#include <fcntl.h> 
+#include <unistd.h>
 #include "Point.hpp"
 
 using namespace std;
