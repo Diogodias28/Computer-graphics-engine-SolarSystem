@@ -5,8 +5,8 @@
 #include <stdio.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "Point.hpp"
-#include "Model.hpp"
+#include "../data_structs/Point.hpp"
+#include "../data_structs/Model.hpp"
 
 using namespace std;
 

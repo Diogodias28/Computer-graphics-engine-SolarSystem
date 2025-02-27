@@ -10,10 +10,10 @@ Point createPoint();
 
 Point makePoint(float x, float y, float z);
 
-float getX(Point p);
+float getX(Point);
 
-float getY(Point p);
+float getY(Point);
 
-float getZ(Point p);
+float getZ(Point);
 
 #endif // POINT

@@ -16,6 +16,8 @@ Model makeModel(std::vector<Point> points){
     for(int i=0; i<points.size(); i++){
         addPoint(m, points[i]);
     }
+
+    return m;
 }
 
 std::vector<Point> getPoints(Model m){
@@ -26,10 +28,12 @@ void addPoint(Model m, Point p){
     m->points.push_back(p);
 }
 
-std::vector<Point> readFromFile(std::string filename) {
+std::vector<Point> readFromFile(std::string fileName) {
     std::vector<Point> points;
-    std::ifstream file(filename);
     std::string line;
+
+    fileName = "../outputs/3d/" + fileName;
+    std::ifstream file(fileName);
 
     if (file.is_open()) {
         while (std::getline(file, line)) {
@@ -41,13 +45,14 @@ std::vector<Point> readFromFile(std::string filename) {
         }
         file.close();
     } else {
-        std::cerr << "Unable to open file: " << filename << std::endl;
+        std::cerr << "Unable to open file: " << fileName << std::endl;
     }
 
     return points;
 }
 
 void writeToFile(std::vector<Point> controlPoints, string fileName) {
+    fileName = "../outputs/3d/" + fileName;
     std::ofstream file(fileName);
 
     if (!file.is_open()) {

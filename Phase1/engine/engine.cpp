@@ -7,9 +7,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
-#include "Point.hpp"
-#include "Model.hpp"
-#include "Settings.hpp"
+#include "../data_structs/Point.hpp"
+#include "../data_structs/Model.hpp"
+#include "../data_structs/Settings.hpp"
 
 // Variáveis da câmara
 float alpha = M_PI / 4;

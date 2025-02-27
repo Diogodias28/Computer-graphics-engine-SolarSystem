@@ -15,14 +15,14 @@ typedef struct model* Model;
 
 Model createModel();
 
-Model makeModel(std::vector<Point> points);
+Model makeModel(std::vector<Point>);
 
-std::vector<Point> getPoints(Model m);
+std::vector<Point> getPoints(Model);
 
-void addPoint(Model m, Point p);
+void addPoint(Model, Point);
 
-std::vector<Point> readFromFile(std::string filename);
+std::vector<Point> readFromFile(std::string);
 
-void writeToFile(std::vector<Point> controlPoints, string fileName);
+void writeToFile(std::vector<Point>, string);
 
 #endif //MODEL
