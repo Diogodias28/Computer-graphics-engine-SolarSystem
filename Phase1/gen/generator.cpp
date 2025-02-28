@@ -166,72 +166,41 @@ void genSphere(float radius, int slices, int stacks, std::string fileName) {
 }
 
 void genCone(int radius, int height, int slices, int stacks) {
+    
     std::vector<Point> controlPoints;
 
-    float anglePerSlice = (float) 2 * M_PI / slices;
-    float stackHeight = height / stacks;
+    float alpha = (float) 2 * M_PI / slices;
+    float heightPerStack = (float) height / stacks;
 
-    float currRadius = radius;
-    float prevRadius; 
+    Point base_middle = createPoint();
 
-    float alpha;
-    float beta;
+    for (int slice = 0; slice < slices; slice++) {
+        for (int stack = 0; stack < stacks; stack++) {
+            float currRadius = radius - stack * radius / stacks;
+            float nextRadius = radius - (stack + 1) * radius / stacks;
 
-    float currHeight;
-    float prevHeight;
+            Point bottom_left = makePoint(currRadius * sin(slice * alpha), stack * heightPerStack, currRadius * cos(slice * alpha));
+            Point bottom_right = makePoint(currRadius * sin((slice + 1) * alpha), stack * heightPerStack, currRadius * cos((slice + 1) * alpha));
+            Point top_left = makePoint (nextRadius * sin(slice * alpha), (stack + 1) * heightPerStack,nextRadius * cos(slice * alpha));
+            Point top_right = makePoint(nextRadius * sin((slice + 1) * alpha), (stack + 1) * heightPerStack, nextRadius * cos((slice + 1) * alpha));
 
-    for (int j = 1; j <= stacks; j++) {
+            controlPoints.push_back(top_left);
+            controlPoints.push_back(bottom_left);
+            controlPoints.push_back(bottom_right);
 
-        currHeight = stackHeight * j;
-        currRadius = currRadius - (radius / stacks);
-
-        for (int i = 1; i <= slices; i++) {
-
-            alpha = anglePerSlice * i;
-            beta = alpha + anglePerSlice;
-
-            // Stack 1
-
-            if (j == 1) {
-
-                // Base
-
-                controlPoints.push_back(makePoint(0.0f,0.0f,0.0f));
-                controlPoints.push_back(makePoint(radius * sinf(beta),0.0f,radius * cosf(beta)));
-                controlPoints.push_back(makePoint(radius * sinf(alpha),0.0f,radius * cosf(alpha)));
-
-                controlPoints.push_back(makePoint(radius * sinf(beta), 0.0f, radius * cosf(beta)));
-                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
-                controlPoints.push_back(makePoint(radius * sinf(alpha), 0.0f, radius * cosf(alpha)));
-
-                controlPoints.push_back(makePoint(radius * sinf(alpha), 0.0f, radius * cosf(alpha)));
-                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
-                controlPoints.push_back(makePoint(currRadius * sinf(alpha), currHeight, currRadius * cosf(alpha)));
-
-            }
-            
-            else if (j != stacks) {
-                controlPoints.push_back(makePoint(prevRadius * sinf(beta), prevHeight, prevRadius * cosf(beta)));
-                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
-                controlPoints.push_back(makePoint(prevRadius * sinf(alpha), prevHeight, prevRadius * cosf(alpha)));
-
-                controlPoints.push_back(makePoint(prevRadius * sinf(alpha), prevHeight, prevRadius * cosf(alpha)));
-                controlPoints.push_back(makePoint(currRadius * sinf(beta), currHeight, currRadius * cosf(beta)));
-                controlPoints.push_back(makePoint(currRadius * sinf(alpha), currHeight, currRadius * cosf(alpha)));
-
-            }
-
-            else {
-                controlPoints.push_back(makePoint(prevRadius * sinf(beta), prevHeight, prevRadius * cosf(beta)));
-                controlPoints.push_back(makePoint(0.0f, currHeight, 0.0f));
-                controlPoints.push_back(makePoint(prevRadius * sinf(alpha), prevHeight, prevRadius * cosf(alpha)));
-            }
+            controlPoints.push_back(top_left);
+            controlPoints.push_back(bottom_right);
+            controlPoints.push_back(top_right);
         }
 
-        prevHeight = currHeight;
-        prevRadius = currRadius;
+        Point base_bottom_left = makePoint(radius * sin(slice * alpha), 0.0f, radius * cos(slice * alpha));
+        Point base_bottom_right = makePoint(radius * sin((slice + 1) * alpha), 0.0f, radius * cos((slice + 1) * alpha));
+
+        controlPoints.push_back(base_middle);
+        controlPoints.push_back(base_bottom_right);
+        controlPoints.push_back(base_bottom_left);
     }
-    // Write to file
+
     writeToFile(controlPoints, fileName);
 }
 
