@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp" "CMakeFiles/tinyXML.dir/TinyXML/tinystr.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/TinyXML/tinystr.cpp.o.d"
-  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp" "CMakeFiles/tinyXML.dir/TinyXML/tinyxml.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/TinyXML/tinyxml.cpp.o.d"
-  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp" "CMakeFiles/tinyXML.dir/TinyXML/tinyxmlerror.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/TinyXML/tinyxmlerror.cpp.o.d"
-  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp" "CMakeFiles/tinyXML.dir/TinyXML/tinyxmlparser.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/TinyXML/tinyxmlparser.cpp.o.d"
+  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.o.d"
+  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.o.d"
+  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.o.d"
+  "/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.o" "gcc" "CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

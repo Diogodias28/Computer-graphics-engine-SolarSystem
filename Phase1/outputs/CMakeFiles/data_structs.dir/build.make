@@ -53,7 +53,7 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1
+CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
@@ -72,60 +72,60 @@ include CMakeFiles/data_structs.dir/flags.make
 CMakeFiles/data_structs.dir/codegen:
 .PHONY : CMakeFiles/data_structs.dir/codegen
 
-CMakeFiles/data_structs.dir/data_structs/Point.cpp.o: CMakeFiles/data_structs.dir/flags.make
-CMakeFiles/data_structs.dir/data_structs/Point.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp
-CMakeFiles/data_structs.dir/data_structs/Point.cpp.o: CMakeFiles/data_structs.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/data_structs.dir/data_structs/Point.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/data_structs.dir/data_structs/Point.cpp.o -MF CMakeFiles/data_structs.dir/data_structs/Point.cpp.o.d -o CMakeFiles/data_structs.dir/data_structs/Point.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o: CMakeFiles/data_structs.dir/flags.make
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o: CMakeFiles/data_structs.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o -MF CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o.d -o CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp
 
-CMakeFiles/data_structs.dir/data_structs/Point.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/data_structs.dir/data_structs/Point.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp > CMakeFiles/data_structs.dir/data_structs/Point.cpp.i
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp > CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i
 
-CMakeFiles/data_structs.dir/data_structs/Point.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/data_structs.dir/data_structs/Point.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp -o CMakeFiles/data_structs.dir/data_structs/Point.cpp.s
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp -o CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s
 
-CMakeFiles/data_structs.dir/data_structs/Model.cpp.o: CMakeFiles/data_structs.dir/flags.make
-CMakeFiles/data_structs.dir/data_structs/Model.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp
-CMakeFiles/data_structs.dir/data_structs/Model.cpp.o: CMakeFiles/data_structs.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/data_structs.dir/data_structs/Model.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/data_structs.dir/data_structs/Model.cpp.o -MF CMakeFiles/data_structs.dir/data_structs/Model.cpp.o.d -o CMakeFiles/data_structs.dir/data_structs/Model.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o: CMakeFiles/data_structs.dir/flags.make
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o: CMakeFiles/data_structs.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o -MF CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o.d -o CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp
 
-CMakeFiles/data_structs.dir/data_structs/Model.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/data_structs.dir/data_structs/Model.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp > CMakeFiles/data_structs.dir/data_structs/Model.cpp.i
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp > CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i
 
-CMakeFiles/data_structs.dir/data_structs/Model.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/data_structs.dir/data_structs/Model.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp -o CMakeFiles/data_structs.dir/data_structs/Model.cpp.s
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp -o CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s
 
-CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o: CMakeFiles/data_structs.dir/flags.make
-CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp
-CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o: CMakeFiles/data_structs.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o -MF CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o.d -o CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o: CMakeFiles/data_structs.dir/flags.make
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o: CMakeFiles/data_structs.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o -MF CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o.d -o CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp
 
-CMakeFiles/data_structs.dir/data_structs/Settings.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/data_structs.dir/data_structs/Settings.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp > CMakeFiles/data_structs.dir/data_structs/Settings.cpp.i
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp > CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i
 
-CMakeFiles/data_structs.dir/data_structs/Settings.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/data_structs.dir/data_structs/Settings.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp -o CMakeFiles/data_structs.dir/data_structs/Settings.cpp.s
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp -o CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s
 
 # Object files for target data_structs
 data_structs_OBJECTS = \
-"CMakeFiles/data_structs.dir/data_structs/Point.cpp.o" \
-"CMakeFiles/data_structs.dir/data_structs/Model.cpp.o" \
-"CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o"
+"CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o" \
+"CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o" \
+"CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o"
 
 # External object files for target data_structs
 data_structs_EXTERNAL_OBJECTS =
 
-libdata_structs.a: CMakeFiles/data_structs.dir/data_structs/Point.cpp.o
-libdata_structs.a: CMakeFiles/data_structs.dir/data_structs/Model.cpp.o
-libdata_structs.a: CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o
+libdata_structs.a: CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o
+libdata_structs.a: CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o
+libdata_structs.a: CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o
 libdata_structs.a: CMakeFiles/data_structs.dir/build.make
 libdata_structs.a: CMakeFiles/data_structs.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libdata_structs.a"
@@ -141,6 +141,6 @@ CMakeFiles/data_structs.dir/clean:
 .PHONY : CMakeFiles/data_structs.dir/clean
 
 CMakeFiles/data_structs.dir/depend:
-	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles/data_structs.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles/data_structs.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/data_structs.dir/depend
 

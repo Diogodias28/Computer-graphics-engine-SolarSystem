@@ -5,12 +5,12 @@ Compoutação Gráfica
 ## como usar (mac e linux porque windows ninguém sabe)
 
 
-na pasta phase1 fazer
+na pasta ouputs fazer
 ```
-cmake -S . -B outputs
+cmake -S . -B .
 ```
+depois 
 
-na pasta outputs fazer
 ```
 make
 ```

@@ -57,7 +57,7 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1
+CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
@@ -168,221 +168,221 @@ tinyXML/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/build
 .PHONY : tinyXML/fast
 
-TinyXML/tinystr.o: TinyXML/tinystr.cpp.o
-.PHONY : TinyXML/tinystr.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.o
 
 # target to build an object file
-TinyXML/tinystr.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinystr.cpp.o
-.PHONY : TinyXML/tinystr.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.o
 
-TinyXML/tinystr.i: TinyXML/tinystr.cpp.i
-.PHONY : TinyXML/tinystr.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.i
 
 # target to preprocess a source file
-TinyXML/tinystr.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinystr.cpp.i
-.PHONY : TinyXML/tinystr.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.i
 
-TinyXML/tinystr.s: TinyXML/tinystr.cpp.s
-.PHONY : TinyXML/tinystr.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.s
 
 # target to generate assembly for a file
-TinyXML/tinystr.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinystr.cpp.s
-.PHONY : TinyXML/tinystr.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.cpp.s
 
-TinyXML/tinyxml.o: TinyXML/tinyxml.cpp.o
-.PHONY : TinyXML/tinyxml.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.o
 
 # target to build an object file
-TinyXML/tinyxml.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxml.cpp.o
-.PHONY : TinyXML/tinyxml.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.o
 
-TinyXML/tinyxml.i: TinyXML/tinyxml.cpp.i
-.PHONY : TinyXML/tinyxml.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.i
 
 # target to preprocess a source file
-TinyXML/tinyxml.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxml.cpp.i
-.PHONY : TinyXML/tinyxml.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.i
 
-TinyXML/tinyxml.s: TinyXML/tinyxml.cpp.s
-.PHONY : TinyXML/tinyxml.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.s
 
 # target to generate assembly for a file
-TinyXML/tinyxml.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxml.cpp.s
-.PHONY : TinyXML/tinyxml.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.cpp.s
 
-TinyXML/tinyxmlerror.o: TinyXML/tinyxmlerror.cpp.o
-.PHONY : TinyXML/tinyxmlerror.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.o
 
 # target to build an object file
-TinyXML/tinyxmlerror.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxmlerror.cpp.o
-.PHONY : TinyXML/tinyxmlerror.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.o
 
-TinyXML/tinyxmlerror.i: TinyXML/tinyxmlerror.cpp.i
-.PHONY : TinyXML/tinyxmlerror.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.i
 
 # target to preprocess a source file
-TinyXML/tinyxmlerror.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxmlerror.cpp.i
-.PHONY : TinyXML/tinyxmlerror.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.i
 
-TinyXML/tinyxmlerror.s: TinyXML/tinyxmlerror.cpp.s
-.PHONY : TinyXML/tinyxmlerror.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.s
 
 # target to generate assembly for a file
-TinyXML/tinyxmlerror.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxmlerror.cpp.s
-.PHONY : TinyXML/tinyxmlerror.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.cpp.s
 
-TinyXML/tinyxmlparser.o: TinyXML/tinyxmlparser.cpp.o
-.PHONY : TinyXML/tinyxmlparser.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.o
 
 # target to build an object file
-TinyXML/tinyxmlparser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxmlparser.cpp.o
-.PHONY : TinyXML/tinyxmlparser.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.o
 
-TinyXML/tinyxmlparser.i: TinyXML/tinyxmlparser.cpp.i
-.PHONY : TinyXML/tinyxmlparser.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.i
 
 # target to preprocess a source file
-TinyXML/tinyxmlparser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxmlparser.cpp.i
-.PHONY : TinyXML/tinyxmlparser.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.i
 
-TinyXML/tinyxmlparser.s: TinyXML/tinyxmlparser.cpp.s
-.PHONY : TinyXML/tinyxmlparser.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.s
 
 # target to generate assembly for a file
-TinyXML/tinyxmlparser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/TinyXML/tinyxmlparser.cpp.s
-.PHONY : TinyXML/tinyxmlparser.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.cpp.s
 
-data_structs/Model.o: data_structs/Model.cpp.o
-.PHONY : data_structs/Model.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.o
 
 # target to build an object file
-data_structs/Model.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Model.cpp.o
-.PHONY : data_structs/Model.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.o
 
-data_structs/Model.i: data_structs/Model.cpp.i
-.PHONY : data_structs/Model.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.i
 
 # target to preprocess a source file
-data_structs/Model.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Model.cpp.i
-.PHONY : data_structs/Model.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.i
 
-data_structs/Model.s: data_structs/Model.cpp.s
-.PHONY : data_structs/Model.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.s
 
 # target to generate assembly for a file
-data_structs/Model.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Model.cpp.s
-.PHONY : data_structs/Model.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.cpp.s
 
-data_structs/Point.o: data_structs/Point.cpp.o
-.PHONY : data_structs/Point.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.o
 
 # target to build an object file
-data_structs/Point.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Point.cpp.o
-.PHONY : data_structs/Point.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.o
 
-data_structs/Point.i: data_structs/Point.cpp.i
-.PHONY : data_structs/Point.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.i
 
 # target to preprocess a source file
-data_structs/Point.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Point.cpp.i
-.PHONY : data_structs/Point.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.i
 
-data_structs/Point.s: data_structs/Point.cpp.s
-.PHONY : data_structs/Point.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.s
 
 # target to generate assembly for a file
-data_structs/Point.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Point.cpp.s
-.PHONY : data_structs/Point.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.cpp.s
 
-data_structs/Settings.o: data_structs/Settings.cpp.o
-.PHONY : data_structs/Settings.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.o
 
 # target to build an object file
-data_structs/Settings.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Settings.cpp.o
-.PHONY : data_structs/Settings.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.o
 
-data_structs/Settings.i: data_structs/Settings.cpp.i
-.PHONY : data_structs/Settings.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.i
 
 # target to preprocess a source file
-data_structs/Settings.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Settings.cpp.i
-.PHONY : data_structs/Settings.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.i
 
-data_structs/Settings.s: data_structs/Settings.cpp.s
-.PHONY : data_structs/Settings.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.s
 
 # target to generate assembly for a file
-data_structs/Settings.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/data_structs/Settings.cpp.s
-.PHONY : data_structs/Settings.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.cpp.s
 
-engine/engine.o: engine/engine.cpp.o
-.PHONY : engine/engine.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.o
 
 # target to build an object file
-engine/engine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine/engine.cpp.o
-.PHONY : engine/engine.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o
 
-engine/engine.i: engine/engine.cpp.i
-.PHONY : engine/engine.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.i
 
 # target to preprocess a source file
-engine/engine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine/engine.cpp.i
-.PHONY : engine/engine.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i
 
-engine/engine.s: engine/engine.cpp.s
-.PHONY : engine/engine.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.s
 
 # target to generate assembly for a file
-engine/engine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine/engine.cpp.s
-.PHONY : engine/engine.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s
 
-gen/generator.o: gen/generator.cpp.o
-.PHONY : gen/generator.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.o
 
 # target to build an object file
-gen/generator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/gen/generator.cpp.o
-.PHONY : gen/generator.cpp.o
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.o
 
-gen/generator.i: gen/generator.cpp.i
-.PHONY : gen/generator.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.i
 
 # target to preprocess a source file
-gen/generator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/gen/generator.cpp.i
-.PHONY : gen/generator.cpp.i
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.i
 
-gen/generator.s: gen/generator.cpp.s
-.PHONY : gen/generator.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.s
 
 # target to generate assembly for a file
-gen/generator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/gen/generator.cpp.s
-.PHONY : gen/generator.cpp.s
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.cpp.s
 
 # Help Target
 help:
@@ -396,33 +396,33 @@ help:
 	@echo "... engine"
 	@echo "... generator"
 	@echo "... tinyXML"
-	@echo "... TinyXML/tinystr.o"
-	@echo "... TinyXML/tinystr.i"
-	@echo "... TinyXML/tinystr.s"
-	@echo "... TinyXML/tinyxml.o"
-	@echo "... TinyXML/tinyxml.i"
-	@echo "... TinyXML/tinyxml.s"
-	@echo "... TinyXML/tinyxmlerror.o"
-	@echo "... TinyXML/tinyxmlerror.i"
-	@echo "... TinyXML/tinyxmlerror.s"
-	@echo "... TinyXML/tinyxmlparser.o"
-	@echo "... TinyXML/tinyxmlparser.i"
-	@echo "... TinyXML/tinyxmlparser.s"
-	@echo "... data_structs/Model.o"
-	@echo "... data_structs/Model.i"
-	@echo "... data_structs/Model.s"
-	@echo "... data_structs/Point.o"
-	@echo "... data_structs/Point.i"
-	@echo "... data_structs/Point.s"
-	@echo "... data_structs/Settings.o"
-	@echo "... data_structs/Settings.i"
-	@echo "... data_structs/Settings.s"
-	@echo "... engine/engine.o"
-	@echo "... engine/engine.i"
-	@echo "... engine/engine.s"
-	@echo "... gen/generator.o"
-	@echo "... gen/generator.i"
-	@echo "... gen/generator.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinystr.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxml.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlerror.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/TinyXML/tinyxmlparser.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Model.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Point.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/data_structs/Settings.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/gen/generator.s"
 .PHONY : help
 
 

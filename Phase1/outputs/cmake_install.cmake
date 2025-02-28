@@ -1,4 +1,4 @@
-# Install script for directory: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1
+# Install script for directory: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -54,7 +54,7 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1
+CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs

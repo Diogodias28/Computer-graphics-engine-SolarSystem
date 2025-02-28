@@ -53,7 +53,7 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1
+CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs
@@ -72,28 +72,28 @@ include CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/codegen:
 .PHONY : CMakeFiles/engine.dir/codegen
 
-CMakeFiles/engine.dir/engine/engine.cpp.o: CMakeFiles/engine.dir/flags.make
-CMakeFiles/engine.dir/engine/engine.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp
-CMakeFiles/engine.dir/engine/engine.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/engine.dir/engine/engine.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/engine/engine.cpp.o -MF CMakeFiles/engine.dir/engine/engine.cpp.o.d -o CMakeFiles/engine.dir/engine/engine.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp
+CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp
+CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o -MF CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o.d -o CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp
 
-CMakeFiles/engine.dir/engine/engine.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/engine/engine.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp > CMakeFiles/engine.dir/engine/engine.cpp.i
+CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp > CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.i
 
-CMakeFiles/engine.dir/engine/engine.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/engine/engine.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp -o CMakeFiles/engine.dir/engine/engine.cpp.s
+CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp -o CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.s
 
 # Object files for target engine
 engine_OBJECTS = \
-"CMakeFiles/engine.dir/engine/engine.cpp.o"
+"CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o"
 
 # External object files for target engine
 engine_EXTERNAL_OBJECTS =
 
-engine: CMakeFiles/engine.dir/engine/engine.cpp.o
+engine: CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/engine/engine.cpp.o
 engine: CMakeFiles/engine.dir/build.make
 engine: libdata_structs.a
 engine: libtinyXML.a
@@ -110,6 +110,6 @@ CMakeFiles/engine.dir/clean:
 .PHONY : CMakeFiles/engine.dir/clean
 
 CMakeFiles/engine.dir/depend:
-	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles/engine.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase1/outputs/CMakeFiles/engine.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/engine.dir/depend
 
