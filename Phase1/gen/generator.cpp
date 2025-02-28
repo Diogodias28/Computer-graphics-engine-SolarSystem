@@ -99,12 +99,12 @@ void genBox(int length, int grid, std::string fileName) {
 	  
 			// Top Face
 			controlPoints.push_back(makePoint(x, half, y));
-			controlPoints.push_back(makePoint(x, half, y + part));
-			controlPoints.push_back(makePoint(x + part, half, y));
-	  
-			controlPoints.push_back(makePoint(x, half, y + part));
 			controlPoints.push_back(makePoint(x + part, half, y + part));
 			controlPoints.push_back(makePoint(x + part, half, y));
+	  
+			controlPoints.push_back(makePoint(x, half, y));
+			controlPoints.push_back(makePoint(x, half, y + part));
+			controlPoints.push_back(makePoint(x + part, half, y + part));
 	  
 			// Bottom Face
 			controlPoints.push_back(makePoint(x, -half, y));
