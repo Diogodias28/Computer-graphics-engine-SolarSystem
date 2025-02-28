@@ -5,14 +5,18 @@ struct model{
 };
 
 Model createModel(){
-    Model m;
+    Model m = new model();
+    if(!m){
+        std::cerr << "Failed to allocate memory for model" << std::endl;
+        exit(1);
+    }
     m->points = std::vector<Point>();
 
     return m;
 }
 
 Model makeModel(std::vector<Point> points){
-    Model m;
+    Model m = new model();
     for(int i=0; i<points.size(); i++){
         addPoint(m, points[i]);
     }
@@ -25,21 +29,35 @@ std::vector<Point> getPoints(Model m){
 }
 
 void addPoint(Model m, Point p){
-    m->points.push_back(p);
+    if(m!=nullptr){
+        m->points.push_back(p);
+    } else{
+        std::cerr << "Error: Model pointer is null!" << std::endl;
+    }
 }
 
 std::vector<Point> readFromFile(std::string fileName) {
     std::vector<Point> points;
     std::string line;
 
-    fileName = "../outputs/3d/" + fileName;
+    fileName = "./3d/" + fileName;
     std::ifstream file(fileName);
 
     if (file.is_open()) {
+        std::getline(file, line); // Read the first line (number of points), but ignore it
+
         while (std::getline(file, line)) {
             std::istringstream iss(line);
-            float x, y ,z;
-            if (iss >> x >> y >> z) {
+            std::string xStr, yStr, zStr;
+
+            if (std::getline(iss, xStr, ',') && 
+                std::getline(iss, yStr, ',') && 
+                std::getline(iss, zStr, ',')) {
+                
+                float x = std::stof(xStr);
+                float y = std::stof(yStr);
+                float z = std::stof(zStr);
+
                 points.push_back(makePoint(x, y, z));
             }
         }
@@ -65,8 +83,8 @@ void writeToFile(std::vector<Point> controlPoints, string fileName) {
 
     // Write control points
     file << std::fixed << std::setprecision(6);
-    for (const auto& p : controlPoints) {
-        file << getX(p) << ", " << getY(p) << ", " << getZ(p) << std::endl;
+    for (int i = 0; i<controlPoints.size(); i++) {
+        file << getX(controlPoints[i]) << ", " << getY(controlPoints[i]) << ", " << getZ(controlPoints[i]) << std::endl;
     }
 
     file.close();

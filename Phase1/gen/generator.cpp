@@ -51,64 +51,119 @@ void genPlane(int length, int divisions) { //está com o Point anterior, mudar p
 */
 
 void genBox(int length, int grid, std::string fileName) {
+
     std::vector<Point> controlPoints;
+    float part = (float)length / grid; 
+    float half = length / 2.0f;
 
-    float step = (float)length / grid;
-    float halfLength = (float)length / 2.0f;
+    for (int i = 0; i < grid; i++) {
+        for (int j = 0; j < grid; j++) {
+            float x = -half + i * part;
+            float y = -half + j * part;
 
-    // Generate control points for all 6 faces
-    for (int i = 0; i <= grid; i++) {
-        for (int j = 0; j <= grid; j++) {
-            // Add points for each face using makePoint()
-            controlPoints.push_back(makePoint(-halfLength + i * step, -halfLength + j * step, halfLength)); // Front
-            controlPoints.push_back(makePoint(-halfLength + i * step, -halfLength + j * step, -halfLength)); // Back
-            controlPoints.push_back(makePoint(-halfLength + i * step, halfLength, -halfLength + j * step)); // Top
-            controlPoints.push_back(makePoint(-halfLength + i * step, -halfLength, -halfLength + j * step)); // Bottom
-            controlPoints.push_back(makePoint(halfLength, -halfLength + i * step, -halfLength + j * step)); // Right
-            controlPoints.push_back(makePoint(-halfLength, -halfLength + i * step, -halfLength + j * step)); // Left
+            // Front Face
+            controlPoints.push_back(makePoint(x, y, half));
+            controlPoints.push_back(makePoint(x + part, y, half));
+            controlPoints.push_back(makePoint(x, y + part, half));
+
+            controlPoints.push_back(makePoint(x + part, y, half));
+            controlPoints.push_back(makePoint(x + part, y + part, half));
+            controlPoints.push_back(makePoint(x, y + part, half));
+
+			// Back Face
+			controlPoints.push_back(makePoint(x, y, -half));
+			controlPoints.push_back(makePoint(x, y + part, -half));
+			controlPoints.push_back(makePoint(x + part, y, -half));
+	  
+			controlPoints.push_back(makePoint(x, y + part, -half));
+			controlPoints.push_back(makePoint(x + part, y + part, -half));
+			controlPoints.push_back(makePoint(x + part, y, -half));
+	  
+			// Left Face
+			controlPoints.push_back(makePoint(-half, x, y));
+			controlPoints.push_back(makePoint(-half, x, y + part));
+			controlPoints.push_back(makePoint(-half, x + part, y));
+	  
+			controlPoints.push_back(makePoint(-half, x, y + part));
+			controlPoints.push_back(makePoint(-half, x + part, y + part));
+			controlPoints.push_back(makePoint(-half, x + part, y));
+	  
+			// Right Face done
+			controlPoints.push_back(makePoint(half, x + part, y + part));
+			controlPoints.push_back(makePoint(half, x, y + part));
+			controlPoints.push_back(makePoint(half, x, y));
+	  
+			controlPoints.push_back(makePoint(half, x + part, y + part));
+			controlPoints.push_back(makePoint(half, x, y));
+			controlPoints.push_back(makePoint(half, x + part, y));
+	  
+			// Top Face
+			controlPoints.push_back(makePoint(x, half, y));
+			controlPoints.push_back(makePoint(x, half, y + part));
+			controlPoints.push_back(makePoint(x + part, half, y));
+	  
+			controlPoints.push_back(makePoint(x, half, y + part));
+			controlPoints.push_back(makePoint(x + part, half, y + part));
+			controlPoints.push_back(makePoint(x + part, half, y));
+	  
+			// Bottom Face
+			controlPoints.push_back(makePoint(x, -half, y));
+			controlPoints.push_back(makePoint(x + part, -half, y));
+			controlPoints.push_back(makePoint(x, -half, y + part));
+	  
+			controlPoints.push_back(makePoint(x, -half, y + part));
+			controlPoints.push_back(makePoint(x + part, -half, y));
+			controlPoints.push_back(makePoint(x + part, -half, y + part));
+			
         }
     }
-
-    // Write control points to file using writeToFile()
     writeToFile(controlPoints, fileName);
 }
-/*
-void genSphere(int radius, int slices, int stacks) {
-    std::vector<std::vector<int>> patches;
+
+void genSphere(float radius, int slices, int stacks, std::string fileName) {
     std::vector<Point> controlPoints;
 
-    // Generate control points (a sphere's parameterization)
-    for (int i = 0; i <= stacks; i++) {
-        float phi = M_PI * i / stacks;
-        for (int j = 0; j <= slices; j++) {
-            float theta = 2 * M_PI * j / slices;
+    // divide o circulo de 360 graus em slices iguais
+    float anglePerSlice = (float)(2 * M_PI) / slices;
+    // divide o arco de 180 graus em stacks iguais
+    float anglePerStack = (float)M_PI / stacks;
 
-            float x = radius * sin(phi) * cos(theta);
-            float y = radius * cos(phi);
-            float z = radius * sin(phi) * sin(theta);
+    float alpha, beta;
+    Point p1, p2, p3, p4;
 
-            controlPoints.push_back(Point(x, y, z));
+    for (int j = 0; j < stacks; j++) {
+        // ângulo de latitude para a stack atual e seguinte
+        beta = j * anglePerStack;
+        float nextBeta = (j + 1) * anglePerStack;
+
+        for (int i = 0; i < slices; i++) {
+            // ângulo de atitude para o slice atual e seguinte
+            alpha = i * anglePerSlice;
+            float nextAlpha = (i + 1) * anglePerSlice;
+
+            // pontos na stack atual
+            p1 = makePoint(radius * sinf(beta) * sinf(alpha), radius * cosf(beta), radius * sinf(beta) * cosf(alpha));
+            p2 = makePoint(radius * sinf(beta) * sinf(nextAlpha), radius * cosf(beta), radius * sinf(beta) * cosf(nextAlpha));
+
+            // pontos na próxima stack
+            p3 = makePoint(radius * sinf(nextBeta) * sinf(alpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(alpha));
+            p4 = makePoint(radius * sinf(nextBeta) * sinf(nextAlpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(nextAlpha));
+
+            // Vamos fazer os triângulos
+            // triângulo de cima
+            controlPoints.push_back(p1);
+            controlPoints.push_back(p4);
+            controlPoints.push_back(p2);
+
+            // triângulo de baixo
+            controlPoints.push_back(p1);
+            controlPoints.push_back(p3);
+            controlPoints.push_back(p4);
         }
     }
 
-    // Create patches (16 indices for each patch)
-    for (int i = 0; i < stacks; i++) {
-        for (int j = 0; j < slices; j++) {
-            int idx = i * (slices + 1) + j;
-            patches.push_back({
-                idx, idx + 1, idx + 2, idx + 3,
-                idx + (slices + 1), idx + (slices + 1) + 1, idx + (slices + 1) + 2, idx + (slices + 1) + 3,
-                idx + 2 * (slices + 1), idx + 2 * (slices + 1) + 1, idx + 2 * (slices + 1) + 2, idx + 2 * (slices + 1) + 3,
-                idx + 3 * (slices + 1), idx + 3 * (slices + 1) + 1, idx + 3 * (slices + 1) + 2, idx + 3 * (slices + 1) + 3
-            });
-        }
-    }
-
-    // Write to file
     writeToFile(controlPoints, fileName);
 }
-
-*/
 
 void genCone(int radius, int height, int slices, int stacks) {
     std::vector<Point> controlPoints;
@@ -205,17 +260,15 @@ int main(int argc, char *argv[]) {
             genCone(radius, height, slices, stacks);
         }
 
-        /*
         // sphere
         else if(strcmp(argv[1], "sphere") == 0) {
             int radius = atoi(argv[2]);
             int slices = atoi(argv[3]);
             int stacks = atoi(argv[4]);
             fileName = argv[5];
-            genSphere(radius, slices, stacks);
+            genSphere(radius, slices, stacks, fileName);
         }
-        */
-        
+
         // box
         else if(strcmp(argv[1], "box") == 0) {
             int length = atoi(argv[2]);

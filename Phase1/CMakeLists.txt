@@ -10,23 +10,22 @@ add_executable(generator gen/generator.cpp)
 
 add_library(
 	data_structs
-	data_structs/Point.cpp
-	data_structs/Point.hpp
-	data_structs/Model.cpp
-	data_structs/Model.hpp
-	data_structs/Settings.cpp
-	data_structs/Settings.hpp
+	./data_structs/Point.cpp
+	./data_structs/Point.hpp
+	./data_structs/Model.cpp
+	./data_structs/Model.hpp
+	./data_structs/Settings.cpp
+	./data_structs/Settings.hpp
 )
 
 add_library(
 	tinyXML
-	TinyXML/tinystr.cpp
-	TinyXML/tinyxmlerror.cpp
-	TinyXML/tinyxmlparser.cpp
-	TinyXML/tinystr.h
-	TinyXML/tinyxml.h
-	TinyXML/tinyxml.cpp
-    
+	./TinyXML/tinystr.cpp
+	./TinyXML/tinyxmlerror.cpp
+	./TinyXML/tinyxmlparser.cpp
+	./TinyXML/tinystr.h
+	./TinyXML/tinyxml.h
+	./TinyXML/tinyxml.cpp
 )
 
 target_link_libraries(data_structs tinyXML)

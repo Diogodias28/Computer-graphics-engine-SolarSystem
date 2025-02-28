@@ -10,9 +10,13 @@ Settings newSettings();
 
 Settings xmlToSettings(const char*);
 
-std::vector<std::string> getModels(Settings);
+std::vector<std::string> getPaths(Settings);
 
 void setCamPosition(Settings, float, float, float);
+
+int getHeight(Settings);
+
+int getWidth(Settings);
 
 float getXPosCam(Settings);
 
@@ -31,6 +35,12 @@ float getXUp(Settings);
 float getYUp(Settings);
 
 float getZUp(Settings);
+
+float getFov(Settings);
+
+float getNear(Settings);
+
+float getFar(Settings);
 
 void deleteSettings(Settings);
 

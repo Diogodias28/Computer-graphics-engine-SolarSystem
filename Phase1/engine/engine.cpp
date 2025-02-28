@@ -12,23 +12,26 @@
 #include "../data_structs/Settings.hpp"
 
 // Variáveis da câmara
-float alpha = M_PI / 4;
-float beta_ = M_PI / 4;
-float radius = 5.0f;
-float camx = 5.0f;
-float camy = 5.0f;
-float camz = 5.0f;
-float lookAtx = 0.0f;
-float lookAty = 0.0f;
-float lookAtz = 0.0f;
-float upx = 0.0f;
-float upy = 0.0f;
-float upz = 0.0f;
+int height;
+int width;
+float alpha;
+float beta;
+float radius;
+float camx;
+float camy;
+float camz;
+float lookAtx;
+float lookAty;
+float lookAtz;
+float upx;
+float upy;
+float upz;
+float fov;
+float near;
+float far;
 
-Settings set = newSettings();
+Settings set;
 std::vector<Model> models = std::vector<Model>();
-
-float r = 5.0f, alpha_cam = M_PI / 4, beta_cam = M_PI / 4;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
 
@@ -51,7 +54,7 @@ void changeSize(int w, int h) {
     glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
+	gluPerspective( fov, ratio, near, far);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -81,10 +84,9 @@ void renderScene(void) {
 	// primeiro triplo: onde a camera esta
 	// segundo triplo: para onde a camera esta a olhar
 	// (r, alpha, beta) -> (x, y, z)
-	gluLookAt(r * cos(beta_cam) * sin(alpha_cam), r * sin(beta_cam), r * cos(beta_cam) * cos(alpha_cam),
-		      0.0,0.0,0.0,
-			  0.0f,1.0f,0.0f); 
-              // trocar segundo e terceiro triplo de coordenadas depois (?)
+	gluLookAt(radius*cosf(beta)*sinf(alpha),radius*sinf(beta),radius*cosf(beta)*cosf(alpha),
+		      lookAtx, lookAty, lookAtz,
+			  upx,upy,upz); 
 
     glBegin(GL_LINES);
         // X axis in red
@@ -102,6 +104,8 @@ void renderScene(void) {
     glEnd();
           
 	glPolygonMode(GL_FRONT_AND_BACK, drawmode);
+
+	glColor3f(1.0f, 0.6f, 0.7f);
 	drawFigures(models); 
 
 	// End of frame
@@ -115,22 +119,22 @@ void processKeys(unsigned char c, int xx, int yy) {
 // put code to process regular keys in here
 	switch (c) {
 		case 'w':
-			if (beta_cam <= (M_PI / 2)) beta_cam += 0.5f;
+			if (beta <= (M_PI / 2)) beta += 0.5f;
 			break;
 		case 's':
-			if (beta_cam >= (-M_PI / 2)) beta_cam -= 0.5;
+			if (beta >= (-M_PI / 2)) beta -= 0.5;
 			break;
 		case 'd':
-			alpha_cam -= 0.2f;
+			alpha -= 0.2f;
 			break;
 		case 'a':
-			alpha_cam += 0.2f;
+			alpha += 0.2f;
 			break;
 		case '+': // Zoom In
-			r -= 0.2f;
+			radius -= 0.2f;
 			break;
 		case '-': // Zoom out
-			r += 0.2f;
+			radius += 0.2f;
 			break;
 		case 'm': // Altera os modos de desenho
 			if (drawmode == GL_FILL) drawmode = GL_LINE;
@@ -151,17 +155,26 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 int main(int argc, char **argv) {
 
-	set = xmlToSettings(argv[1]);
-	std::vector<std::string> paths = getModels(set);
-	models = std::vector<Model>();
-
-	for (int i = 0; i < getModels(set).size(); i++) {
-		std::vector<Point> points = readFromFile(getModels(set)[i]);
-		for (int j = 0; j < points.size(); j++) {
-			addPoint(models[i], points[j]);
-		}
+	if(argc<2){
+		fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
+		return 1;
 	}
 
+	set = xmlToSettings(argv[1]);
+
+	std::vector<std::string> paths = getPaths(set);
+
+	for (int i = 0; i < paths.size(); i++) {
+		std::vector<Point> points = readFromFile(paths[i]);
+		if (points.empty()) {
+			fprintf(stderr, "Error: Could not read points from file %s\n", paths[i].c_str());
+		}
+		Model m = makeModel(points);
+    	models.push_back(m);      
+	}
+
+	height  = getHeight(set);
+	width   = getWidth(set);
 	camx    = getXPosCam(set);
 	camy    = getYPosCam(set);
 	camz    = getZPosCam(set);
@@ -173,13 +186,16 @@ int main(int argc, char **argv) {
 	upy 	= getYUp(set);
 	upz 	= getZUp(set);
 	alpha   = acos(camz/sqrt(camx*camx + camz*camz));
-	beta_   = asin(camy/radius);
+	beta    = asin(camy/radius);
+	fov     = getFov(set);
+	near    = getNear(set);
+	far     = getFar(set);
 
 // init GLUT and the window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
 	glutInitWindowPosition(100,100);
-	glutInitWindowSize(800,800);
+	glutInitWindowSize(width,height);
 	glutCreateWindow("Projeto CG");
 		
 // Required callback registry 
