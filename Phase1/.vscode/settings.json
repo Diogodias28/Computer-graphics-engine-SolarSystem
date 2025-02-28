@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "plyconfig.json": "jsonc",
-        "vector": "cpp",
-        "cmath": "cpp"
-    }
-}

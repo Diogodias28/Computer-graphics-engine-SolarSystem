@@ -40,7 +40,7 @@ std::vector<Point> readFromFile(std::string fileName) {
     std::vector<Point> points;
     std::string line;
 
-    fileName = "./3d/" + fileName;
+    fileName = "../3d/" + fileName;
     std::ifstream file(fileName);
 
     if (file.is_open()) {
@@ -70,7 +70,7 @@ std::vector<Point> readFromFile(std::string fileName) {
 }
 
 void writeToFile(std::vector<Point> controlPoints, string fileName) {
-    fileName = "../outputs/3d/" + fileName;
+    fileName = "../3d/" + fileName;
     std::ofstream file(fileName);
 
     if (!file.is_open()) {
