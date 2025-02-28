@@ -165,24 +165,25 @@ void genSphere(float radius, int slices, int stacks, std::string fileName) {
     writeToFile(controlPoints, fileName);
 }
 
-void genCone(int radius, int height, int slices, int stacks) {
+void genCone(const float radius, const float height, const size_t slices, const size_t stacks) {
     
     std::vector<Point> controlPoints;
 
-    float alpha = (float) 2 * M_PI / slices;
-    float heightPerStack = (float) height / stacks;
+    const float alpha = (float) 2 * M_PI / slices;
+    const float heightPerStack = (float) height / stacks;
 
-    Point base_middle = createPoint();
+    const Point base_middle = createPoint();
 
     for (int slice = 0; slice < slices; slice++) {
         for (int stack = 0; stack < stacks; stack++) {
-            float currRadius = radius - stack * radius / stacks;
-            float nextRadius = radius - (stack + 1) * radius / stacks;
 
-            Point bottom_left = makePoint(currRadius * sin(slice * alpha), stack * heightPerStack, currRadius * cos(slice * alpha));
-            Point bottom_right = makePoint(currRadius * sin((slice + 1) * alpha), stack * heightPerStack, currRadius * cos((slice + 1) * alpha));
-            Point top_left = makePoint (nextRadius * sin(slice * alpha), (stack + 1) * heightPerStack,nextRadius * cos(slice * alpha));
-            Point top_right = makePoint(nextRadius * sin((slice + 1) * alpha), (stack + 1) * heightPerStack, nextRadius * cos((slice + 1) * alpha));
+            const float currRadius = radius - stack * radius / stacks;
+            const float nextRadius = radius - (stack + 1) * radius / stacks;
+
+            const Point bottom_left = makePoint(currRadius * sin(slice * alpha), stack * heightPerStack, currRadius * cos(slice * alpha));
+            const Point bottom_right = makePoint(currRadius * sin((slice + 1) * alpha), stack * heightPerStack, currRadius * cos((slice + 1) * alpha));
+            const Point top_left = makePoint (nextRadius * sin(slice * alpha), (stack + 1) * heightPerStack,nextRadius * cos(slice * alpha));
+            const Point top_right = makePoint(nextRadius * sin((slice + 1) * alpha), (stack + 1) * heightPerStack, nextRadius * cos((slice + 1) * alpha));
 
             controlPoints.push_back(top_left);
             controlPoints.push_back(bottom_left);
@@ -193,8 +194,8 @@ void genCone(int radius, int height, int slices, int stacks) {
             controlPoints.push_back(top_right);
         }
 
-        Point base_bottom_left = makePoint(radius * sin(slice * alpha), 0.0f, radius * cos(slice * alpha));
-        Point base_bottom_right = makePoint(radius * sin((slice + 1) * alpha), 0.0f, radius * cos((slice + 1) * alpha));
+        const Point base_bottom_left = makePoint(radius * sin(slice * alpha), 0.0f, radius * cos(slice * alpha));
+        const Point base_bottom_right = makePoint(radius * sin((slice + 1) * alpha), 0.0f, radius * cos((slice + 1) * alpha));
 
         controlPoints.push_back(base_middle);
         controlPoints.push_back(base_bottom_right);
