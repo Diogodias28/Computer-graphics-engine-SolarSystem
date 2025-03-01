@@ -15,7 +15,7 @@
 int height;
 int width;
 float alpha;
-float camBeta;
+float beta;
 float radius;
 float camx;
 float camy;
@@ -84,7 +84,7 @@ void renderScene(void) {
 	// primeiro triplo: onde a camera esta
 	// segundo triplo: para onde a camera esta a olhar
 	// (r, alpha, beta) -> (x, y, z)
-	gluLookAt(radius*cosf(camBeta)*sinf(alpha),radius*sinf(camBeta),radius*cosf(camBeta)*cosf(alpha),
+	gluLookAt(radius*cosf(beta)*sinf(alpha),radius*sinf(beta),radius*cosf(beta)*cosf(alpha),
 		      lookAtx, lookAty, lookAtz,
 			  upx,upy,upz); 
 
@@ -119,10 +119,10 @@ void processKeys(unsigned char c, int xx, int yy) {
 // put code to process regular keys in here
 	switch (c) {
 		case 'w':
-			if (camBeta <= (M_PI / 2)) camBeta += 0.5f;
+			if (beta <= (M_PI / 2)) beta += 0.5f;
 			break;
 		case 's':
-			if (camBeta >= (-M_PI / 2)) camBeta -= 0.5;
+			if (beta >= (-M_PI / 2)) beta -= 0.5;
 			break;
 		case 'd':
 			alpha -= 0.2f;
@@ -186,7 +186,7 @@ int main(int argc, char **argv) {
 	upy 	= getYUp(set);
 	upz 	= getZUp(set);
 	alpha    = acos(camz/sqrt(camx*camx + camz*camz));
-	camBeta  = asin(camy/radius);
+	beta  = asin(camy/radius);
 	fov     = getFov(set);
 	nearPlane = getNear(set);
 	farPlane     = getFar(set);
