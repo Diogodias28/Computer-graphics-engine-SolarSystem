@@ -17,8 +17,8 @@ void genPlane(int length, int divisions, std::string fileName){
     float part = (float)length / divisions;
     float half = length / 2.0f;
 
-    for (int i = 0; i <= divisions; i++) {
-        for (int j = 0; j <= divisions; j++) {
+    for (int i = 0; i < divisions; i++) {
+        for (int j = 0; j < divisions; j++) {
             float x1 = -half + i * part;
             float z1 = -half + j * part;
             float x2 = x1 + part;
@@ -51,13 +51,13 @@ void genBox(int length, int grid, std::string fileName) {
             float y = -half + j * part;
 
             // Front Face
-            controlPoints.push_back(makePoint(x, y, half));
-            controlPoints.push_back(makePoint(x + part, y, half));
-            controlPoints.push_back(makePoint(x, y + part, half));
-
-            controlPoints.push_back(makePoint(x + part, y, half));
             controlPoints.push_back(makePoint(x + part, y + part, half));
             controlPoints.push_back(makePoint(x, y + part, half));
+            controlPoints.push_back(makePoint(x, y, half));
+
+            controlPoints.push_back(makePoint(x + part, y + part, half));
+            controlPoints.push_back(makePoint(x, y, half));
+            controlPoints.push_back(makePoint(x + part, y, half));
 
 			// Back Face
 			controlPoints.push_back(makePoint(x, y, -half));
@@ -208,7 +208,7 @@ int main(int argc, char *argv[]) {
         }
 
         // cone
-        if(strcmp(argv[1], "cone") == 0) {
+        else if(strcmp(argv[1], "cone") == 0) {
             int radius = atoi(argv[2]);
             int height = atoi(argv[3]);
             int slices = atoi(argv[4]);
