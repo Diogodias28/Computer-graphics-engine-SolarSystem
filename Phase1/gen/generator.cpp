@@ -12,43 +12,32 @@ using namespace std;
 
 string fileName;
 
-/*
-void genPlane(int length, int divisions) { //está com o Point anterior, mudar para que fique com o point e o model (aka figura) de agora.
-                                            //NÃO FAZER OS PATCHES
-    std::vector<std::vector<int>> patches; // To store the patches' indices
-    std::vector<Point> controlPoints; // To store the control points
+void genPlane(int length, int divisions, std::string fileName){
+    std::vector<Point> controlPoints;
+    float part = (float)length / divisions;
+    float half = length / 2.0f;
 
-    float step = (float)length / divisions;
-    float halfLength = length / 2.0f;
-
-    // Generate control points (divisions + 1) x (divisions + 1)
     for (int i = 0; i <= divisions; i++) {
         for (int j = 0; j <= divisions; j++) {
-            float x = -halfLength + i * step;
-            float z = -halfLength + j * step;
-            controlPoints.push_back(Point(x, 0.0f, z));
+            float x1 = -half + i * part;
+            float z1 = -half + j * part;
+            float x2 = x1 + part;
+            float z2 = z1 + part;
+
+            // Triângulo 1
+            controlPoints.push_back(makePoint(x1, 0.0f, z1));
+            controlPoints.push_back(makePoint(x1, 0.0f, z2));
+            controlPoints.push_back(makePoint(x2, 0.0f, z1));
+
+            // Triângulo 2
+            controlPoints.push_back(makePoint(x2, 0.0f, z1));
+            controlPoints.push_back(makePoint(x1, 0.0f, z2));
+            controlPoints.push_back(makePoint(x2, 0.0f, z2));
         }
     }
 
-    // Create patches (each patch is a 4x4 grid of points)
-    for (int i = 0; i < divisions; i++) {
-        for (int j = 0; j < divisions; j++) {
-            int idx = i * (divisions + 1) + j; // The top-left corner of the patch
-
-            // Adding the 16 indices for this patch
-            patches.push_back({
-                idx, idx + 1, idx + 2, idx + 3,
-                idx + (divisions + 1), idx + (divisions + 1) + 1, idx + (divisions + 1) + 2, idx + (divisions + 1) + 3,
-                idx + 2 * (divisions + 1), idx + 2 * (divisions + 1) + 1, idx + 2 * (divisions + 1) + 2, idx + 2 * (divisions + 1) + 3,
-                idx + 3 * (divisions + 1), idx + 3 * (divisions + 1) + 1, idx + 3 * (divisions + 1) + 2, idx + 3 * (divisions + 1) + 3
-            });
-        }
-    }
-
-    // Write the patch data to file (indices and control points)
     writeToFile(controlPoints, fileName);
 }
-*/
 
 void genBox(int length, int grid, std::string fileName) {
 
@@ -210,15 +199,13 @@ int main(int argc, char *argv[]) {
 
     if (argc >= 5) { // no minimo tem sempre 5 argumentos
 
-        /*
         // plane
         if(strcmp(argv[1], "plane") == 0) {
             int length = atoi(argv[2]);
             int divisions = atoi(argv[3]);
             fileName = argv[4];
-            genPlane(length, divisions);
+            genPlane(length, divisions, fileName);
         }
-        */
 
         // cone
         if(strcmp(argv[1], "cone") == 0) {

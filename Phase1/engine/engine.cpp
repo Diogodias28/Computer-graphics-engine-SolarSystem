@@ -15,7 +15,7 @@
 int height;
 int width;
 float alpha;
-float beta;
+float camBeta;
 float radius;
 float camx;
 float camy;
@@ -27,8 +27,8 @@ float upx;
 float upy;
 float upz;
 float fov;
-float near;
-float far;
+float nearPlane;
+float farPlane;
 
 Settings set;
 std::vector<Model> models = std::vector<Model>();
@@ -54,7 +54,7 @@ void changeSize(int w, int h) {
     glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective( fov, ratio, near, far);
+	gluPerspective(fov, ratio, nearPlane, farPlane);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -84,7 +84,7 @@ void renderScene(void) {
 	// primeiro triplo: onde a camera esta
 	// segundo triplo: para onde a camera esta a olhar
 	// (r, alpha, beta) -> (x, y, z)
-	gluLookAt(radius*cosf(beta)*sinf(alpha),radius*sinf(beta),radius*cosf(beta)*cosf(alpha),
+	gluLookAt(radius*cosf(camBeta)*sinf(alpha),radius*sinf(camBeta),radius*cosf(camBeta)*cosf(alpha),
 		      lookAtx, lookAty, lookAtz,
 			  upx,upy,upz); 
 
@@ -119,10 +119,10 @@ void processKeys(unsigned char c, int xx, int yy) {
 // put code to process regular keys in here
 	switch (c) {
 		case 'w':
-			if (beta <= (M_PI / 2)) beta += 0.5f;
+			if (camBeta <= (M_PI / 2)) camBeta += 0.5f;
 			break;
 		case 's':
-			if (beta >= (-M_PI / 2)) beta -= 0.5;
+			if (camBeta >= (-M_PI / 2)) camBeta -= 0.5;
 			break;
 		case 'd':
 			alpha -= 0.2f;
@@ -185,11 +185,11 @@ int main(int argc, char **argv) {
 	upx 	= getXUp(set);
 	upy 	= getYUp(set);
 	upz 	= getZUp(set);
-	alpha   = acos(camz/sqrt(camx*camx + camz*camz));
-	beta    = asin(camy/radius);
+	alpha    = acos(camz/sqrt(camx*camx + camz*camz));
+	camBeta  = asin(camy/radius);
 	fov     = getFov(set);
-	near    = getNear(set);
-	far     = getFar(set);
+	nearPlane = getNear(set);
+	farPlane     = getFar(set);
 
 // init GLUT and the window
 	glutInit(&argc, argv);
