@@ -121,12 +121,12 @@ void genSphere(float radius, int slices, int stacks) {
     Point p1, p2, p3, p4;
 
     for (int j = 0; j < stacks; j++) {
-        // ângulo de latitude para a stack atual e seguinte
+        // ângulo para a stack atual e seguinte
         beta = j * anglePerStack;
         float nextBeta = (j + 1) * anglePerStack;
 
         for (int i = 0; i < slices; i++) {
-            // ângulo de atitude para o slice atual e seguinte
+            // ângulo para o slice atual e seguinte
             alpha = i * anglePerSlice;
             float nextAlpha = (i + 1) * anglePerSlice;
 
