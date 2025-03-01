@@ -12,7 +12,7 @@ using namespace std;
 
 string fileName;
 
-void genPlane(int length, int divisions, std::string fileName){
+void genPlane(int length, int divisions){
     std::vector<Point> controlPoints;
     float part = (float)length / divisions;
     float half = length / 2.0f;
@@ -39,7 +39,7 @@ void genPlane(int length, int divisions, std::string fileName){
     writeToFile(controlPoints, fileName);
 }
 
-void genBox(int length, int grid, std::string fileName) {
+void genBox(int length, int grid) {
 
     std::vector<Point> controlPoints;
     float part = (float)length / grid; 
@@ -109,7 +109,7 @@ void genBox(int length, int grid, std::string fileName) {
     writeToFile(controlPoints, fileName);
 }
 
-void genSphere(float radius, int slices, int stacks, std::string fileName) {
+void genSphere(float radius, int slices, int stacks) {
     std::vector<Point> controlPoints;
 
     // divide o circulo de 360 graus em slices iguais
@@ -204,7 +204,7 @@ int main(int argc, char *argv[]) {
             int length = atoi(argv[2]);
             int divisions = atoi(argv[3]);
             fileName = argv[4];
-            genPlane(length, divisions, fileName);
+            genPlane(length, divisions);
         }
 
         // cone
@@ -223,7 +223,7 @@ int main(int argc, char *argv[]) {
             int slices = atoi(argv[3]);
             int stacks = atoi(argv[4]);
             fileName = argv[5];
-            genSphere(radius, slices, stacks, fileName);
+            genSphere(radius, slices, stacks);
         }
 
         // box
@@ -231,7 +231,7 @@ int main(int argc, char *argv[]) {
             int length = atoi(argv[2]);
             int grid = atoi(argv[3]);
             fileName = argv[4];
-            genBox(length, grid, fileName);
+            genBox(length, grid);
         }
 
         else {
