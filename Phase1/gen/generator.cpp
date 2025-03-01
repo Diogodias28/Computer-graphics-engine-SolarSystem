@@ -47,62 +47,62 @@ void genBox(int length, int grid) {
 
     for (int i = 0; i < grid; i++) {
         for (int j = 0; j < grid; j++) {
-            float x = -half + i * part;
-            float y = -half + j * part;
+            float a = -half + i * part;
+            float b = -half + j * part;
 
             // Front Face
-            controlPoints.push_back(makePoint(x + part, y + part, half));
-            controlPoints.push_back(makePoint(x, y + part, half));
-            controlPoints.push_back(makePoint(x, y, half));
+            controlPoints.push_back(makePoint(a + part, b + part, half));
+            controlPoints.push_back(makePoint(a, b + part, half));
+            controlPoints.push_back(makePoint(a, b, half));
 
-            controlPoints.push_back(makePoint(x + part, y + part, half));
-            controlPoints.push_back(makePoint(x, y, half));
-            controlPoints.push_back(makePoint(x + part, y, half));
+            controlPoints.push_back(makePoint(a + part, b + part, half));
+            controlPoints.push_back(makePoint(a, b, half));
+            controlPoints.push_back(makePoint(a + part, b, half));
 
 			// Back Face
-			controlPoints.push_back(makePoint(x, y, -half));
-			controlPoints.push_back(makePoint(x, y + part, -half));
-			controlPoints.push_back(makePoint(x + part, y, -half));
+			controlPoints.push_back(makePoint(a, b, -half));
+			controlPoints.push_back(makePoint(a, b + part, -half));
+			controlPoints.push_back(makePoint(a + part, b, -half));
 	  
-			controlPoints.push_back(makePoint(x, y + part, -half));
-			controlPoints.push_back(makePoint(x + part, y + part, -half));
-			controlPoints.push_back(makePoint(x + part, y, -half));
+			controlPoints.push_back(makePoint(a, b + part, -half));
+			controlPoints.push_back(makePoint(a + part, b + part, -half));
+			controlPoints.push_back(makePoint(a + part, b, -half));
 	  
 			// Left Face
-			controlPoints.push_back(makePoint(-half, x, y));
-			controlPoints.push_back(makePoint(-half, x, y + part));
-			controlPoints.push_back(makePoint(-half, x + part, y));
+			controlPoints.push_back(makePoint(-half, a, b));
+			controlPoints.push_back(makePoint(-half, a, b + part));
+			controlPoints.push_back(makePoint(-half, a + part, b));
 	  
-			controlPoints.push_back(makePoint(-half, x, y + part));
-			controlPoints.push_back(makePoint(-half, x + part, y + part));
-			controlPoints.push_back(makePoint(-half, x + part, y));
+			controlPoints.push_back(makePoint(-half, a, b + part));
+			controlPoints.push_back(makePoint(-half, a + part, b + part));
+			controlPoints.push_back(makePoint(-half, a + part, b));
 	  
 			// Right Face done
-			controlPoints.push_back(makePoint(half, x + part, y + part));
-			controlPoints.push_back(makePoint(half, x, y + part));
-			controlPoints.push_back(makePoint(half, x, y));
+			controlPoints.push_back(makePoint(half, a + part, b + part));
+			controlPoints.push_back(makePoint(half, a, b + part));
+			controlPoints.push_back(makePoint(half, a, b));
 	  
-			controlPoints.push_back(makePoint(half, x + part, y + part));
-			controlPoints.push_back(makePoint(half, x, y));
-			controlPoints.push_back(makePoint(half, x + part, y));
+			controlPoints.push_back(makePoint(half, a + part, b + part));
+			controlPoints.push_back(makePoint(half, a, b));
+			controlPoints.push_back(makePoint(half, a + part, b));
 	  
 			// Top Face
-			controlPoints.push_back(makePoint(x, half, y));
-			controlPoints.push_back(makePoint(x + part, half, y + part));
-			controlPoints.push_back(makePoint(x + part, half, y));
+			controlPoints.push_back(makePoint(a, half, b));
+			controlPoints.push_back(makePoint(a + part, half, b + part));
+			controlPoints.push_back(makePoint(a + part, half, b));
 	  
-			controlPoints.push_back(makePoint(x, half, y));
-			controlPoints.push_back(makePoint(x, half, y + part));
-			controlPoints.push_back(makePoint(x + part, half, y + part));
+			controlPoints.push_back(makePoint(a, half, b));
+			controlPoints.push_back(makePoint(a, half, b + part));
+			controlPoints.push_back(makePoint(a + part, half, b + part));
 	  
 			// Bottom Face
-			controlPoints.push_back(makePoint(x, -half, y));
-			controlPoints.push_back(makePoint(x + part, -half, y));
-			controlPoints.push_back(makePoint(x, -half, y + part));
+			controlPoints.push_back(makePoint(a, -half, b));
+			controlPoints.push_back(makePoint(a + part, -half, b));
+			controlPoints.push_back(makePoint(a, -half, b + part));
 	  
-			controlPoints.push_back(makePoint(x, -half, y + part));
-			controlPoints.push_back(makePoint(x + part, -half, y));
-			controlPoints.push_back(makePoint(x + part, -half, y + part));
+			controlPoints.push_back(makePoint(a, -half, b + part));
+			controlPoints.push_back(makePoint(a + part, -half, b));
+			controlPoints.push_back(makePoint(a + part, -half, b + part));
 			
         }
     }
