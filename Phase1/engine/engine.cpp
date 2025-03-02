@@ -14,8 +14,8 @@
 // Variáveis da câmara
 int height;
 int width;
-float alpha;
-float beta;
+float alphaCam;
+float betaCam;
 float radius;
 float camx;
 float camy;
@@ -83,8 +83,8 @@ void renderScene(void) {
 	glLoadIdentity();
 	// primeiro triplo: onde a camera esta
 	// segundo triplo: para onde a camera esta a olhar
-	// (r, alpha, beta) -> (x, y, z)
-	gluLookAt(radius*cosf(beta)*sinf(alpha),radius*sinf(beta),radius*cosf(beta)*cosf(alpha),
+	// (r, alphaCam, betaCam) -> (x, y, z)
+	gluLookAt(radius*cosf(betaCam)*sinf(alphaCam),radius*sinf(betaCam),radius*cosf(betaCam)*cosf(alphaCam),
 		      lookAtx, lookAty, lookAtz,
 			  upx,upy,upz); 
 
@@ -119,16 +119,16 @@ void processKeys(unsigned char c, int xx, int yy) {
 // put code to process regular keys in here
 	switch (c) {
 		case 'w':
-			if (beta <= (M_PI / 2)) beta += 0.5f;
+			if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
 			break;
 		case 's':
-			if (beta >= (-M_PI / 2)) beta -= 0.5;
+			if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
 			break;
 		case 'd':
-			alpha -= 0.2f;
+			alphaCam -= 0.2f;
 			break;
 		case 'a':
-			alpha += 0.2f;
+			alphaCam += 0.2f;
 			break;
 		case '+': // Zoom In
 			radius -= 0.2f;
@@ -185,8 +185,8 @@ int main(int argc, char **argv) {
 	upx 	= getXUp(set);
 	upy 	= getYUp(set);
 	upz 	= getZUp(set);
-	alpha    = acos(camz/sqrt(camx*camx + camz*camz));
-	beta  = asin(camy/radius);
+	alphaCam    = acos(camz/sqrt(camx*camx + camz*camz));
+	betaCam  = asin(camy/radius);
 	fov     = getFov(set);
 	nearPlane = getNear(set);
 	farPlane     = getFar(set);
