@@ -75,7 +75,6 @@ void drawFigures(Group g) {
 
 		if(type == 'R'){
 			float angle = getAngle(transformations[i]);
-
 			glRotatef(angle, getX(tv), getY(tv), getZ(tv));
 		} else if (type == 'T'){
 			glTranslatef(getX(tv), getY(tv), getZ(tv));

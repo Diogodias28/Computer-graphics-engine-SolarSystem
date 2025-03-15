@@ -16,6 +16,10 @@ add_library(
 	../data_structs/Model.hpp
 	../data_structs/Settings.cpp
 	../data_structs/Settings.hpp
+    ../data_structs/Group.cpp
+    ../data_structs/Group.hpp
+    ../data_structs/Transform.cpp
+    ../data_structs/Transform.hpp
 )
 
 add_library(

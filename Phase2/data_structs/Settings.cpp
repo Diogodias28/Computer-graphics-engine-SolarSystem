@@ -68,16 +68,17 @@ Group parseGroup(TiXmlElement* groupElement) {
     // Parse transformations
     TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
     if (transformElement) {
-        // Process each type of transformation
+        // Process each transformation within the transform element
         for (TiXmlElement* transType = transformElement->FirstChildElement(); 
-             transType; 
-             transType = transType->NextSiblingElement()) {
+            transType; 
+            transType = transType->NextSiblingElement()) {
             
-            char type;
-            Point point = makePoint(0, 0, 0);
             Transform transform;
+            std::string elementName = transType->Value();
+            char type;
+            Point point;
             
-            if (strcmp(transType->Value(), "translate") == 0) {
+            if (elementName == "translate") {
                 type = 'T';
                 point = makePoint(
                     atof(transType->Attribute("x")),
@@ -86,7 +87,7 @@ Group parseGroup(TiXmlElement* groupElement) {
                 );
                 transform = newTransformation(type, point);
             }
-            else if (strcmp(transType->Value(), "scale") == 0) {
+            else if (elementName == "scale") {
                 type = 'S';
                 point = makePoint(
                     atof(transType->Attribute("x")),
@@ -95,7 +96,7 @@ Group parseGroup(TiXmlElement* groupElement) {
                 );
                 transform = newTransformation(type, point);
             }
-            else if (strcmp(transType->Value(), "rotate") == 0) {
+            else if (elementName == "rotate") {
                 type = 'R';
                 point = makePoint(
                     atof(transType->Attribute("x")),
