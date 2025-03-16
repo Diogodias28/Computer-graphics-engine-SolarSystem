@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/engine/engine.cpp.o"
-  "CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/engine/engine.cpp.o.d"
+  "CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/engine/engine.cpp.o"
+  "CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/engine/engine.cpp.o.d"
   "engine"
   "engine.pdb"
 )

@@ -20,6 +20,86 @@ Settings newSettings(){
     return newSettings;
 }
 
+Group parseGroup(TiXmlElement* groupElement) {
+    std::vector<Model> models;
+    std::vector<Transform> transformations;
+    std::vector<Group> subgroups;
+    
+    // Parse transformations
+    TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
+    if (transformElement) {
+        // Process each transformation within the transform element
+        for (TiXmlElement* transType = transformElement->FirstChildElement(); 
+            transType; 
+            transType = transType->NextSiblingElement()) {
+            
+            Transform transform;
+            std::string elementName = transType->Value();
+            char type;
+            Point point;
+            float angle = 0.0f;
+            
+            if (elementName == "translate") {
+                type = 'T';
+                point = makePoint(
+                    atof(transType->Attribute("x")),
+                    atof(transType->Attribute("y")),
+                    atof(transType->Attribute("z"))
+                );
+                transform = newTransformation(type, point, angle);
+            }
+            else if (elementName == "scale") {
+                type = 'S';
+                point = makePoint(
+                    atof(transType->Attribute("x")),
+                    atof(transType->Attribute("y")),
+                    atof(transType->Attribute("z"))
+                );
+                transform = newTransformation(type, point, angle);
+            }
+            else if (elementName == "rotate") {
+                type = 'R';
+                point = makePoint(
+                    atof(transType->Attribute("x")),
+                    atof(transType->Attribute("y")),
+                    atof(transType->Attribute("z"))
+                );
+                angle = atof(transType->Attribute("angle"));
+                transform = newTransformation(type, point, angle);
+            }
+            
+            transformations.push_back(transform);
+        }
+    }
+    
+    // Parse models
+    TiXmlElement* modelsElement = groupElement->FirstChildElement("models");
+    if (modelsElement) {
+        for (TiXmlElement* modelElement = modelsElement->FirstChildElement("model");
+             modelElement;
+             modelElement = modelElement->NextSiblingElement("model")) {
+            
+            const char* filename = modelElement->Attribute("file");
+            // Use your model loading function
+            std::vector<Point> points = readFromFile(filename);
+            Model model = makeModel(points);
+            models.push_back(model);
+        }
+    }
+    
+    // Recursively parse subgroups
+    for (TiXmlElement* subgroupElement = groupElement->FirstChildElement("group");
+         subgroupElement;
+         subgroupElement = subgroupElement->NextSiblingElement("group")) {
+        
+        Group subgroup = parseGroup(subgroupElement);
+        subgroups.push_back(subgroup);
+    }
+    
+    // Create and return the group
+    return makeGroup(models, transformations, subgroups);
+}
+
 Settings xmlToSettings(const char* filePath){
     Settings result = newSettings();
     if(result != NULL){
@@ -59,86 +139,6 @@ Settings xmlToSettings(const char* filePath){
     }
     return result;
 }
-
-Group parseGroup(TiXmlElement* groupElement) {
-    std::vector<Model> models;
-    std::vector<Transform> transformations;
-    std::vector<Group> subgroups;
-    
-    // Parse transformations
-    TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
-    if (transformElement) {
-        // Process each transformation within the transform element
-        for (TiXmlElement* transType = transformElement->FirstChildElement(); 
-            transType; 
-            transType = transType->NextSiblingElement()) {
-            
-            Transform transform;
-            std::string elementName = transType->Value();
-            char type;
-            Point point;
-            
-            if (elementName == "translate") {
-                type = 'T';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
-                transform = newTransformation(type, point);
-            }
-            else if (elementName == "scale") {
-                type = 'S';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
-                transform = newTransformation(type, point);
-            }
-            else if (elementName == "rotate") {
-                type = 'R';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
-                float angle = atof(transType->Attribute("angle"));
-                transform = newTransformation(type, point, angle);
-            }
-            
-            transformations.push_back(transform);
-        }
-    }
-    
-    // Parse models
-    TiXmlElement* modelsElement = groupElement->FirstChildElement("models");
-    if (modelsElement) {
-        for (TiXmlElement* modelElement = modelsElement->FirstChildElement("model");
-             modelElement;
-             modelElement = modelElement->NextSiblingElement("model")) {
-            
-            const char* filename = modelElement->Attribute("file");
-            // Use your model loading function
-            std::vector<Point> points = readFromFile(filename);
-            Model model = makeModel(points);
-            models.push_back(model);
-        }
-    }
-    
-    // Recursively parse subgroups
-    for (TiXmlElement* subgroupElement = groupElement->FirstChildElement("group");
-         subgroupElement;
-         subgroupElement = subgroupElement->NextSiblingElement("group")) {
-        
-        Group subgroup = parseGroup(subgroupElement);
-        subgroups.push_back(subgroup);
-    }
-    
-    // Create and return the group
-    return makeGroup(models, transformations, subgroups);
-}
-
 
 void setCamPosition(Settings set, float x, float y, float z){
     set->poscam[0] = x;

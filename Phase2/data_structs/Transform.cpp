@@ -6,7 +6,7 @@ struct transform{
     float angle; 
 };
 
-Transform newTransformation(char type, Point transformation, float angle=0.0f){
+Transform newTransformation(char type, Point transformation, float angle){
     Transform t = (Transform)malloc(sizeof(struct transform));
 
     t->type = type;

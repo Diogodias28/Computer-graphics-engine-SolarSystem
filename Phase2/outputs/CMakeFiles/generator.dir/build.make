@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs
+CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs
+CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs
 
 # Include any dependencies generated for this target.
 include CMakeFiles/generator.dir/depend.make
@@ -72,33 +72,33 @@ include CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/codegen:
 .PHONY : CMakeFiles/generator.dir/codegen
 
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o: CMakeFiles/generator.dir/flags.make
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o -MF CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o.d -o CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o: CMakeFiles/generator.dir/flags.make
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o -MF CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o.d -o CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp
 
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp > CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.i
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp > CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.i
 
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp -o CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.s
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp -o CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.s
 
 # Object files for target generator
 generator_OBJECTS = \
-"CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o"
+"CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o"
 
 # External object files for target generator
 generator_EXTERNAL_OBJECTS =
 
-generator: CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/gen/generator.cpp.o
+generator: CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/gen/generator.cpp.o
 generator: CMakeFiles/generator.dir/build.make
 generator: libdata_structs.a
 generator: libtinyXML.a
 generator: CMakeFiles/generator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable generator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/generator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -110,6 +110,6 @@ CMakeFiles/generator.dir/clean:
 .PHONY : CMakeFiles/generator.dir/clean
 
 CMakeFiles/generator.dir/depend:
-	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase2/outputs/CMakeFiles/generator.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase2/outputs/CMakeFiles/generator.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/generator.dir/depend
 

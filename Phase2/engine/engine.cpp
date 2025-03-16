@@ -7,28 +7,15 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
-#include "../data_structs/Point.hpp"
-#include "../data_structs/Model.hpp"
 #include "../data_structs/Settings.hpp"
 
 // Variáveis da câmara
-int height;
-int width;
-float alphaCam;
-float betaCam;
-float radius;
-float camx;
-float camy;
-float camz;
-float lookAtx;
-float lookAty;
-float lookAtz;
-float upx;
-float upy;
-float upz;
-float fov;
-float nearPlane;
-float farPlane;
+int height, width;
+float alphaCam, betaCam, radius;
+float camx, camy, camz;
+float lookAtx, lookAty, lookAtz;
+float upx, upy, upz;
+float fov, nearPlane, farPlane;
 
 Settings set;
 Group group;
@@ -83,12 +70,17 @@ void drawFigures(Group g) {
 		}
 	}	
 
+	glBegin(GL_TRIANGLES);
+
 	for (int i = 0; i < models.size(); i++) {
 		std::vector<Point> m_points = getPoints(models[i]);
 		for (int j = 0; j<m_points.size(); j++){
 			glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
 		}
 	}
+
+	glEnd();
+
 
 	for(int i = 0; i < subgroups.size(); i++){
 		drawFigures(subgroups[i]);
@@ -130,9 +122,7 @@ void renderScene(void) {
 
 	glColor3f(1.0f, 0.6f, 0.7f);
 
-	glBegin(GL_TRIANGLES);
 	drawFigures(group); 
-	glEnd();
 
 	// End of frame
 	glutSwapBuffers();
@@ -171,12 +161,6 @@ void processKeys(unsigned char c, int xx, int yy) {
 	glutPostRedisplay();
 }
 
-
-void processSpecialKeys(int key, int xx, int yy) {
-
-// put code to process special keys in here
-
-}
 
 
 int main(int argc, char **argv) {
@@ -220,7 +204,6 @@ int main(int argc, char **argv) {
 	
 // Callback registration for keyboard processing
 	glutKeyboardFunc(processKeys);
-	glutSpecialFunc(processSpecialKeys);
 
 //  OpenGL settings
 	glEnable(GL_DEPTH_TEST);

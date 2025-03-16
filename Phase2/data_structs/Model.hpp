@@ -9,8 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
-#include "Point.hpp"
-#include "Transform.cpp"
+#include "Transform.hpp"
 
 using namespace std;
 
