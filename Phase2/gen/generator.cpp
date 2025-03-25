@@ -39,6 +39,31 @@ void genPlane(int length, int divisions){
     writeToFile(controlPoints, fileName);
 }
 
+void genRing(float innerRadius, float outerRadius, int slices) {
+    std::vector<Point> controlPoints;
+
+    const float alpha = (float) 2 * M_PI / slices;
+
+    for (int slice = 0; slice < slices; slice++) {
+        const Point inner_left = makePoint(innerRadius * sin(slice * alpha), 0.0f, innerRadius * cos(slice * alpha));
+        const Point inner_right = makePoint(innerRadius * sin((slice + 1) * alpha), 0.0f, innerRadius * cos((slice + 1) * alpha));
+        const Point outer_left = makePoint(outerRadius * sin(slice * alpha), 0.0f, outerRadius * cos(slice * alpha));
+        const Point outer_right = makePoint(outerRadius * sin((slice + 1) * alpha), 0.0f, outerRadius * cos((slice + 1) * alpha));
+
+        // Triângulo 1
+        controlPoints.push_back(inner_left);
+        controlPoints.push_back(outer_left);
+        controlPoints.push_back(outer_right);
+
+        // Triângulo 2
+        controlPoints.push_back(inner_left);
+        controlPoints.push_back(outer_right);
+        controlPoints.push_back(inner_right);
+    }
+
+    writeToFile(controlPoints, fileName);
+}
+
 void genBox(int length, int grid) {
 
     std::vector<Point> controlPoints;
@@ -207,6 +232,15 @@ int main(int argc, char *argv[]) {
             genPlane(length, divisions);
         }
 
+        // anel
+        else if(strcmp(argv[1], "ring") == 0) {
+            float innerRadius = atof(argv[2]);
+            float outerRadius = atof(argv[3]);
+            int slices = atoi(argv[4]);
+            fileName = argv[5];
+            genRing(innerRadius, outerRadius, slices);
+        }
+        
         // cone
         else if(strcmp(argv[1], "cone") == 0) {
             int radius = atoi(argv[2]);
