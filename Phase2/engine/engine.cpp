@@ -24,84 +24,84 @@ GLenum drawmode = GL_LINE; // Modo de Desenho
 
 void changeSize(int w, int h) {
 
-	// Prevent a divide by zero, when window is too short
-	// (you cant make a window with zero width).
-	if(h == 0)
-		h = 1;
+    // Prevent a divide by zero, when window is too short
+    // (you cant make a window with zero width).
+    if(h == 0)
+        h = 1;
 
-	// compute window's aspect ratio 
-	float ratio = w * 1.0 / h;
+    // compute window's aspect ratio 
+    float ratio = w * 1.0 / h;
 
-	// Set the projection matrix as current
-	glMatrixMode(GL_PROJECTION);
-	// Load Identity Matrix
-	glLoadIdentity();
-	
-	// Set the viewport to be the entire window
+    // Set the projection matrix as current
+    glMatrixMode(GL_PROJECTION);
+    // Load Identity Matrix
+    glLoadIdentity();
+    
+    // Set the viewport to be the entire window
     glViewport(0, 0, w, h);
 
-	// Set perspective
-	gluPerspective(fov, ratio, nearPlane, farPlane);
+    // Set perspective
+    gluPerspective(fov, ratio, nearPlane, farPlane);
 
-	// return to the model view matrix mode
-	glMatrixMode(GL_MODELVIEW);
+    // return to the model view matrix mode
+    glMatrixMode(GL_MODELVIEW);
 }
 
 
 void drawFigures(Group g) {
 
-	std::vector<Transform> transformations = getTransformations(g);
-	std::vector<Model> models = getModels(g);
-	std::vector<Group> subgroups = getSubgroup(g);
+    std::vector<Transform> transformations = getTransformations(g);
+    std::vector<Model> models = getModels(g);
+    std::vector<Group> subgroups = getSubgroup(g);
 
-	glPushMatrix();
+    glPushMatrix();
 
-	for (int i = 0; i < transformations.size(); i++) {
-		char type = getType(transformations[i]);
-		Point tv = getTransVal(transformations[i]);
+    for (int i = 0; i < transformations.size(); i++) {
+        char type = getType(transformations[i]);
+        Point tv = getTransVal(transformations[i]);
 
-		if(type == 'R'){
-			float angle = getAngle(transformations[i]);
-			glRotatef(angle, getX(tv), getY(tv), getZ(tv));
-		} else if (type == 'T'){
-			glTranslatef(getX(tv), getY(tv), getZ(tv));
-		} else if (type == 'S'){
-			glScalef(getX(tv), getY(tv), getZ(tv));
-		}
-	}	
+        if(type == 'R'){
+            float angle = getAngle(transformations[i]);
+            glRotatef(angle, getX(tv), getY(tv), getZ(tv));
+        } else if (type == 'T'){
+            glTranslatef(getX(tv), getY(tv), getZ(tv));
+        } else if (type == 'S'){
+            glScalef(getX(tv), getY(tv), getZ(tv));
+        }
+    }   
 
-	glBegin(GL_TRIANGLES);
+    glBegin(GL_TRIANGLES);
 
-	for (int i = 0; i < models.size(); i++) {
-		std::vector<Point> m_points = getPoints(models[i]);
-		for (int j = 0; j<m_points.size(); j++){
-			glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
-		}
-	}
+    for (int i = 0; i < models.size(); i++) {
+        std::vector<Point> m_points = getPoints(models[i]);
+        for (int j = 0; j<m_points.size(); j++){
+            glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
+        }
+    }
 
-	glEnd();
+    glEnd();
 
 
-	for(int i = 0; i < subgroups.size(); i++){
-		drawFigures(subgroups[i]);
-	}
-	glPopMatrix();
+    for(int i = 0; i < subgroups.size(); i++){
+        drawFigures(subgroups[i]);
+    }
+    glPopMatrix();
 }
 
 
 void renderScene(void) {
 
-	// clear buffers
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // clear buffers
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// set the camera
-	glLoadIdentity();
-	// primeiro triplo: onde a camera esta
-	// segundo triplo: para onde a camera esta a olhar
-	// (r, alphaCam, betaCam) -> (x, y, z)
-	gluLookAt(radius*cosf(betaCam)*sinf(alphaCam),radius*sinf(betaCam),radius*cosf(betaCam)*cosf(alphaCam),
-		      lookAtx, lookAty, lookAtz,
-			  upx,upy,upz); 
+    // set the camera
+    glLoadIdentity();
+    // primeiro triplo: onde a camera esta
+    // segundo triplo: para onde a camera esta a olhar
+    // (r, alphaCam, betaCam) -> (x, y, z)
+    gluLookAt(radius*cosf(betaCam)*sinf(alphaCam),radius*sinf(betaCam),radius*cosf(betaCam)*cosf(alphaCam),
+              lookAtx, lookAty, lookAtz,
+              upx,upy,upz); 
 
     glBegin(GL_LINES);
         // X axis in red
@@ -118,14 +118,14 @@ void renderScene(void) {
         glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
           
-	glPolygonMode(GL_FRONT_AND_BACK, drawmode);
+    glPolygonMode(GL_FRONT_AND_BACK, drawmode);
 
-	glColor3f(1.0f, 0.6f, 0.7f);
+    glColor3f(1.0f, 0.6f, 0.7f);
 
-	drawFigures(group); 
+    drawFigures(group); 
 
-	// End of frame
-	glutSwapBuffers();
+    // End of frame
+    glutSwapBuffers();
 
 }
 
@@ -133,84 +133,123 @@ void renderScene(void) {
 void processKeys(unsigned char c, int xx, int yy) {
 
 // put code to process regular keys in here
-	switch (c) {
-		case 'w':
-			if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
-			break;
-		case 's':
-			if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
-			break;
-		case 'd':
-			alphaCam -= 0.2f;
-			break;
-		case 'a':
-			alphaCam += 0.2f;
-			break;
-		case '+': // Zoom In
-			radius -= 0.2f;
-			break;
-		case '-': // Zoom out
-			radius += 0.2f;
-			break;
-		case 'm': // Altera os modos de desenho
-			if (drawmode == GL_FILL) drawmode = GL_LINE;
-			else if (drawmode == GL_LINE) drawmode = GL_POINT;
-			else drawmode = GL_FILL;
-			break;
-	}
-	glutPostRedisplay();
+    switch (c) {
+        case 'w':
+            if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
+            break;
+        case 's':
+            if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
+            break;
+        case 'd':
+            alphaCam -= 0.2f;
+            break;
+        case 'a':
+            alphaCam += 0.2f;
+            break;
+        case '+': // Zoom In
+            radius -= 0.2f;
+            break;
+        case '-': // Zoom out
+            radius += 0.2f;
+            break;
+        case 'm': // Altera os modos de desenho
+            if (drawmode == GL_FILL) drawmode = GL_LINE;
+            else if (drawmode == GL_LINE) drawmode = GL_POINT;
+            else drawmode = GL_FILL;
+            break;
+    }
+    glutPostRedisplay();
 }
 
+void processSpecialKeys(int key, int xx, int yy) {
+    float speed = 5.0f; // Velocidade do movimento
+
+    switch (key) {
+        case GLUT_KEY_UP: // Mover para frente
+            camx += speed * cos(betaCam) * sin(alphaCam);
+            camy += speed * sin(betaCam);
+            camz += speed * cos(betaCam) * cos(alphaCam);
+            break;
+        case GLUT_KEY_DOWN: // Mover para trás
+            camx -= speed * cos(betaCam) * sin(alphaCam);
+            camy -= speed * sin(betaCam);
+            camz -= speed * cos(betaCam) * cos(alphaCam);
+            break;
+        case GLUT_KEY_LEFT: // Strafe para a esquerda
+            camx -= speed * cos(alphaCam);
+            camz += speed * sin(alphaCam);
+            break;
+        case GLUT_KEY_RIGHT: // Strafe para a direita
+            camx += speed * cos(alphaCam);
+            camz -= speed * sin(alphaCam);
+            break;
+        case GLUT_KEY_PAGE_UP: // Subir
+            camy += speed;
+            break;
+        case GLUT_KEY_PAGE_DOWN: // Descer
+            camy -= speed;
+            break;
+    }
+
+    // Atualizar o ponto de visão (lookAt)
+    lookAtx = camx + cos(betaCam) * sin(alphaCam);
+    lookAty = camy + sin(betaCam);
+    lookAtz = camz + cos(betaCam) * cos(alphaCam);
+
+    glutPostRedisplay();
+}
 
 
 int main(int argc, char **argv) {
 
-	if(argc<2){
-		fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
-		return 1;
-	}
+    if(argc<2){
+        fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
+        return 1;
+    }
 
-	set = xmlToSettings(argv[1]);
+    set = xmlToSettings(argv[1]);
 
-	height  = getHeight(set);
-	width   = getWidth(set);
-	camx    = getXPosCam(set);
-	camy    = getYPosCam(set);
-	camz    = getZPosCam(set);
-	radius  = sqrt(camx*camx + camy*camy + camz*camz);
-	lookAtx = getXLookAt(set);
-	lookAty = getYLookAt(set);
-	lookAtz = getZLookAt(set);
-	upx 	= getXUp(set);
-	upy 	= getYUp(set);
-	upz 	= getZUp(set);
-	alphaCam    = acos(camz/sqrt(camx*camx + camz*camz));
-	betaCam  = asin(camy/radius);
-	fov     = getFov(set);
-	nearPlane = getNear(set);
-	farPlane     = getFar(set);
-	group = getGroup(set);
+    height  = getHeight(set);
+    width   = getWidth(set);
+    camx    = getXPosCam(set);
+    camy    = getYPosCam(set);
+    camz    = getZPosCam(set);
+    radius  = sqrt(camx*camx + camy*camy + camz*camz);
+    lookAtx = getXLookAt(set);
+    lookAty = getYLookAt(set);
+    lookAtz = getZLookAt(set);
+    upx     = getXUp(set);
+    upy     = getYUp(set);
+    upz     = getZUp(set);
+    alphaCam    = acos(camz/sqrt(camx*camx + camz*camz));
+    betaCam  = asin(camy/radius);
+    fov     = getFov(set);
+    nearPlane = getNear(set);
+    farPlane     = getFar(set);
+    group = getGroup(set);
 
 // init GLUT and the window
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-	glutInitWindowPosition(100,100);
-	glutInitWindowSize(width,height);
-	glutCreateWindow("Projeto CG");
-		
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(width,height);
+    glutCreateWindow("Projeto CG");
+        
 // Required callback registry 
-	glutDisplayFunc(renderScene);
-	glutReshapeFunc(changeSize);
-	
+    glutDisplayFunc(renderScene);
+    glutReshapeFunc(changeSize);
+    
 // Callback registration for keyboard processing
-	glutKeyboardFunc(processKeys);
+    glutKeyboardFunc(processKeys);
+    glutSpecialFunc(processSpecialKeys);
 
 //  OpenGL settings
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    
 // enter GLUT's main cycle
-	glutMainLoop();
-	
-	return 1;
+    glutMainLoop();
+    
+    return 1;
 }
+
