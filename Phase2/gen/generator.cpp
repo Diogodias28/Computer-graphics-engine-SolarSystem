@@ -64,6 +64,34 @@ void genRing(float innerRadius, float outerRadius, int slices) {
     writeToFile(controlPoints, fileName);
 }
 
+void genAsteroidBelt(float innerRadius, float outerRadius, int numAsteroids) {
+    std::vector<Point> allAsteroids;
+
+    const int slices = 30;
+    const int stacks = 30;
+    const float minRadius = 0.3f;
+    const float maxRadius = 0.7f;
+
+    for (int i = 0; i < numAsteroids; i++) {
+        float radius = innerRadius + static_cast<float>(rand()) / RAND_MAX * (outerRadius - innerRadius);
+        float angle = static_cast<float>(rand()) / RAND_MAX * 2 * M_PI;
+        float x = radius * cos(angle);
+        float z = radius * sin(angle);
+        float asteroidRadius = minRadius + static_cast<float>(rand()) / RAND_MAX * (maxRadius - minRadius);
+        float y = static_cast<float>(rand()) / RAND_MAX * (maxRadius - minRadius);
+
+        // Gera os pontos da esfera diretamente para cada asteroide
+        std::vector<Point> asteroidPoints;
+        genSphere(asteroidRadius, slices, stacks, asteroidPoints);
+
+        // Adiciona os pontos gerados ao vetor total de asteroides
+        allAsteroids.insert(allAsteroids.end(), asteroidPoints.begin(), asteroidPoints.end());
+    }
+
+    // Escreve todos os asteroides no arquivo
+    writeToFile(allAsteroids, fileName);
+}
+
 void genBox(int length, int grid) {
 
     std::vector<Point> controlPoints;
@@ -134,8 +162,7 @@ void genBox(int length, int grid) {
     writeToFile(controlPoints, fileName);
 }
 
-void genSphere(float radius, int slices, int stacks) {
-    std::vector<Point> controlPoints;
+void genSphere(float radius, int slices, int stacks, std::vector<Point>& controlPoints) {
 
     // divide o circulo de 360 graus em slices iguais
     float anglePerSlice = (float)(2 * M_PI) / slices;
@@ -175,8 +202,6 @@ void genSphere(float radius, int slices, int stacks) {
             controlPoints.push_back(p4);
         }
     }
-
-    writeToFile(controlPoints, fileName);
 }
 
 void genCone(const float radius, const float height, const size_t slices, const size_t stacks) {
@@ -240,6 +265,15 @@ int main(int argc, char *argv[]) {
             fileName = argv[5];
             genRing(innerRadius, outerRadius, slices);
         }
+
+        // cinturão de asteroides
+        else if(strcmp(argv[1], "asteroid_belt") == 0) {
+            float innerRadius = atof(argv[2]);
+            float outerRadius = atof(argv[3]);
+            int numAsteroids = atoi(argv[4]);
+            fileName = argv[5];
+            genAsteroidBelt(innerRadius, outerRadius, numAsteroids);
+        }
         
         // cone
         else if(strcmp(argv[1], "cone") == 0) {
@@ -257,7 +291,11 @@ int main(int argc, char *argv[]) {
             int slices = atoi(argv[3]);
             int stacks = atoi(argv[4]);
             fileName = argv[5];
-            genSphere(radius, slices, stacks);
+            std::vector<Point> controlPoints;
+
+            genSphere(radius, slices, stacks, controlPoints);
+
+            writeToFile(controlPoints, fileName);
         }
 
         // box
