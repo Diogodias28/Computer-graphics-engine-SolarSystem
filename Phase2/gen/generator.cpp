@@ -67,7 +67,6 @@ void genRing(float innerRadius, float outerRadius, int slices) {
 }
 
 void genAsteroidBelt(float innerRadius, float outerRadius, int numAsteroids) {
-    std::vector<Point> allAsteroids;
 
     const int slices = 30;
     const int stacks = 30;
@@ -84,15 +83,11 @@ void genAsteroidBelt(float innerRadius, float outerRadius, int numAsteroids) {
         float asteroidRadius = minRadius + (rand() / (float)RAND_MAX) * (maxRadius - minRadius);
         float y = (rand() % 10 - 3) / 10.0f;
 
-        // Gera os pontos da esfera diretamente para cada asteroide
         std::vector<Point> asteroidPoints;
         genSphere(asteroidRadius, slices, stacks, asteroidPoints);
 
-        // Adiciona os pontos gerados ao vetor total de asteroides
-        allAsteroids.insert(allAsteroids.end(), asteroidPoints.begin(), asteroidPoints.end());
+        writeToFile(asteroidPoints, fileName);
     }
-
-    writeToFile(allAsteroids, fileName);
 }
 
 void genBox(int length, int grid) {
