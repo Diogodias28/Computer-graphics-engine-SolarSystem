@@ -3,6 +3,8 @@
 #include <string>
 #include <string.h> 
 #include <stdio.h>
+#include <cstdlib>
+#include <ctime>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "../data_structs/Point.hpp"
@@ -69,26 +71,29 @@ void genAsteroidBelt(float innerRadius, float outerRadius, int numAsteroids) {
 
     const int slices = 30;
     const int stacks = 30;
-    const float minRadius = 0.3f;
-    const float maxRadius = 0.7f;
+    const float minRadius = 0.01f;
+    const float maxRadius = 0.3f;
+    const float miny = -0.7f;
+    const float maxy = 0.7f;
 
     for (int i = 0; i < numAsteroids; i++) {
-        float radius = innerRadius + static_cast<float>(rand()) / RAND_MAX * (outerRadius - innerRadius);
-        float angle = static_cast<float>(rand()) / RAND_MAX * 2 * M_PI;
+        float radius = innerRadius + (rand() / (float)RAND_MAX) * (outerRadius - innerRadius);
+        float angle = (rand() / (float)RAND_MAX) * 2 * M_PI;
         float x = radius * cos(angle);
         float z = radius * sin(angle);
-        float asteroidRadius = minRadius + static_cast<float>(rand()) / RAND_MAX * (maxRadius - minRadius);
-        float y = static_cast<float>(rand()) / RAND_MAX * (maxRadius - minRadius);
+        float asteroidRadius = minRadius + (rand() / (float)RAND_MAX) * (maxRadius - minRadius);
+        float y = (rand() % 10 - 3) / 10.0f;
 
         // Gera os pontos da esfera diretamente para cada asteroide
         std::vector<Point> asteroidPoints;
         genSphere(asteroidRadius, slices, stacks, asteroidPoints);
 
         // Adiciona os pontos gerados ao vetor total de asteroides
-        allAsteroids.insert(allAsteroids.end(), asteroidPoints.begin(), asteroidPoints.end());
+        for (const auto& point : asteroidPoints) {
+            allAsteroids.push_back(point);
+        }
     }
 
-    // Escreve todos os asteroides no arquivo
     writeToFile(allAsteroids, fileName);
 }
 
@@ -246,6 +251,7 @@ void genCone(const float radius, const float height, const size_t slices, const 
 
 
 int main(int argc, char *argv[]) {
+    srand(time(0));
 
     if (argc >= 5) { // no minimo tem sempre 5 argumentos
 
