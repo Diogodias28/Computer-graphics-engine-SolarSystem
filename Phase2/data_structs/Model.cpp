@@ -2,6 +2,7 @@
 
 struct model{
     std::vector<Point> points;
+    float colorR, colorG, colorB;
 };
 
 Model createModel(){
@@ -10,22 +11,42 @@ Model createModel(){
         std::cerr << "Failed to allocate memory for model" << std::endl;
         exit(1);
     }
+
     m->points = std::vector<Point>();
+    m->colorR = 1.0f;
+    m->colorG = 0.6f;
+    m->colorB = 0.7f;
 
     return m;
 }
 
-Model makeModel(std::vector<Point> points){
+Model makeModel(std::vector<Point> points, float r, float g, float b){
     Model m = new model();
     for(int i=0; i<points.size(); i++){
         addPoint(m, points[i]);
     }
+
+    m->colorR = r;
+    m->colorG = g;
+    m->colorB = b;
 
     return m;
 }
 
 std::vector<Point> getPoints(Model m){
     return m->points;
+}
+
+void setColor(Model m, float r, float g, float b) {
+    m->colorR = r;
+    m->colorG = g;
+    m->colorB = b;
+}
+
+void getColor(Model m, float &r, float &g, float &b) {
+    r = m->colorR;
+    g = m->colorG;
+    b = m->colorB;
 }
 
 void addPoint(Model m, Point p){
