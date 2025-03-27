@@ -21,6 +21,15 @@
             <scale x="1/1.39" y="1/1.39" z="1/1.39" />
         </transform>
         
+        <group>
+            <transform>
+                <scale x="30" y="30" z="30" />
+            </transform>
+            <models>
+                <model file="ring.3d" />
+            </models>
+        </group>
+
         <!-- Mercury -->
         <group>
             <transform>

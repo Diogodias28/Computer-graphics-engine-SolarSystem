@@ -100,9 +100,9 @@ void renderScene(void) {
     // primeiro triplo: onde a camera esta
     // segundo triplo: para onde a camera esta a olhar
     // (r, alphaCam, betaCam) -> (x, y, z)
-    gluLookAt(camx, camy, camz, 
-              lookAtx, lookAty, lookAtz, 
-              upx, upy, upz); 
+	gluLookAt(radius*cosf(betaCam)*sinf(alphaCam),radius*sinf(betaCam),radius*cosf(betaCam)*cosf(alphaCam),
+		      lookAtx, lookAty, lookAtz,
+			  upx,upy,upz); 
 
     glBegin(GL_LINES);
         // X axis in red
@@ -128,91 +128,40 @@ void renderScene(void) {
 }
 
 void processKeys(unsigned char c, int xx, int yy) {
-    switch (c) {
-        case 'w':
-            if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
-            break;
-        case 's':
-            if (betaCam >= (-M_PI / 2)) betaCam -= 0.5f;
-            break;
-        case 'd': 
-            alphaCam -= 0.2f;
-            break;
-        case 'a': 
-            alphaCam += 0.2f;
-            break;
-        case '+':  // Zoom In
-            radius -= 0.2f;
-            break;
-        case '-':  // Zoom out
-            radius += 0.2f;
-            break;
-        case 'm':  // Altera os modos de desenho
-            if (drawmode == GL_FILL) drawmode = GL_LINE;
-            else if (drawmode == GL_LINE) drawmode = GL_POINT;
-            else drawmode = GL_FILL;
-            break;
+
+    // put code to process regular keys in here
+        switch (c) {
+            case 'w':
+                if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
+                break;
+            case 's':
+                if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
+                break;
+            case 'd':
+                alphaCam -= 0.2f;
+                break;
+            case 'a':
+                alphaCam += 0.2f;
+                break;
+            case '+': // Zoom In
+                radius -= 0.2f;
+                break;
+            case '-': // Zoom out
+                radius += 0.2f;
+                break;
+            case 'm': // Altera os modos de desenho
+                if (drawmode == GL_FILL) drawmode = GL_LINE;
+                else if (drawmode == GL_LINE) drawmode = GL_POINT;
+                else drawmode = GL_FILL;
+                break;
+        }
+        glutPostRedisplay();
     }
 
-    camx = radius*cosf(betaCam)*sinf(alphaCam);
-    camy = radius*sinf(betaCam);
-    camz = radius*cosf(betaCam)*cosf(alphaCam);
-    
-    glutPostRedisplay();
-}
-
-void processSpecialKeys(int key, int xx, int yy) {
-    // Movement speed (can be adjusted)
-    const float moveSpeed = 5.0f;
-    
-    // Calculate look direction vectors
-    // Look direction is normalized between lookAt point and camera position
-    float lookDirX = lookAtx - camx;
-    float lookDirZ = lookAtz - camz;
-    
-    // Normalize the look direction
-    float lookLength = sqrt(lookDirX * lookDirX + lookDirZ * lookDirZ);
-    lookDirX /= lookLength;
-    lookDirZ /= lookLength;
-    
-    // Calculate perpendicular (right) vector
-    float rightX = -lookDirZ;
-    float rightZ = lookDirX;
-    
-    switch(key) {
-        case GLUT_KEY_UP:    // Move forward in look direction
-            camx += lookDirX * moveSpeed;
-            camz += lookDirZ * moveSpeed;
-            lookAtx += lookDirX * moveSpeed;
-            lookAtz += lookDirZ * moveSpeed;
-            break;
-        
-        case GLUT_KEY_DOWN:  // Move backward (opposite of look direction)
-            camx -= lookDirX * moveSpeed;
-            camz -= lookDirZ * moveSpeed;
-            lookAtx -= lookDirX * moveSpeed;
-            lookAtz -= lookDirZ * moveSpeed;
-            break;
-        
-        case GLUT_KEY_LEFT:  // Strafe left (perpendicular to look direction)
-            camx -= rightX * moveSpeed;
-            camz -= rightZ * moveSpeed;
-            lookAtx -= rightX * moveSpeed;
-            lookAtz -= rightZ * moveSpeed;
-            break;
-        
-        case GLUT_KEY_RIGHT: // Strafe right (perpendicular to look direction)
-            camx += rightX * moveSpeed;
-            camz += rightZ * moveSpeed;
-            lookAtx += rightX * moveSpeed;
-            lookAtz += rightZ * moveSpeed;
-            break;
-    }
-    
-    glutPostRedisplay();
-}
 
 int main(int argc, char **argv) {
+    srand(time(NULL));
+
     if(argc<2){
         fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
         return 1;
@@ -239,10 +188,6 @@ int main(int argc, char **argv) {
     farPlane = getFar(set);
     group = getGroup(set);
 
-    camx = radius*cosf(betaCam)*sinf(alphaCam);
-    camy = radius*sinf(betaCam);
-    camz = radius*cosf(betaCam)*cosf(alphaCam);
-
     // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -256,7 +201,6 @@ int main(int argc, char **argv) {
 
     // Callback registration for keyboard processing
     glutKeyboardFunc(processKeys);
-    glutSpecialFunc(processSpecialKeys);
 
     // OpenGL settings
     glEnable(GL_DEPTH_TEST);
