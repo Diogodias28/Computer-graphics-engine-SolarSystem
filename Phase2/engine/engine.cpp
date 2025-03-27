@@ -23,7 +23,6 @@ Group group;
 GLenum drawmode = GL_LINE; // Modo de Desenho
 
 void changeSize(int w, int h) {
-
     // Prevent a divide by zero, when window is too short
     // (you cant make a window with zero width).
     if(h == 0)
@@ -46,7 +45,6 @@ void changeSize(int w, int h) {
     // return to the model view matrix mode
     glMatrixMode(GL_MODELVIEW);
 }
-
 
 void drawFigures(Group g) {
 
@@ -71,9 +69,14 @@ void drawFigures(Group g) {
     }   
 
     glBegin(GL_TRIANGLES);
-
+    
     for (int i = 0; i < models.size(); i++) {
         std::vector<Point> m_points = getPoints(models[i]);
+        float r,g,b;
+        getColor(models[i], r, g, b);
+
+        glColor3f(r,g,b);
+
         for (int j = 0; j<m_points.size(); j++){
             glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
         }
@@ -88,9 +91,7 @@ void drawFigures(Group g) {
     glPopMatrix();
 }
 
-
 void renderScene(void) {
-
     // clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -99,9 +100,9 @@ void renderScene(void) {
     // primeiro triplo: onde a camera esta
     // segundo triplo: para onde a camera esta a olhar
     // (r, alphaCam, betaCam) -> (x, y, z)
-    gluLookAt(radius*cosf(betaCam)*sinf(alphaCam),radius*sinf(betaCam),radius*cosf(betaCam)*cosf(alphaCam),
-              lookAtx, lookAty, lookAtz,
-              upx,upy,upz); 
+    gluLookAt(camx, camy, camz, 
+              lookAtx, lookAty, lookAtz, 
+              upx, upy, upz); 
 
     glBegin(GL_LINES);
         // X axis in red
@@ -119,89 +120,94 @@ void renderScene(void) {
     glEnd();
           
     glPolygonMode(GL_FRONT_AND_BACK, drawmode);
-
-    glColor3f(1.0f, 0.6f, 0.7f);
-
+    
     drawFigures(group); 
 
     // End of frame
     glutSwapBuffers();
-
 }
 
-
 void processKeys(unsigned char c, int xx, int yy) {
-
-// put code to process regular keys in here
     switch (c) {
         case 'w':
-            if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
+            if (betaCam <= (M_PI / 2)) betaCam += 0.1f;
             break;
         case 's':
-            if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
+            if (betaCam >= (-M_PI / 2)) betaCam -= 0.1f;
             break;
-        case 'd':
-            alphaCam -= 0.2f;
+        case 'd': 
+            alphaCam -= 0.1f;
             break;
-        case 'a':
-            alphaCam += 0.2f;
+        case 'a': 
+            alphaCam += 0.1f;
             break;
-        case '+': // Zoom In
-            radius -= 0.2f;
+        case '+':  // Zoom In
+            radius -= 0.5f;
             break;
-        case '-': // Zoom out
-            radius += 0.2f;
+        case '-':  // Zoom out
+            radius += 0.5f;
             break;
-        case 'm': // Altera os modos de desenho
+        case 'm':  // Altera os modos de desenho
             if (drawmode == GL_FILL) drawmode = GL_LINE;
             else if (drawmode == GL_LINE) drawmode = GL_POINT;
             else drawmode = GL_FILL;
             break;
     }
+    
+    // Update look-at point based on camera rotation
+    float cosB = cosf(betaCam);
+    lookAtx = camx + radius * cosB * sinf(alphaCam);
+    lookAty = camy + radius * sinf(betaCam);
+    lookAtz = camz + radius * cosB * cosf(alphaCam);
+    
     glutPostRedisplay();
 }
 
 void processSpecialKeys(int key, int xx, int yy) {
-    float speed = 5.0f; // Velocidade do movimento
-
-    switch (key) {
-        case GLUT_KEY_UP: // Mover para frente
-            camx += speed * cos(betaCam) * sin(alphaCam);
-            camy += speed * sin(betaCam);
-            camz += speed * cos(betaCam) * cos(alphaCam);
+    // Movement speed
+    float moveSpeed = 5.0f;
+    
+    // Calculate forward and right vectors
+    float forwardX = sinf(alphaCam);
+    float forwardZ = cosf(alphaCam);
+    
+    float rightX = cosf(alphaCam);
+    float rightZ = -sinf(alphaCam);
+    
+    switch(key) {
+        case GLUT_KEY_UP:    // Move forward
+            camx += forwardX * moveSpeed;
+            camz += forwardZ * moveSpeed;
+            lookAtx += forwardX * moveSpeed;
+            lookAtz += forwardZ * moveSpeed;
             break;
-        case GLUT_KEY_DOWN: // Mover para trás
-            camx -= speed * cos(betaCam) * sin(alphaCam);
-            camy -= speed * sin(betaCam);
-            camz -= speed * cos(betaCam) * cos(alphaCam);
+        
+        case GLUT_KEY_DOWN:  // Move backward
+            camx -= forwardX * moveSpeed;
+            camz -= forwardZ * moveSpeed;
+            lookAtx -= forwardX * moveSpeed;
+            lookAtz -= forwardZ * moveSpeed;
             break;
-        case GLUT_KEY_LEFT: // Strafe para a esquerda
-            camx -= speed * cos(alphaCam);
-            camz += speed * sin(alphaCam);
+        
+        case GLUT_KEY_LEFT:  // Strafe left
+            camx -= rightX * moveSpeed;
+            camz -= rightZ * moveSpeed;
+            lookAtx -= rightX * moveSpeed;
+            lookAtz -= rightZ * moveSpeed;
             break;
-        case GLUT_KEY_RIGHT: // Strafe para a direita
-            camx += speed * cos(alphaCam);
-            camz -= speed * sin(alphaCam);
-            break;
-        case GLUT_KEY_PAGE_UP: // Subir
-            camy += speed;
-            break;
-        case GLUT_KEY_PAGE_DOWN: // Descer
-            camy -= speed;
+        
+        case GLUT_KEY_RIGHT: // Strafe right
+            camx += rightX * moveSpeed;
+            camz += rightZ * moveSpeed;
+            lookAtx += rightX * moveSpeed;
+            lookAtz += rightZ * moveSpeed;
             break;
     }
-
-    // Atualizar o ponto de visão (lookAt)
-    lookAtx = camx + cos(betaCam) * sin(alphaCam);
-    lookAty = camy + sin(betaCam);
-    lookAtz = camz + cos(betaCam) * cos(alphaCam);
-
+    
     glutPostRedisplay();
 }
 
-
 int main(int argc, char **argv) {
-
     if(argc<2){
         fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
         return 1;
@@ -218,38 +224,37 @@ int main(int argc, char **argv) {
     lookAtx = getXLookAt(set);
     lookAty = getYLookAt(set);
     lookAtz = getZLookAt(set);
+    alphaCam = atan2f(camx, camz);
+    betaCam  = asinf(camy/radius);
     upx     = getXUp(set);
     upy     = getYUp(set);
     upz     = getZUp(set);
-    alphaCam    = acos(camz/sqrt(camx*camx + camz*camz));
-    betaCam  = asin(camy/radius);
     fov     = getFov(set);
     nearPlane = getNear(set);
-    farPlane     = getFar(set);
+    farPlane = getFar(set);
     group = getGroup(set);
 
-// init GLUT and the window
+    // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(width,height);
     glutCreateWindow("Projeto CG");
         
-// Required callback registry 
+    // Required callback registry
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
-    
-// Callback registration for keyboard processing
+
+    // Callback registration for keyboard processing
     glutKeyboardFunc(processKeys);
     glutSpecialFunc(processSpecialKeys);
 
-//  OpenGL settings
+    // OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     
-// enter GLUT's main cycle
+    // enter GLUT's main cycle
     glutMainLoop();
     
     return 1;
 }
-

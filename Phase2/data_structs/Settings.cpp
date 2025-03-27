@@ -24,6 +24,8 @@ Group parseGroup(TiXmlElement* groupElement) {
     std::vector<Model> models;
     std::vector<Transform> transformations;
     std::vector<Group> subgroups;
+
+    float currentR = 1.0f, currentG = 0.6f, currentB = 0.7f;
     
     // Parse transformations
     TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
@@ -75,15 +77,22 @@ Group parseGroup(TiXmlElement* groupElement) {
     // Parse models
     TiXmlElement* modelsElement = groupElement->FirstChildElement("models");
     if (modelsElement) {
-        for (TiXmlElement* modelElement = modelsElement->FirstChildElement("model");
+        for (TiXmlElement* modelElement = modelsElement->FirstChildElement();
              modelElement;
-             modelElement = modelElement->NextSiblingElement("model")) {
-            
-            const char* filename = modelElement->Attribute("file");
-            // Use your model loading function
-            std::vector<Point> points = readFromFile(filename);
-            Model model = makeModel(points);
-            models.push_back(model);
+             modelElement = modelElement->NextSiblingElement()){
+
+            if (std::string(modelElement->Value()) == "color") {
+                // Update current color
+                currentR = atof(modelElement->Attribute("r"));
+                currentG = atof(modelElement->Attribute("g"));
+                currentB = atof(modelElement->Attribute("b"));
+            }
+            else if (std::string(modelElement->Value()) == "model") {
+                const char* filename = modelElement->Attribute("file");
+                std::vector<Point> points = readFromFile(filename);
+                Model model = makeModel(points, currentR, currentG, currentB);
+                models.push_back(model);
+            }
         }
     }
     
