@@ -66,48 +66,6 @@ void genRing(float innerRadius, float outerRadius, int slices) {
     writeToFile(controlPoints, fileName);
 }
 
-void genSphere(float radius, int slices, int stacks, std::vector<Point>& controlPoints) {
-
-    // divide o circulo de 360 graus em slices iguais
-    float anglePerSlice = (float)(2 * M_PI) / slices;
-    // divide o arco de 180 graus em stacks iguais
-    float anglePerStack = (float)M_PI / stacks;
-
-    float alpha, beta;
-    Point p1, p2, p3, p4;
-
-    for (int j = 0; j < stacks; j++) {
-        // ângulo para a stack atual e seguinte
-        beta = j * anglePerStack;
-        float nextBeta = (j + 1) * anglePerStack;
-
-        for (int i = 0; i < slices; i++) {
-            // ângulo para o slice atual e seguinte
-            alpha = i * anglePerSlice;
-            float nextAlpha = (i + 1) * anglePerSlice;
-
-            // pontos na stack atual
-            p1 = makePoint(radius * sinf(beta) * sinf(alpha), radius * cosf(beta), radius * sinf(beta) * cosf(alpha));
-            p2 = makePoint(radius * sinf(beta) * sinf(nextAlpha), radius * cosf(beta), radius * sinf(beta) * cosf(nextAlpha));
-
-            // pontos na próxima stack
-            p3 = makePoint(radius * sinf(nextBeta) * sinf(alpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(alpha));
-            p4 = makePoint(radius * sinf(nextBeta) * sinf(nextAlpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(nextAlpha));
-
-            // Vamos fazer os triângulos
-            // triângulo de cima
-            controlPoints.push_back(p1);
-            controlPoints.push_back(p4);
-            controlPoints.push_back(p2);
-
-            // triângulo de baixo
-            controlPoints.push_back(p1);
-            controlPoints.push_back(p3);
-            controlPoints.push_back(p4);
-        }
-    }
-}
-
 void genAsteroidBelt(float innerRadius, float outerRadius, int numAsteroids) {
     std::vector<Point> allAsteroids;
 
@@ -131,9 +89,7 @@ void genAsteroidBelt(float innerRadius, float outerRadius, int numAsteroids) {
         genSphere(asteroidRadius, slices, stacks, asteroidPoints);
 
         // Adiciona os pontos gerados ao vetor total de asteroides
-        for (const auto& point : asteroidPoints) {
-            allAsteroids.push_back(point);
-        }
+        allAsteroids.insert(allAsteroids.end(), asteroidPoints.begin(), asteroidPoints.end());
     }
 
     writeToFile(allAsteroids, fileName);
@@ -207,6 +163,48 @@ void genBox(int length, int grid) {
         }
     }
     writeToFile(controlPoints, fileName);
+}
+
+void genSphere(float radius, int slices, int stacks, std::vector<Point>& controlPoints) {
+
+    // divide o circulo de 360 graus em slices iguais
+    float anglePerSlice = (float)(2 * M_PI) / slices;
+    // divide o arco de 180 graus em stacks iguais
+    float anglePerStack = (float)M_PI / stacks;
+
+    float alpha, beta;
+    Point p1, p2, p3, p4;
+
+    for (int j = 0; j < stacks; j++) {
+        // ângulo para a stack atual e seguinte
+        beta = j * anglePerStack;
+        float nextBeta = (j + 1) * anglePerStack;
+
+        for (int i = 0; i < slices; i++) {
+            // ângulo para o slice atual e seguinte
+            alpha = i * anglePerSlice;
+            float nextAlpha = (i + 1) * anglePerSlice;
+
+            // pontos na stack atual
+            p1 = makePoint(radius * sinf(beta) * sinf(alpha), radius * cosf(beta), radius * sinf(beta) * cosf(alpha));
+            p2 = makePoint(radius * sinf(beta) * sinf(nextAlpha), radius * cosf(beta), radius * sinf(beta) * cosf(nextAlpha));
+
+            // pontos na próxima stack
+            p3 = makePoint(radius * sinf(nextBeta) * sinf(alpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(alpha));
+            p4 = makePoint(radius * sinf(nextBeta) * sinf(nextAlpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(nextAlpha));
+
+            // Vamos fazer os triângulos
+            // triângulo de cima
+            controlPoints.push_back(p1);
+            controlPoints.push_back(p4);
+            controlPoints.push_back(p2);
+
+            // triângulo de baixo
+            controlPoints.push_back(p1);
+            controlPoints.push_back(p3);
+            controlPoints.push_back(p4);
+        }
+    }
 }
 
 void genCone(const float radius, const float height, const size_t slices, const size_t stacks) {
