@@ -16,7 +16,6 @@ float camx, camy, camz;
 float lookAtx, lookAty, lookAtz;
 float upx, upy, upz;
 float fov, nearPlane, farPlane;
-float camX, camY, camZ;
 
 // fps
 int timebase = 0;
@@ -24,7 +23,6 @@ int frame = 0;
 float fps = 0.0f;
 
 int startX, startY, tracking = 0;
-float lookX = 0, lookY = 0, lookZ = 0;
 float yaw = 0.0f, pitch = 0.0f;
 
 Settings set;
@@ -35,7 +33,7 @@ bool showAxes = true;
 
 void updateWindowTitle() {
     char coords[100];
-    sprintf(coords, "Camera Position: x=%.2f, y=%.2f, z=%.2f | FPS: %.2f", camX, camY, camZ, fps);
+    sprintf(coords, "Camera Position: x=%.2f, y=%.2f, z=%.2f | FPS: %.2f", camx, camy, camz, fps);
 
     // Atualiza o título da janela
     glutSetWindowTitle(coords);
@@ -43,11 +41,10 @@ void updateWindowTitle() {
 
 void updateCamera() {
     // Atualiza a direção da câmera com base no yaw e pitch
-    lookX = camX + cos(yaw) * cos(pitch);
-    lookY = camY + sin(pitch);
-    lookZ = camZ + sin(yaw) * cos(pitch);
-
-
+    lookAtx = camx + cos(yaw) * cos(pitch);
+    lookAty = camy + sin(pitch);
+    lookAtz = camz + sin(yaw) * cos(pitch);
+    
 }
 
 void changeSize(int w, int h) {
@@ -144,8 +141,8 @@ void renderScene(void) {
     // segundo triplo: para onde a camera esta a olhar
     // (r, alphaCam, betaCam) -> (x, y, z)
 
-    gluLookAt(camX, camY, camZ,
-        lookX, lookY, lookZ,
+    gluLookAt(camx, camy, camz,
+        lookAtx, lookAty, lookAtz,
         upx, upy, upz);
 
     if (showAxes) {
@@ -182,28 +179,28 @@ void processKeys(unsigned char c, int xx, int yy) {
     // put code to process regular keys in here
     switch (c) {
         case 'w':  // Andar para frente
-            camX += cos(yaw) * cos(pitch) * speed;
-            camY += sin(pitch) * speed;
-            camZ += sin(yaw) * cos(pitch) * speed;
+            camx += cos(yaw) * cos(pitch) * speed;
+            camy += sin(pitch) * speed;
+            camz += sin(yaw) * cos(pitch) * speed;
             break;
         case 's':  // Andar para trás
-            camX -= cos(yaw) * cos(pitch) * speed;
-            camY -= sin(pitch) * speed;
-            camZ -= sin(yaw) * cos(pitch) * speed;
+            camx -= cos(yaw) * cos(pitch) * speed;
+            camy -= sin(pitch) * speed;
+            camz -= sin(yaw) * cos(pitch) * speed;
             break;
         case 'd':
-            camX -= cos(yaw - M_PI / 2) * speed;
-            camZ -= sin(yaw - M_PI / 2) * speed;
+            camx -= cos(yaw - M_PI / 2) * speed;
+            camz -= sin(yaw - M_PI / 2) * speed;
             break;
         case 'a':
-            camX += cos(yaw - M_PI / 2) * speed;
-            camZ += sin(yaw - M_PI / 2) * speed;
+            camx += cos(yaw - M_PI / 2) * speed;
+            camz += sin(yaw - M_PI / 2) * speed;
             break;
-        case '+': // Zoom In
-            camY += 0.2f;
+        case '+':
+            camy += 0.2f;
             break;
-        case '-': // Zoom out
-            camY -= 0.2f;
+        case '-':
+            camy -= 0.2f;
             break;
         case 'm': // Altera os modos de desenho
             if (drawmode == GL_FILL) drawmode = GL_LINE;
@@ -274,8 +271,6 @@ int main(int argc, char **argv) {
     lookAtx = getXLookAt(set);
     lookAty = getYLookAt(set);
     lookAtz = getZLookAt(set);
-    alphaCam = atan2(camx, camz);
-    betaCam  = asin(camy/radius);
     upx     = getXUp(set);
     upy     = getYUp(set);
     upz     = getZUp(set);
@@ -283,10 +278,14 @@ int main(int argc, char **argv) {
     nearPlane = getNear(set);
     farPlane = getFar(set);
     group = getGroup(set);
+    
 
-    camX = radius*cosf(betaCam)*sinf(alphaCam);
-    camY = radius*sinf(betaCam);
-    camZ = radius*cosf(betaCam)*cosf(alphaCam);
+    yaw = atan2f(lookAtz - camz, lookAtx - camx);
+    pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));
+
+    lookAtx = camx + cos(yaw) * cos(pitch);
+    lookAty = camy + sin(pitch);
+    lookAtz = camz + sin(yaw) * cos(pitch);
 
     // init GLUT and the window
     glutInit(&argc, argv);

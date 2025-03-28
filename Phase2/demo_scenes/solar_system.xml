@@ -104,7 +104,8 @@
                 <!-- IO -->
                 <group>
                     <transform>
-                        <translate x="0.4211" y="0" z="0" />
+                        <rotate angle="181" x="0" y="1" z="0" />
+                        <translate x="2.4211" y="0" z="0" />
                         <scale x="0.026" y="0.026" z="0.026" />
                     </transform>
                     <models>
@@ -116,8 +117,8 @@
                 <!-- Europa -->
                 <group>
                     <transform>
-                        <rotate angle="45" x="0" y="1" z="0" />
-                        <translate x="0.6699" y="0" z="0" />
+                        <rotate angle="218" x="0" y="1" z="0" />
+                        <translate x="2.6699" y="0" z="0" />
                         <scale x="0.022" y="0.022" z="0.022" />
                     </transform>
                     <models>
@@ -129,7 +130,7 @@
                 <!-- Ganymede -->
                 <group>
                     <transform>
-                        <rotate angle="90" x="0" y="1" z="0" />
+                        <rotate angle="93" x="0" y="1" z="0" />
                         <translate x="1.068" y="0" z="0" />
                         <scale x="0.037" y="0.037" z="0.037" />
                     </transform>
@@ -219,6 +220,7 @@
                 <!-- Triton -->
                 <group>
                     <transform>
+                        <rotate angle="180" x="0" y="1" z="0" />
                         <translate x="2" y="0" z="0" />
                         <scale x="0.055" y="0.055" z="0.055" />
                     </transform>
