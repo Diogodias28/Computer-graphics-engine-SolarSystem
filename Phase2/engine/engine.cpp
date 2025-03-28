@@ -23,6 +23,10 @@ int timebase = 0;
 int frame = 0;
 float fps = 0.0f;
 
+int startX, startY, tracking = 0;
+float lookX = 0, lookY = 0, lookZ = 0;
+float yaw = 0.0f, pitch = 0.0f;
+
 Settings set;
 Group group;
 
@@ -37,11 +41,12 @@ void updateWindowTitle() {
     glutSetWindowTitle(coords);
 }
 
-void updateCamera(){
+void updateCamera() {
+    // Atualiza a direção da câmera com base no yaw e pitch
+    lookX = camX + cos(yaw) * cos(pitch);
+    lookY = camY + sin(pitch);
+    lookZ = camZ + sin(yaw) * cos(pitch);
 
-    camX = radius*cosf(betaCam)*sinf(alphaCam);
-    camY = radius*sinf(betaCam);
-    camZ = radius*cosf(betaCam)*cosf(alphaCam);
 
 }
 
@@ -138,9 +143,10 @@ void renderScene(void) {
     // primeiro triplo: onde a camera esta
     // segundo triplo: para onde a camera esta a olhar
     // (r, alphaCam, betaCam) -> (x, y, z)
-	gluLookAt(camX, camY, camZ,
-		      lookAtx, lookAty, lookAtz,
-			  upx,upy,upz); 
+
+    gluLookAt(camX, camY, camZ,
+        lookX, lookY, lookZ,
+        upx, upy, upz);
 
     if (showAxes) {
         glBegin(GL_LINES);
@@ -170,39 +176,83 @@ void renderScene(void) {
     glutSwapBuffers();
 }
 
-void processKeys(unsigned char c, int xx, int yy) {
 
+void processKeys(unsigned char c, int xx, int yy) {
+    float speed = 0.2f;
     // put code to process regular keys in here
     switch (c) {
-        case 'w':
-            if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
+        case 'w':  // Andar para frente
+            camX += cos(yaw) * cos(pitch) * speed;
+            camY += sin(pitch) * speed;
+            camZ += sin(yaw) * cos(pitch) * speed;
             break;
-        case 's':
-            if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
+        case 's':  // Andar para trás
+            camX -= cos(yaw) * cos(pitch) * speed;
+            camY -= sin(pitch) * speed;
+            camZ -= sin(yaw) * cos(pitch) * speed;
             break;
         case 'd':
-            alphaCam -= 0.2f;
+            camX -= cos(yaw - M_PI / 2) * speed;
+            camZ -= sin(yaw - M_PI / 2) * speed;
             break;
         case 'a':
-            alphaCam += 0.2f;
+            camX += cos(yaw - M_PI / 2) * speed;
+            camZ += sin(yaw - M_PI / 2) * speed;
             break;
         case '+': // Zoom In
-            radius -= 0.2f;
+            camY += 0.2f;
             break;
         case '-': // Zoom out
-            radius += 0.2f;
+            camY -= 0.2f;
             break;
         case 'm': // Altera os modos de desenho
             if (drawmode == GL_FILL) drawmode = GL_LINE;
             else if (drawmode == GL_LINE) drawmode = GL_POINT;
             else drawmode = GL_FILL;
             break;
-        case 'p': // Altera a visibilidade dos eixos
+        case 'p':
             showAxes = !showAxes;
             break;
     }
     updateCamera();
     glutPostRedisplay();
+}
+
+void processMouseButtons(int button, int state, int xx, int yy) {
+
+    if (state == GLUT_DOWN) {
+        startX = xx;
+        startY = yy;
+        if (button == GLUT_LEFT_BUTTON)
+            tracking = 1;
+        else if (button == GLUT_RIGHT_BUTTON)
+            tracking = 2;
+        else
+            tracking = 0;
+    }
+    else if (state == GLUT_UP) {
+        tracking = 0;
+    }
+}
+
+void processMouseMotion(int xx, int yy) {
+
+    int deltaX = xx - startX;
+    int deltaY = yy - startY;
+
+    if (tracking == 1) {
+        yaw += deltaX * 0.01f;  // Sensibilidade do mouse
+        pitch -= deltaY * 0.01f;
+
+        // Limita o pitch para evitar inversões
+        if (pitch > M_PI / 2) pitch = M_PI / 2;
+        if (pitch < -M_PI / 2) pitch = -M_PI / 2;
+    }
+
+    startX = xx;
+    startY = yy;
+
+    updateCamera();
 }
 
 
@@ -254,9 +304,11 @@ int main(int argc, char **argv) {
 
     // Callback registration for keyboard processing
     glutKeyboardFunc(processKeys);
+    glutMouseFunc(processMouseButtons);
+    glutMotionFunc(processMouseMotion);
 
     glutIdleFunc(updateFPS);
-
+    
     // OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);

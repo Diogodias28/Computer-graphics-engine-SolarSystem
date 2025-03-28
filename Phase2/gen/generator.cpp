@@ -47,20 +47,41 @@ void genRing(float innerRadius, float outerRadius, int slices) {
     const float alpha = (float) 2 * M_PI / slices;
 
     for (int slice = 0; slice < slices; slice++) {
-        const Point inner_left = makePoint(innerRadius * sin(slice * alpha), 0.0f, innerRadius * cos(slice * alpha));
-        const Point inner_right = makePoint(innerRadius * sin((slice + 1) * alpha), 0.0f, innerRadius * cos((slice + 1) * alpha));
-        const Point outer_left = makePoint(outerRadius * sin(slice * alpha), 0.0f, outerRadius * cos(slice * alpha));
-        const Point outer_right = makePoint(outerRadius * sin((slice + 1) * alpha), 0.0f, outerRadius * cos((slice + 1) * alpha));
+        float inner_x1 = innerRadius * sin(slice * alpha);
+        float inner_z1 = innerRadius * cos(slice * alpha);
+        float inner_x2 = innerRadius * sin((slice + 1) * alpha);
+        float inner_z2 = innerRadius * cos((slice + 1) * alpha);
 
-        // Triângulo 1
-        controlPoints.push_back(inner_left);
-        controlPoints.push_back(outer_left);
-        controlPoints.push_back(outer_right);
+        float outer_x1 = outerRadius * sin(slice * alpha);
+        float outer_z1 = outerRadius * cos(slice * alpha);
+        float outer_x2 = outerRadius * sin((slice + 1) * alpha);
+        float outer_z2 = outerRadius * cos((slice + 1) * alpha);
 
-        // Triângulo 2
-        controlPoints.push_back(inner_left);
-        controlPoints.push_back(outer_right);
-        controlPoints.push_back(inner_right);
+        Point inner_1 = makePoint(inner_x1, 0.0f, inner_z1);
+        Point inner_2 = makePoint(inner_x2, 0.0f, inner_z2);
+        Point outer_1 = makePoint(outer_x1, 0.0f, outer_z1);
+        Point outer_2 = makePoint(outer_x2, 0.0f, outer_z2);
+
+
+        // Triângulo 1 (parte de cima)
+        controlPoints.push_back(inner_1);
+        controlPoints.push_back(outer_1);
+        controlPoints.push_back(outer_2);
+
+        // Triângulo 2 (parte de cima)
+        controlPoints.push_back(inner_1);
+        controlPoints.push_back(outer_2);
+        controlPoints.push_back(inner_2);
+
+        // Triângulo 1 (parte de baixo)
+        controlPoints.push_back(inner_1);
+        controlPoints.push_back(inner_2);
+        controlPoints.push_back(outer_2);
+
+        // Triângulo 2 (parte de baixo) - invertido
+        controlPoints.push_back(inner_1);
+        controlPoints.push_back(outer_2);
+        controlPoints.push_back(outer_1);
     }
 
     writeToFile(controlPoints, fileName);
