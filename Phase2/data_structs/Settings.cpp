@@ -21,9 +21,9 @@ Settings newSettings(){
 }
 
 Group parseGroup(TiXmlElement* groupElement) {
-    std::vector<Model> models;
-    std::vector<Transform> transformations;
-    std::vector<Group> subgroups;
+    std::vector<Model> models = std::vector<Model>();
+    std::vector<Transform> transformations = std::vector<Transform>();
+    std::vector<Group> subgroups = std::vector<Group>();
 
     float currentR = 1.0f, currentG = 0.6f, currentB = 0.7f;
     
@@ -107,6 +107,8 @@ Group parseGroup(TiXmlElement* groupElement) {
     
     // Create and return the group
     return makeGroup(models, transformations, subgroups);
+
+    
 }
 
 Settings xmlToSettings(const char* filePath){

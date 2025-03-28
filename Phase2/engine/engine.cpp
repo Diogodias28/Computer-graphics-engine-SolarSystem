@@ -16,11 +16,34 @@ float camx, camy, camz;
 float lookAtx, lookAty, lookAtz;
 float upx, upy, upz;
 float fov, nearPlane, farPlane;
+float camX, camY, camZ;
+
+// fps
+int timebase = 0;
+int frame = 0;
+float fps = 0.0f;
 
 Settings set;
 Group group;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
+bool showAxes = true;
+
+void updateWindowTitle() {
+    char coords[100];
+    sprintf(coords, "Camera Position: x=%.2f, y=%.2f, z=%.2f | FPS: %.2f", camX, camY, camZ, fps);
+
+    // Atualiza o título da janela
+    glutSetWindowTitle(coords);
+}
+
+void updateCamera(){
+
+    camX = radius*cosf(betaCam)*sinf(alphaCam);
+    camY = radius*sinf(betaCam);
+    camZ = radius*cosf(betaCam)*cosf(alphaCam);
+
+}
 
 void changeSize(int w, int h) {
     // Prevent a divide by zero, when window is too short
@@ -44,6 +67,21 @@ void changeSize(int w, int h) {
 
     // return to the model view matrix mode
     glMatrixMode(GL_MODELVIEW);
+}
+
+void updateFPS() {
+    int time = glutGet(GLUT_ELAPSED_TIME);
+    frame++;
+
+    if (time - timebase > 100) { // Atualiza FPS a cada segundo
+        fps = frame * 1000.0f / (time - timebase);
+        timebase = time;
+        frame = 0;
+    }
+
+    updateWindowTitle();
+
+    glutPostRedisplay();
 }
 
 void drawFigures(Group g) {
@@ -100,24 +138,29 @@ void renderScene(void) {
     // primeiro triplo: onde a camera esta
     // segundo triplo: para onde a camera esta a olhar
     // (r, alphaCam, betaCam) -> (x, y, z)
-	gluLookAt(radius*cosf(betaCam)*sinf(alphaCam),radius*sinf(betaCam),radius*cosf(betaCam)*cosf(alphaCam),
+	gluLookAt(camX, camY, camZ,
 		      lookAtx, lookAty, lookAtz,
 			  upx,upy,upz); 
 
-    glBegin(GL_LINES);
-        // X axis in red
+    if (showAxes) {
+        glBegin(GL_LINES);
+        // Eixo X em vermelho
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(-100.0f, 0.0f, 0.0f);
-        glVertex3f( 100.0f, 0.0f, 0.0f);
-        // Y Axis in Green
+        glVertex3f(100.0f, 0.0f, 0.0f);
+
+        // Eixo Y em verde
         glColor3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(0.0f,-100.0f, 0.0f);
+        glVertex3f(0.0f, -100.0f, 0.0f);
         glVertex3f(0.0f, 100.0f, 0.0f);
-        // Z Axis in Blue
+
+        // Eixo Z em azul
         glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, 0.0f,-100.0f);
+        glVertex3f(0.0f, 0.0f, -100.0f);
         glVertex3f(0.0f, 0.0f, 100.0f);
-    glEnd();
+        glEnd();
+    }
+        
           
     glPolygonMode(GL_FRONT_AND_BACK, drawmode);
     
@@ -130,37 +173,40 @@ void renderScene(void) {
 void processKeys(unsigned char c, int xx, int yy) {
 
     // put code to process regular keys in here
-        switch (c) {
-            case 'w':
-                if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
-                break;
-            case 's':
-                if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
-                break;
-            case 'd':
-                alphaCam -= 0.2f;
-                break;
-            case 'a':
-                alphaCam += 0.2f;
-                break;
-            case '+': // Zoom In
-                radius -= 0.2f;
-                break;
-            case '-': // Zoom out
-                radius += 0.2f;
-                break;
-            case 'm': // Altera os modos de desenho
-                if (drawmode == GL_FILL) drawmode = GL_LINE;
-                else if (drawmode == GL_LINE) drawmode = GL_POINT;
-                else drawmode = GL_FILL;
-                break;
-        }
-        glutPostRedisplay();
+    switch (c) {
+        case 'w':
+            if (betaCam <= (M_PI / 2)) betaCam += 0.5f;
+            break;
+        case 's':
+            if (betaCam >= (-M_PI / 2)) betaCam -= 0.5;
+            break;
+        case 'd':
+            alphaCam -= 0.2f;
+            break;
+        case 'a':
+            alphaCam += 0.2f;
+            break;
+        case '+': // Zoom In
+            radius -= 0.2f;
+            break;
+        case '-': // Zoom out
+            radius += 0.2f;
+            break;
+        case 'm': // Altera os modos de desenho
+            if (drawmode == GL_FILL) drawmode = GL_LINE;
+            else if (drawmode == GL_LINE) drawmode = GL_POINT;
+            else drawmode = GL_FILL;
+            break;
+        case 'p': // Altera a visibilidade dos eixos
+            showAxes = !showAxes;
+            break;
     }
+    updateCamera();
+    glutPostRedisplay();
+}
 
 
 int main(int argc, char **argv) {
-    srand(time(NULL));
 
     if(argc<2){
         fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
@@ -178,8 +224,8 @@ int main(int argc, char **argv) {
     lookAtx = getXLookAt(set);
     lookAty = getYLookAt(set);
     lookAtz = getZLookAt(set);
-	alphaCam    = acos(camz/sqrt(camx*camx + camz*camz));
-	betaCam  = asin(camy/radius);
+    alphaCam = atan2(camx, camz);
+    betaCam  = asin(camy/radius);
     upx     = getXUp(set);
     upy     = getYUp(set);
     upz     = getZUp(set);
@@ -188,12 +234,19 @@ int main(int argc, char **argv) {
     farPlane = getFar(set);
     group = getGroup(set);
 
+    camX = radius*cosf(betaCam)*sinf(alphaCam);
+    camY = radius*sinf(betaCam);
+    camZ = radius*cosf(betaCam)*cosf(alphaCam);
+
     // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(width,height);
     glutCreateWindow("Projeto CG");
+
+    // Inicializar o tempo base para FPS
+    timebase = glutGet(GLUT_ELAPSED_TIME);
         
     // Required callback registry
     glutDisplayFunc(renderScene);
@@ -201,6 +254,8 @@ int main(int argc, char **argv) {
 
     // Callback registration for keyboard processing
     glutKeyboardFunc(processKeys);
+
+    glutIdleFunc(updateFPS);
 
     // OpenGL settings
     glEnable(GL_DEPTH_TEST);
