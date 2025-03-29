@@ -27,10 +27,10 @@ Group parseGroup(TiXmlElement* groupElement) {
 
     float currentR = 1.0f, currentG = 0.6f, currentB = 0.7f;
     
-    // Parse transformations
+    // Parsing das transformações
     TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
     if (transformElement) {
-        // Process each transformation within the transform element
+        // Processa cada transformação
         for (TiXmlElement* transType = transformElement->FirstChildElement(); 
             transType; 
             transType = transType->NextSiblingElement()) {
@@ -74,7 +74,7 @@ Group parseGroup(TiXmlElement* groupElement) {
         }
     }
     
-    // Parse models
+    // Parsing dos models
     TiXmlElement* modelsElement = groupElement->FirstChildElement("models");
     if (modelsElement) {
         for (TiXmlElement* modelElement = modelsElement->FirstChildElement();
@@ -82,7 +82,7 @@ Group parseGroup(TiXmlElement* groupElement) {
              modelElement = modelElement->NextSiblingElement()){
 
             if (std::string(modelElement->Value()) == "color") {
-                // Update current color
+                // Update cor
                 currentR = atof(modelElement->Attribute("r"));
                 currentG = atof(modelElement->Attribute("g"));
                 currentB = atof(modelElement->Attribute("b"));
@@ -96,7 +96,7 @@ Group parseGroup(TiXmlElement* groupElement) {
         }
     }
     
-    // Recursively parse subgroups
+    // Parsing dos subgrupos
     for (TiXmlElement* subgroupElement = groupElement->FirstChildElement("group");
          subgroupElement;
          subgroupElement = subgroupElement->NextSiblingElement("group")) {
@@ -105,10 +105,7 @@ Group parseGroup(TiXmlElement* groupElement) {
         subgroups.push_back(subgroup);
     }
     
-    // Create and return the group
     return makeGroup(models, transformations, subgroups);
-
-    
 }
 
 Settings xmlToSettings(const char* filePath){
@@ -119,10 +116,10 @@ Settings xmlToSettings(const char* filePath){
             TiXmlElement* root = doc.FirstChildElement("world"); // todo o conteúdo do ficheiro
             // Obtenção dos dados da câmara
             TiXmlElement* window = root->FirstChildElement("window"); // parâmetros da janela
-            TiXmlElement* camera = root->FirstChildElement("camera"); // parâmetros da cầmara
+            TiXmlElement* camera = root->FirstChildElement("camera"); // parâmetros da câmara
             TiXmlElement* posCamera = camera->FirstChildElement("position"); // posição da câmara
             TiXmlElement* lookAtCamera = camera->FirstChildElement("lookAt"); // lookAt da câmara
-            TiXmlElement* upCamera = camera->FirstChildElement("up"); // vetor "up" da câmara
+            TiXmlElement* upCamera = camera->FirstChildElement("up"); // up da câmara
             TiXmlElement* projectionCamera = camera->FirstChildElement("projection"); // projections
             result->window[0] = atoi(window->Attribute("width")); //largura da janela
             result->window[1] = atoi(window->Attribute("height")); //altura da janela
@@ -132,14 +129,14 @@ Settings xmlToSettings(const char* filePath){
             result->lookAt[0] = atof(lookAtCamera->Attribute("x")); // coordenada x da posição lookAt da câmara
             result->lookAt[1] = atof(lookAtCamera->Attribute("y")); // coordenada y da posição lookAt da câmara
             result->lookAt[2] = atof(lookAtCamera->Attribute("z")); // coordenada z da posição lookAt da câmara
-            result->up[0] = atof(upCamera->Attribute("x")); // coordenada x do vetor "up" da câmara
-            result->up[1] = atof(upCamera->Attribute("y")); // coordenada y do vetor "up" da câmara
-            result->up[2] = atof(upCamera->Attribute("z")); // coordenada z do vetor "up" da câmara
-            result->projection[0] = atof(projectionCamera->Attribute("fov")); // parâmetro fov do xml de setiguração
-            result->projection[1] = atof(projectionCamera->Attribute("near")); // parâmetro near do xml de setiguração
-            result->projection[2] = atof(projectionCamera->Attribute("far")); // parâmetro far do xml de setiguração
+            result->up[0] = atof(upCamera->Attribute("x")); // coordenada x do up da câmara
+            result->up[1] = atof(upCamera->Attribute("y")); // coordenada y do up da câmara
+            result->up[2] = atof(upCamera->Attribute("z")); // coordenada z do up da câmara
+            result->projection[0] = atof(projectionCamera->Attribute("fov")); // parâmetro fov do xml
+            result->projection[1] = atof(projectionCamera->Attribute("near")); // parâmetro near do xml
+            result->projection[2] = atof(projectionCamera->Attribute("far")); // parâmetro far do xml 
             
-            TiXmlElement* group = root->FirstChildElement("group"); // obtenção do group do ficheiro de setiguração
+            TiXmlElement* group = root->FirstChildElement("group"); // obtenção do group do ficheiro
             if(group){
                 result->group = parseGroup(group);
             }

@@ -7,7 +7,6 @@
         <projection fov="60" near="0.01" far="2000" />
     </camera>
 
-    <!-- Sun and planets system -->
     <group>
         <!-- Sun -->
         <transform>
@@ -229,7 +228,6 @@
                         <model file="sphere.3d" />
                     </models>
                 </group>
-
             </group>
         </group>
     </group>

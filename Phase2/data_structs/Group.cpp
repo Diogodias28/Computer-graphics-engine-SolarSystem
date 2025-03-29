@@ -6,7 +6,7 @@ struct group{
     std::vector<Group> subgroups;
 };
 
-Group createGroup(){
+Group createGroup(){ //cria grupo vazio
     Group g = (Group)malloc(sizeof(struct group));
 
     g->models = std::vector<Model>();

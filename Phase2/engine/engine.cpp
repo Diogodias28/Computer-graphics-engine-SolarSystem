@@ -29,7 +29,7 @@ Settings set;
 Group group;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
-bool showAxes = true;
+bool showAxes = true;      // Eixos
 
 void updateWindowTitle() {
     char coords[100];
@@ -139,25 +139,23 @@ void renderScene(void) {
     glLoadIdentity();
     // primeiro triplo: onde a camera esta
     // segundo triplo: para onde a camera esta a olhar
-    // (r, alphaCam, betaCam) -> (x, y, z)
-
     gluLookAt(camx, camy, camz,
-        lookAtx, lookAty, lookAtz,
-        upx, upy, upz);
+            lookAtx, lookAty, lookAtz,
+            upx, upy, upz);
 
     if (showAxes) {
         glBegin(GL_LINES);
-        // Eixo X em vermelho
+        // X axis in red
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(-100.0f, 0.0f, 0.0f);
         glVertex3f(100.0f, 0.0f, 0.0f);
 
-        // Eixo Y em verde
+        // Y Axis in Green
         glColor3f(0.0f, 1.0f, 0.0f);
         glVertex3f(0.0f, -100.0f, 0.0f);
         glVertex3f(0.0f, 100.0f, 0.0f);
 
-        // Eixo Z em azul
+        // Z Axis in Blue
         glColor3f(0.0f, 0.0f, 1.0f);
         glVertex3f(0.0f, 0.0f, -100.0f);
         glVertex3f(0.0f, 0.0f, 100.0f);
@@ -175,8 +173,9 @@ void renderScene(void) {
 
 
 void processKeys(unsigned char c, int xx, int yy) {
+    
     float speed = 0.2f;
-    // put code to process regular keys in here
+
     switch (c) {
         case 'w':  // Andar para frente
             camx += cos(yaw) * cos(pitch) * speed;
@@ -196,10 +195,10 @@ void processKeys(unsigned char c, int xx, int yy) {
             camx += cos(yaw - M_PI / 2) * speed;
             camz += sin(yaw - M_PI / 2) * speed;
             break;
-        case '+':
+        case '+': // Subir
             camy += 0.2f;
             break;
-        case '-':
+        case '-': // Descer
             camy -= 0.2f;
             break;
         case 'm': // Altera os modos de desenho
@@ -207,7 +206,7 @@ void processKeys(unsigned char c, int xx, int yy) {
             else if (drawmode == GL_LINE) drawmode = GL_POINT;
             else drawmode = GL_FILL;
             break;
-        case 'p':
+        case 'p': // Altera a visualização dos eixos
             showAxes = !showAxes;
             break;
     }
@@ -238,7 +237,7 @@ void processMouseMotion(int xx, int yy) {
     int deltaY = yy - startY;
 
     if (tracking == 1) {
-        yaw += deltaX * 0.01f;  // Sensibilidade do mouse
+        yaw += deltaX * 0.01f;  // Sensibilidade do rato
         pitch -= deltaY * 0.01f;
 
         // Limita o pitch para evitar inversões
@@ -283,10 +282,6 @@ int main(int argc, char **argv) {
     yaw = atan2f(lookAtz - camz, lookAtx - camx);
     pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));
 
-    lookAtx = camx + cos(yaw) * cos(pitch);
-    lookAty = camy + sin(pitch);
-    lookAtz = camz + sin(yaw) * cos(pitch);
-
     // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -306,6 +301,7 @@ int main(int argc, char **argv) {
     glutMouseFunc(processMouseButtons);
     glutMotionFunc(processMouseMotion);
 
+    // fps
     glutIdleFunc(updateFPS);
     
     // OpenGL settings
