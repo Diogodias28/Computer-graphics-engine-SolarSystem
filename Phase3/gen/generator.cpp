@@ -244,6 +244,42 @@ void genCone(const float radius, const float height, const size_t slices, const 
     writeToFile(controlPoints, fileName);
 }
 
+float bernstein(int i, float t) {
+    switch (i) {
+        case 0:
+        return pow(1 - t, 3);
+        case 1:
+        return 3 * t * pow(1 - t, 2);
+        case 2:
+        return 3 * pow(t, 2) * (1 - t);
+        case 3:
+        return pow(t, 3);
+        default:
+        return 0;
+    }
+}
+
+Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
+    Point result = createPoint();
+
+    // Combinar as funções de Bernstein para u e v
+    for (int i = 0; i < 4; i++) {
+        float bu = bernstein(i, u);
+        for (int j = 0; j < 4; j++) {
+            float bv = bernstein(j, v);
+            float b = bu * bv;
+
+            // Adicionar a contribuição do ponto de controle correspondente
+            result->x += b * getX(patchControlPoints[i * 4 + j]);
+            result->y += b * getY(patchControlPoints[i * 4 + j]);
+            result->z += b * getZ(patchControlPoints[i * 4 + j]);
+        }
+    }
+
+    return result;
+}
+
+
 void genPatch(const std::string& patchFile, int tessellation) {
     std::vector<Point> controlPoints;
 
@@ -308,43 +344,6 @@ void genPatch(const std::string& patchFile, int tessellation) {
         }
     }
     writeToFile(points, fileName);
-}
-
-
-
-Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
-    Point result = createPoint();
-
-    // Combinar as funções de Bernstein para u e v
-    for (int i = 0; i < 4; i++) {
-        float bu = bernstein(i, u);
-        for (int j = 0; j < 4; j++) {
-            float bv = bernstein(j, v);
-            float b = bu * bv;
-
-            // Adicionar a contribuição do ponto de controle correspondente
-            result->x += b * getX(patchControlPoints[i * 4 + j]);
-            result->y += b * getY(patchControlPoints[i * 4 + j]);
-            result->z += b * getZ(patchControlPoints[i * 4 + j]);
-        }
-    }
-
-    return result;
-}
-
-float bernstein(int i, float t) {
-    switch (i) {
-        case 0:
-        return pow(1 - t, 3);
-        case 1:
-        return 3 * t * pow(1 - t, 2);
-        case 2:
-        return 3 * pow(t, 2) * (1 - t);
-        case 3:
-        return pow(t, 3);
-        default:
-        return 0;
-    }
 }
 
 int main(int argc, char *argv[]) {
