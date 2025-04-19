@@ -244,7 +244,6 @@ void genCone(const float radius, const float height, const size_t slices, const 
     writeToFile(controlPoints, fileName);
 }
 
-
 int main(int argc, char *argv[]) {
     
     if (argc >= 5) { // no minimo tem sempre 5 argumentos

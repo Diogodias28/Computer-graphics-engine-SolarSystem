@@ -4,7 +4,9 @@
 #include <math.h>
 #include <vector>
 
-typedef struct point* Point;
+typedef struct point {
+    float x, y, z;
+} *Point;
 
 Point createPoint();
 
