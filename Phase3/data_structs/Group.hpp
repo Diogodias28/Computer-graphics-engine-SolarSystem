@@ -21,4 +21,6 @@ std::vector<Transform> getTransformations(Group);
 
 std::vector<Group> getSubgroup(Group);
 
+void initGroupBuffers(Group);
+
 #endif //GROUP

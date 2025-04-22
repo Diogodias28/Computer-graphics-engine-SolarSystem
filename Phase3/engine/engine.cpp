@@ -4,6 +4,8 @@
 #include <GL/glut.h>
 #endif
 
+#include <sys/stat.h>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
@@ -31,6 +33,9 @@ Group group;
 GLenum drawmode = GL_LINE; // Modo de Desenho
 bool showAxes = true;      // Eixos
 
+GLuint vertexCount, buffer[2];
+
+
 void updateWindowTitle() {
     char coords[100];
     sprintf(coords, "Camera Position: x=%.2f, y=%.2f, z=%.2f | FPS: %.2f", camx, camy, camz, fps);
@@ -44,7 +49,6 @@ void updateCamera() {
     lookAtx = camx + cos(yaw) * cos(pitch);
     lookAty = camy + sin(pitch);
     lookAtz = camz + sin(yaw) * cos(pitch);
-    
 }
 
 void changeSize(int w, int h) {
@@ -92,6 +96,7 @@ void drawFigures(Group g) {
     std::vector<Model> models = getModels(g);
     std::vector<Group> subgroups = getSubgroup(g);
 
+    
     glPushMatrix();
 
     for (int i = 0; i < transformations.size(); i++) {
@@ -107,22 +112,22 @@ void drawFigures(Group g) {
             glScalef(getX(tv), getY(tv), getZ(tv));
         }
     }   
-
-    glBegin(GL_TRIANGLES);
     
     for (int i = 0; i < models.size(); i++) {
-        std::vector<Point> m_points = getPoints(models[i]);
         float r,g,b;
         getColor(models[i], r, g, b);
 
         glColor3f(r,g,b);
 
-        for (int j = 0; j<m_points.size(); j++){
-            glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
-        }
-    }
+        vertexCount = getVertexCount(models[i]);
+        buffer[0] = getBuffer_0(models[i]);
+        buffer[1] = getBuffer_1(models[i]);
 
-    glEnd();
+        glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
+        glVertexPointer(3,GL_FLOAT,0,0);
+
+        glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+    }
 
 
     for(int i = 0; i < subgroups.size(); i++){
@@ -257,9 +262,13 @@ int main(int argc, char **argv) {
     if(argc<2){
         fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
         return 1;
-    }
+    } 
 
     set = xmlToSettings(argv[1]);
+    if (set == NULL) {
+        fprintf(stderr, "Failed to load settings from XML file\n");
+        return 1; 
+    }
 
     height  = getHeight(set);
     width   = getWidth(set);
@@ -277,7 +286,6 @@ int main(int argc, char **argv) {
     nearPlane = getNear(set);
     farPlane = getFar(set);
     group = getGroup(set);
-    
 
     yaw = atan2f(lookAtz - camz, lookAtx - camx);
     pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));
@@ -285,9 +293,20 @@ int main(int argc, char **argv) {
     // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-    glutInitWindowPosition(100,100);
     glutInitWindowSize(width,height);
+    glutInitWindowPosition(100,100);
     glutCreateWindow("Projeto CG");
+
+    // OpenGL settings
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);   
+
+    //Init model buffers
+    initGroupBuffers(group);
+
+    // VBO and Normal
+    glEnableClientState(GL_VERTEX_ARRAY);
+    //glEnableClientState(GL_NORMAL_ARRAY); (só na próxima fase)
 
     // Inicializar o tempo base para FPS
     timebase = glutGet(GLUT_ELAPSED_TIME);
@@ -304,9 +323,7 @@ int main(int argc, char **argv) {
     // fps
     glutIdleFunc(updateFPS);
     
-    // OpenGL settings
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+
     
     // enter GLUT's main cycle
     glutMainLoop();

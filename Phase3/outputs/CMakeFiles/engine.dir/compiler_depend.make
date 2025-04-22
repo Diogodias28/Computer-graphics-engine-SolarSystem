@@ -769,6 +769,7 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/qos.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/resource.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/signal.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/stat.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/syslimits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/types.h \
@@ -827,10 +828,6 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
 
 /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_rsize_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_constructible.h:
-
-/Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_ptrdiff_t.h:
-
 /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_null.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_max_align_t.h:
@@ -854,6 +851,8 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/wctype.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/wchar.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/stat.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__algorithm/is_sorted.h:
 
@@ -1292,6 +1291,10 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__type_traits/is_enum.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__type_traits/is_empty.h:
+
+/Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_ptrdiff_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__type_traits/is_convertible.h:
 

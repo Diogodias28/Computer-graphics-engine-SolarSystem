@@ -1,5 +1,12 @@
 #ifndef MODEL
 #define MODEL
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
 #include <vector>
 #include <stdlib.h>
 #include <stdio.h>
@@ -19,13 +26,23 @@ Model createModel();
 
 Model makeModel(std::vector<Point>,float , float ,float);
 
-std::vector<Point> getPoints(Model);
+//std::vector<Point> getPoints(Model);
 
-void setColor(Model m, float,float,float);
+void setColor(Model, float,float,float);
 
-void getColor(Model m, float &, float &, float &);
+void getColor(Model, float &, float &, float &);
 
-void addPoint(Model, Point);
+float* getVertexB(Model);
+
+GLuint getVertexCount(Model);
+
+GLuint getBuffer_0(Model);
+
+GLuint getBuffer_1(Model);
+
+void initModelGLBuffers(Model);
+
+//void addPoint(Model, Point);
 
 std::vector<Point> readFromFile(std::string);
 

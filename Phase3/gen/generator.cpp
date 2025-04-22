@@ -244,6 +244,7 @@ void genCone(const float radius, const float height, const size_t slices, const 
     writeToFile(controlPoints, fileName);
 }
 
+/*
 float bernstein(int i, float t) {
     switch (i) {
         case 0:
@@ -345,6 +346,7 @@ void genPatch(const std::string& patchFile, int tessellation) {
     }
     writeToFile(points, fileName);
 }
+    */
 
 int main(int argc, char *argv[]) {
     
@@ -394,12 +396,14 @@ int main(int argc, char *argv[]) {
             genBox(length, grid);
         }
 
+        /*
         else if (strcmp(argv[1], "patch") == 0) {
             std::string patchFile = argv[2];
             int tessellation = atoi(argv[3]);
             fileName = argv[4];
             genPatch(patchFile, tessellation);
         }
+        */
 
         else {
             printf("Figura inválida.");

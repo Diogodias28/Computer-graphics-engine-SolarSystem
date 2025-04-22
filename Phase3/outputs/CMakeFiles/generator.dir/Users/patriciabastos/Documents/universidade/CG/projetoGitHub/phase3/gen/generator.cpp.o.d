@@ -787,6 +787,13 @@ CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoG
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/unistd.h \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/../data_structs/Point.hpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/../data_structs/Model.hpp \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers/glut.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/os/availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gltypes.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_o_sync.h \

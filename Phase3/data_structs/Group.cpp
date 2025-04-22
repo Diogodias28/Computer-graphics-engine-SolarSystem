@@ -7,7 +7,7 @@ struct group{
 };
 
 Group createGroup(){ //cria grupo vazio
-    Group g = (Group)malloc(sizeof(struct group));
+    Group g = new group();
 
     g->models = std::vector<Model>();
     g->transformations = std::vector<Transform>();
@@ -37,3 +37,15 @@ std::vector<Transform> getTransformations(Group g){
 std::vector<Group> getSubgroup(Group g){
     return g->subgroups;
 };
+
+void initGroupBuffers(Group g) {
+    std::vector<Model> models = getModels(g);
+    for (Model &model : models) {
+        initModelGLBuffers(model);
+    }
+
+    std::vector<Group> subgroups = getSubgroup(g);
+    for (Group &subgroup : subgroups) {
+        initGroupBuffers(subgroup);
+    }
+}

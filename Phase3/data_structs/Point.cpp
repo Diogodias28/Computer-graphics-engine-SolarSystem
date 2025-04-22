@@ -1,11 +1,15 @@
 #include "Point.hpp"
 
+struct point {
+    float x, y, z;
+};
+
 Point createPoint() {
     return makePoint(0.0f, 0.0f, 0.0f);
 }
 
 Point makePoint(float x, float y, float z){
-    Point p = (Point) malloc (sizeof(struct point));
+    Point p = new point();
 
     if (p != NULL) {
         p->x = x;

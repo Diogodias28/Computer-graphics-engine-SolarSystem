@@ -15,7 +15,7 @@ struct settings{
 };
 
 Settings newSettings(){
-    Settings newSettings = (Settings)malloc(sizeof(struct settings));
+    Settings newSettings = new settings();
     newSettings->group = createGroup();
     return newSettings;
 }
