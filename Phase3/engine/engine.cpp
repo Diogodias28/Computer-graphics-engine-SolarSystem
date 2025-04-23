@@ -124,6 +124,7 @@ void drawFigures(Group g) {
         float time = getTime(t);
 
         if(type == 'R' && time > 0) {
+            
             float angle = (glutGet(GLUT_ELAPSED_TIME)/1000.0f/time) * 360.0f;
             glRotatef(angle, getX(tv), getY(tv), getZ(tv));
         }
@@ -134,12 +135,13 @@ void drawFigures(Group g) {
                 controlPoints.push_back({getX(p), getY(p), getZ(p)});
             }
             
-            // Desenha a curva
+            
             drawCatmullRomCurve(controlPoints);
             
             float pos[3], deriv[3];
             float gt = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, time)/time;
             getGlobalCatmullRomPoint(gt, controlPoints, pos, deriv);
+            
             
             glTranslatef(pos[0], pos[1], pos[2]);
             
@@ -149,24 +151,30 @@ void drawFigures(Group g) {
                 float up[3] = {0,1,0}; 
                 
                 
-                normalize(deriv);
+                normalizeVector(deriv);
                 
                 
                 cross(deriv, up, z);
-                normalize(z);
+                normalizeVector(z);
                 
                 
                 cross(z, deriv, y);
-                normalize(y);
+                normalizeVector(y);
                 
+               
+                rot[0] = deriv[0]; rot[1] = deriv[1]; rot[2] = deriv[2]; rot[3] = 0;
                 
-                buildRotMatrix(deriv, y, z, rot);
+                rot[4] = y[0]; rot[5] = y[1]; rot[6] = y[2]; rot[7] = 0;
                 
+                rot[8] = z[0]; rot[9] = z[1]; rot[10] = z[2]; rot[11] = 0;
+                
+                rot[12] = 0; rot[13] = 0; rot[14] = 0; rot[15] = 1;
                 
                 glMultMatrixf(rot);
             }
         }
         else {
+            // Transformações estáticas
             switch(type) {
                 case 'R': 
                     glRotatef(getAngle(t), getX(tv), getY(tv), getZ(tv)); 

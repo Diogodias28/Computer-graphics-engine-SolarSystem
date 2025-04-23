@@ -28,21 +28,22 @@ void buildRotMatrix(const float *x, const float *y, const float *z, float *m) {
     m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
 }
 
-void cross(const float *a, const float *b, float *res) {
+void cross(const float a[3], const float b[3], float res[3]) {
     res[0] = a[1]*b[2] - a[2]*b[1];
     res[1] = a[2]*b[0] - a[0]*b[2];
     res[2] = a[0]*b[1] - a[1]*b[0];
 }
 
 
-void normalize(float *v) {
+void normalizeVector(float v[3]) {
     float len = sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
-    if (len > 0.0001f) {
+    if(len > 0.0001f) {
         v[0] /= len;
         v[1] /= len;
         v[2] /= len;
     }
 }
+
 
 float length(const float *a) {
     return sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]);

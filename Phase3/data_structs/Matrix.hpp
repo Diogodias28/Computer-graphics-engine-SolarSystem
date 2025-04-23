@@ -12,9 +12,9 @@ void multiplyMatrices(int la, int ca, const float* A,
 
 void buildRotMatrix(const float *x, const float *y, const float *z, float *m);
 
-void cross(const float *a, const float *b, float *res);
+void cross(const float a[3], const float b[3], float res[3]);
 
-void normalize(float *a);
+void normalizeVector(float v[3]);
 
 float length(const float *a);
 

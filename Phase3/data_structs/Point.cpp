@@ -75,6 +75,18 @@ Point getCatmullRomPoint(float t, Point p0, Point p1, Point p2, Point p3) {
     );
 }
 
+Point normalizePoint(Point p) {
+    if (!p) return nullptr;
+    
+    float len = sqrt(p->x*p->x + p->y*p->y + p->z*p->z);
+    if (len > 0.0001f) {
+        p->x /= len;
+        p->y /= len;
+        p->z /= len;
+    }
+    return p;
+}
+
 void buildRotMatrix(Point x, Point y, Point z, Point w, float *m) {
     m[0] = getX(x); m[4] = getX(y); m[8]  = getX(z); m[12] = getX(w);
     m[1] = getY(x); m[5] = getY(y); m[9]  = getY(z); m[13] = getY(w);
