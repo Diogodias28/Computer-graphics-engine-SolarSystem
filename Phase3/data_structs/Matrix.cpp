@@ -19,10 +19,13 @@ void multiplyMatrices(int la, int ca, const float* A,
 }
 
 void buildRotMatrix(const float *x, const float *y, const float *z, float *m) {
-    m[0] = x[0]; m[4] = x[1]; m[8]  = x[2];  m[12] = 0;
-    m[1] = y[0]; m[5] = y[1]; m[9]  = y[2];  m[13] = 0;
-    m[2] = z[0]; m[6] = z[1]; m[10] = z[2];  m[14] = 0;
-    m[3] = 0;    m[7] = 0;    m[11] = 0;     m[15] = 1;
+    m[0] = x[0]; m[1] = y[0]; m[2] = z[0]; m[3] = 0;
+    
+    m[4] = x[1]; m[5] = y[1]; m[6] = z[1]; m[7] = 0;
+    
+    m[8] = x[2]; m[9] = y[2]; m[10] = z[2]; m[11] = 0;
+    
+    m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
 }
 
 void cross(const float *a, const float *b, float *res) {
@@ -32,12 +35,12 @@ void cross(const float *a, const float *b, float *res) {
 }
 
 
-void normalize(float *a) {
-    float l = sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]);
-    if(l > 0) {
-        a[0] /= l;
-        a[1] /= l;
-        a[2] /= l;
+void normalize(float *v) {
+    float len = sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
+    if (len > 0.0001f) {
+        v[0] /= len;
+        v[1] /= len;
+        v[2] /= len;
     }
 }
 

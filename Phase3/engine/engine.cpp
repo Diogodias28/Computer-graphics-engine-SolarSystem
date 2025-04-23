@@ -134,7 +134,7 @@ void drawFigures(Group g) {
                 controlPoints.push_back({getX(p), getY(p), getZ(p)});
             }
             
-            // Desenha a curva primeiro (antes da transformação)
+            // Desenha a curva
             drawCatmullRomCurve(controlPoints);
             
             float pos[3], deriv[3];
@@ -143,17 +143,26 @@ void drawFigures(Group g) {
             
             glTranslatef(pos[0], pos[1], pos[2]);
             
+            
             if(getAlign(t)) {
                 float z[3], y[3], rot[16];
+                float up[3] = {0,1,0}; 
+                
+                
                 normalize(deriv);
                 
-                float up[3] = {0,1,0};
+                
                 cross(deriv, up, z);
                 normalize(z);
+                
+                
                 cross(z, deriv, y);
                 normalize(y);
                 
+                
                 buildRotMatrix(deriv, y, z, rot);
+                
+                
                 glMultMatrixf(rot);
             }
         }
