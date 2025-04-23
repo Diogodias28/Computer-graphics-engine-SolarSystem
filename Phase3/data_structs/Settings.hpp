@@ -3,6 +3,7 @@
 #include "../TinyXML/tinyxml.h"
 #include <stdlib.h>
 #include "Group.hpp"
+#include "Matrix.hpp"
 
 typedef struct settings* Settings;
 

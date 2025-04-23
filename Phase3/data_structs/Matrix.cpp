@@ -31,6 +31,7 @@ void cross(const float *a, const float *b, float *res) {
     res[2] = a[0]*b[1] - a[1]*b[0];
 }
 
+
 void normalize(float *a) {
     float l = sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]);
     if(l > 0) {

@@ -4,6 +4,8 @@
 #include <vector>
 #include <math.h>
 
+using namespace std;
+
 void multiplyMatrices(int la, int ca, const float* A, 
                      int lb, int cb, const float* B, 
                      float* R, int* lr = nullptr, int* cr = nullptr);

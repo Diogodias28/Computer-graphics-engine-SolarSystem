@@ -24,7 +24,9 @@ void setZ(Point, float);
 
 Point crossProduct(Point, Point);
 
-Point normalize(Point);
+void normalize(float* v);
+
+Point normalize(Point p);
 
 Point subtractPoints(Point, Point);
 

@@ -11,6 +11,8 @@
 #include <vector>
 #include "../data_structs/Settings.hpp"
 
+extern void getGlobalCatmullRomPoint(float gt, std::vector<std::vector<float>> controlPoints, float *pos, float *deriv);
+
 // Variáveis da câmara
 int height, width;
 float alphaCam, betaCam, radius;
@@ -123,15 +125,18 @@ void drawFigures(Group g) {
             
             if(getAlign(t)) {
                 float z[3], y[3], rot[16];
+                float up[3] = {0,1,0}; // Vetor up global
+                
+                // Normalizar derivada
                 normalize(deriv);
                 
-                // Vetor Y inicial
-                float up[3] = {0,1,0};
+                // Calcular vetores ortogonais
                 cross(deriv, up, z);
                 normalize(z);
                 cross(z, deriv, y);
                 normalize(y);
                 
+                // Construir matriz de rotação
                 buildRotMatrix(deriv, y, z, rot);
                 glMultMatrixf(rot);
             }
