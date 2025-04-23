@@ -28,8 +28,6 @@ Point subtractPoints(Point, Point);
 
 Point getCatmullRomPoint(float, Point, Point, Point, Point);
 
-Point normalizePoint(Point p);
-
 void buildRotMatrix(Point, Point, Point, Point, float*);
 
 #endif // POINT
