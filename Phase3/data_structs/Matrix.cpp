@@ -1,4 +1,4 @@
-#include "matrix.hpp"
+#include "Matrix.hpp"
 
 void multiplyMatrices(int la, int ca, const float* A,
                      int lb, int cb, const float* B,

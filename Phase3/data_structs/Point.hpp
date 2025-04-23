@@ -24,10 +24,6 @@ void setZ(Point, float);
 
 Point crossProduct(Point, Point);
 
-void normalize(float* v);
-
-Point normalize(Point p);
-
 Point subtractPoints(Point, Point);
 
 Point getCatmullRomPoint(float, Point, Point, Point, Point);

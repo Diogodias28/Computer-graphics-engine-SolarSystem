@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.cpp.o"
   "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.cpp.o.d"
+  "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o"
+  "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o.d"
   "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.cpp.o"
   "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.cpp.o.d"
   "CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.cpp.o"

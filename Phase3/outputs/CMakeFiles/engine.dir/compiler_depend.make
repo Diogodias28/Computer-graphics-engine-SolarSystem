@@ -810,6 +810,7 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.h \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.h \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.hpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.hpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.hpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Settings.hpp \
@@ -819,6 +820,8 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Transform.hpp:
 
 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.hpp:
+
+/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.hpp:
 
 /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.h:
 

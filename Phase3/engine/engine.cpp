@@ -92,6 +92,23 @@ void updateFPS() {
     glutPostRedisplay();
 }
 
+void drawCatmullRomCurve(const std::vector<std::vector<float>>& controlPoints) {
+    if (controlPoints.size() < 4) return; // Precisa de pelo menos 4 pontos
+    
+    glBegin(GL_LINE_LOOP);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    
+    const int segments = 100;
+    for (int i = 0; i <= segments; ++i) {
+        float t = i / (float)segments;
+        float pos[3];
+        getGlobalCatmullRomPoint(t, controlPoints, pos, nullptr);
+        glVertex3fv(pos);
+    }
+    
+    glEnd();
+}
+
 void drawFigures(Group g) {
 
     std::vector<Transform> transformations = getTransformations(g);
@@ -117,6 +134,9 @@ void drawFigures(Group g) {
                 controlPoints.push_back({getX(p), getY(p), getZ(p)});
             }
             
+            // Desenha a curva primeiro (antes da transformação)
+            drawCatmullRomCurve(controlPoints);
+            
             float pos[3], deriv[3];
             float gt = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, time)/time;
             getGlobalCatmullRomPoint(gt, controlPoints, pos, deriv);
@@ -125,18 +145,14 @@ void drawFigures(Group g) {
             
             if(getAlign(t)) {
                 float z[3], y[3], rot[16];
-                float up[3] = {0,1,0}; // Vetor up global
-                
-                // Normalizar derivada
                 normalize(deriv);
                 
-                // Calcular vetores ortogonais
+                float up[3] = {0,1,0};
                 cross(deriv, up, z);
                 normalize(z);
                 cross(z, deriv, y);
                 normalize(y);
                 
-                // Construir matriz de rotação
                 buildRotMatrix(deriv, y, z, rot);
                 glMultMatrixf(rot);
             }
@@ -155,6 +171,7 @@ void drawFigures(Group g) {
             }
         }
     }
+
     
     for (int i = 0; i < models.size(); i++) {
         float r,g,b;
@@ -178,6 +195,7 @@ void drawFigures(Group g) {
     }
     glPopMatrix();
 }
+
 
 void renderScene(void) {
     // clear buffers

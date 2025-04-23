@@ -811,4 +811,5 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iomanip \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Transform.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Point.hpp
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Point.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Matrix.hpp

@@ -52,25 +52,6 @@ Point crossProduct(Point a, Point b) {
     return makePoint(x, y, z);
 }
 
-void normalize(float* v) {
-    float len = sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
-    if(len > 0) {
-        v[0] /= len;
-        v[1] /= len;
-        v[2] /= len;
-    }
-}
-
-Point normalize(Point p) {
-    float len = sqrt(p->x*p->x + p->y*p->y + p->z*p->z);
-    if(len > 0) {
-        p->x /= len;
-        p->y /= len;
-        p->z /= len;
-    }
-    return p;
-}
-
 Point subtractPoints(Point a, Point b) {
     return makePoint(getX(a)-getX(b), getY(a)-getY(b), getZ(a)-getZ(b));
 }

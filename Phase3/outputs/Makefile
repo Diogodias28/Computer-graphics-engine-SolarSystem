@@ -288,6 +288,30 @@ Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.cpp.s
 .PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.cpp.s
 
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structs.dir/build.make CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.s
+
 Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.cpp.o
 .PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.o
 
@@ -459,6 +483,9 @@ help:
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.o"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.i"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Group.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.s"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.o"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.i"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.s"

@@ -20,6 +20,8 @@ add_library(
     ../data_structs/Group.hpp
     ../data_structs/Transform.cpp
     ../data_structs/Transform.hpp
+    ../data_structs/Matrix.cpp
+    ../data_structs/Matrix.hpp
 )
 
 add_library(
