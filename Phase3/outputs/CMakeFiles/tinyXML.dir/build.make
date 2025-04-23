@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs
+CMAKE_SOURCE_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs
+CMAKE_BINARY_DIR = /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tinyXML.dir/depend.make
@@ -72,79 +72,79 @@ include CMakeFiles/tinyXML.dir/flags.make
 CMakeFiles/tinyXML.dir/codegen:
 .PHONY : CMakeFiles/tinyXML.dir/codegen
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o: CMakeFiles/tinyXML.dir/flags.make
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o: CMakeFiles/tinyXML.dir/flags.make
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.i
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.i
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.s
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.s
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o: CMakeFiles/tinyXML.dir/flags.make
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o: CMakeFiles/tinyXML.dir/flags.make
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.i
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.i
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.s
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.s
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o: CMakeFiles/tinyXML.dir/flags.make
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o: CMakeFiles/tinyXML.dir/flags.make
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.i
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.i
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.s
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.s
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o: CMakeFiles/tinyXML.dir/flags.make
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o: CMakeFiles/tinyXML.dir/flags.make
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o: /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o: CMakeFiles/tinyXML.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o -MF CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o.d -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o -c /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.i
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp > CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.i
 
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.s
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp -o CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.s
 
 # Object files for target tinyXML
 tinyXML_OBJECTS = \
-"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o" \
-"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o" \
-"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o" \
-"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o"
+"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o" \
+"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o" \
+"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o" \
+"CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o"
 
 # External object files for target tinyXML
 tinyXML_EXTERNAL_OBJECTS =
 
-libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.cpp.o
-libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o
-libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlparser.cpp.o
-libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.cpp.o
+libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinystr.cpp.o
+libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlerror.cpp.o
+libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxmlparser.cpp.o
+libtinyXML.a: CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/TinyXML/tinyxml.cpp.o
 libtinyXML.a: CMakeFiles/tinyXML.dir/build.make
 libtinyXML.a: CMakeFiles/tinyXML.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libtinyXML.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libtinyXML.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/tinyXML.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tinyXML.dir/link.txt --verbose=$(VERBOSE)
 
@@ -157,6 +157,6 @@ CMakeFiles/tinyXML.dir/clean:
 .PHONY : CMakeFiles/tinyXML.dir/clean
 
 CMakeFiles/tinyXML.dir/depend:
-	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/outputs/CMakeFiles/tinyXML.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/outputs/CMakeFiles/tinyXML.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tinyXML.dir/depend
 

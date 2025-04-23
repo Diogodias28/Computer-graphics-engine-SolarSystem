@@ -13,10 +13,18 @@ typedef struct transform* Transform;
 
 Transform newTransformation(char, Point, float);
 
+Transform newTimeBasedTransformation (char, Point, float, float, bool, std::vector<Point> );
+
 char getType(Transform);
 
 Point getTransVal(Transform);
 
 float getAngle(Transform);
+
+float getTime(Transform);
+
+bool getAlign(Transform);
+
+std::vector<Point> getControlPoints (Transform);
 
 #endif //TRANSFORM

@@ -1,6 +1,6 @@
-CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Model.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Model.cpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Model.hpp \
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.cpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Model.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers/glut.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/os/availability.h \
@@ -802,5 +802,5 @@ CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/proje
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iomanip \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Transform.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Point.hpp
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Transform.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.hpp

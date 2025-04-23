@@ -39,9 +39,6 @@ Model makeModel(std::vector<Point> points, float r, float g, float b){
     
 
     for(int i=0; i<points.size(); i++){
-        
-        //addPoint(m, points[i]);   isto meio que já não é necessário
-
         m->vertexB[i*3 + 0] = getX(points[i]);
 		m->vertexB[i*3 + 1] = getY(points[i]);
 		m->vertexB[i*3 + 2] = getZ(points[i]);

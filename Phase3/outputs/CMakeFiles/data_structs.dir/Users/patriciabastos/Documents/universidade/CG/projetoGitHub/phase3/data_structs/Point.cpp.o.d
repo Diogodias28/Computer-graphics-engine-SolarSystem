@@ -1,6 +1,6 @@
-CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Point.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Point.cpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Point.hpp \
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.cpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Point.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__config_site \

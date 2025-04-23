@@ -1,5 +1,5 @@
-CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/engine.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/engine.cpp \
+CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/engine.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/engine.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers/glut.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/os/availability.h \
@@ -758,18 +758,18 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/cstdarg \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/Settings.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/../TinyXML/tinyxml.h \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Settings.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/../TinyXML/tinyxml.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/_static_assert.h \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/../TinyXML/tinystr.h \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/Group.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/../TinyXML/tinystr.h \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Group.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_o_sync.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_o_dsync.h \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/Model.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Model.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/istream \
@@ -810,5 +810,5 @@ CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitH
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iomanip \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/Transform.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/engine/../data_structs/Point.hpp
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Transform.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/engine/../data_structs/Point.hpp

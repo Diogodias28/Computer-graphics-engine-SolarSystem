@@ -244,7 +244,7 @@ void genCone(const float radius, const float height, const size_t slices, const 
     writeToFile(controlPoints, fileName);
 }
 
-/*
+
 float bernstein(int i, float t) {
     switch (i) {
         case 0:
@@ -262,7 +262,7 @@ float bernstein(int i, float t) {
 
 Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
     Point result = createPoint();
-
+    float x =0, y=0, z=0;
     // Combinar as funções de Bernstein para u e v
     for (int i = 0; i < 4; i++) {
         float bu = bernstein(i, u);
@@ -270,10 +270,14 @@ Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v
             float bv = bernstein(j, v);
             float b = bu * bv;
 
+            x += b * getX(patchControlPoints[i * 4 + j]);
+            y += b * getY(patchControlPoints[i * 4 + j]);
+            z += b * getZ(patchControlPoints[i * 4 + j]);
+
             // Adicionar a contribuição do ponto de controle correspondente
-            result->x += b * getX(patchControlPoints[i * 4 + j]);
-            result->y += b * getY(patchControlPoints[i * 4 + j]);
-            result->z += b * getZ(patchControlPoints[i * 4 + j]);
+            setX(result, x);
+            setY(result, y);
+            setZ(result, z);
         }
     }
 
@@ -293,60 +297,91 @@ void genPatch(const std::string& patchFile, int tessellation) {
     size_t numPatches;
     file >> numPatches;
 
-    std::vector<std::vector<size_t>> patches(numPatches);
-    for (size_t i = 0; i < numPatches; i++) {
-        patches[i].resize(16);
-        for (size_t j = 0; j < 16; j++) {
-            file >> patches[i][j];
+    if (numPatches <= 0) {
+        std::cerr << "Número inválido de patches: " << numPatches << std::endl;
+        return;
+    }
+
+    std::vector<std::vector<size_t>> patches(numPatches,
+        std::vector<size_t>(16));
+
+    for (size_t i = 0; i < numPatches; ++i) {
+        for (size_t j = 0; j < 16; ++j) {
+            size_t idx;
+            file >> idx;
+            file.ignore();
+            patches[i][j] = idx;
         }
     }
 
-    size_t numPoints;
-    file >> numPoints;
-    for (size_t i = 0; i < numPoints; i++) {
+    size_t numberOfControlPoints;
+    file >> numberOfControlPoints;
+    for (size_t i = 0; i < numberOfControlPoints; ++i) {
         float x, y, z;
-        file >> x >> y >> z;
+        file >> x;
+        file.ignore();
+        file >> y;
+        file.ignore();
+        file >> z;
+        file.ignore();
         controlPoints.push_back(makePoint(x, y, z));
     }
 
+
     file.close();
+
+    // Verificar tesselação
+    if (tessellation <= 0) {
+        std::cerr << "Tesselação inválida: " << tessellation << std::endl;
+        return;
+    }
 
     // Gerar os pontos da superfície a partir dos patches e pontos de controle
     std::vector<Point> points;
-    std::vector<Point> normals;
 
     for (size_t i = 0; i < numPatches; ++i) {
         std::vector<Point> patchControlPoints;
         for (size_t j = 0; j < 16; ++j) {
-          patchControlPoints.push_back(controlPoints[patches[i][j]]);
+            if (patches[i][j] >= controlPoints.size()) {
+                std::cerr << "Índice inválido no patch: " << patches[i][j] << std::endl;
+                return;
+            }
+            patchControlPoints.push_back(controlPoints[patches[i][j]]);
         }
-        
+
+        if (patchControlPoints.size() != 16) {
+            std::cerr << "Número inválido de pontos de controle no patch: " << patchControlPoints.size() << std::endl;
+            return;
+        }
+
         for (int u = 0; u < tessellation; ++u) {
             for (int v = 0; v < tessellation; ++v) {
-              float u1 = static_cast<float>(u) / tessellation;
-              float v1 = static_cast<float>(v) / tessellation;
-              float u2 = static_cast<float>(u + 1) / tessellation;
-              float v2 = static_cast<float>(v + 1) / tessellation;
+                float u1 = static_cast<float>(u) / tessellation;
+                float v1 = static_cast<float>(v) / tessellation;
+                float u2 = static_cast<float>(u + 1) / tessellation;
+                float v2 = static_cast<float>(v + 1) / tessellation;
 
-              Point p1 = bezierPatch(patchControlPoints, u1, v1);
-              Point p2 = bezierPatch(patchControlPoints, u2, v1);
-              Point p3 = bezierPatch(patchControlPoints, u1, v2);
-              Point p4 = bezierPatch(patchControlPoints, u2, v2);
+                Point p1 = bezierPatch(patchControlPoints, u1, v1);
+                Point p2 = bezierPatch(patchControlPoints, u2, v1);
+                Point p3 = bezierPatch(patchControlPoints, u1, v2);
+                Point p4 = bezierPatch(patchControlPoints, u2, v2);
 
-              // Add points to the list
-              points.push_back(p1);
-              points.push_back(p3);
-              points.push_back(p2);
+                // Adicionar os triângulos
+                points.push_back(p1);
+                points.push_back(p3);
+                points.push_back(p2);
 
-              points.push_back(p2);
-              points.push_back(p3);
-              points.push_back(p4);
+                points.push_back(p2);
+                points.push_back(p3);
+                points.push_back(p4);
             }
         }
     }
+
     writeToFile(points, fileName);
 }
-    */
+
+    
 
 int main(int argc, char *argv[]) {
     
@@ -396,14 +431,14 @@ int main(int argc, char *argv[]) {
             genBox(length, grid);
         }
 
-        /*
+        
         else if (strcmp(argv[1], "patch") == 0) {
             std::string patchFile = argv[2];
             int tessellation = atoi(argv[3]);
             fileName = argv[4];
             genPatch(patchFile, tessellation);
         }
-        */
+        
 
         else {
             printf("Figura inválida.");

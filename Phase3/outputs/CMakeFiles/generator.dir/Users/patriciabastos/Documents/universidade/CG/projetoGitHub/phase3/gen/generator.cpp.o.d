@@ -1,5 +1,5 @@
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/generator.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/generator.cpp \
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/generator.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/generator.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__algorithm/copy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h \
@@ -785,8 +785,8 @@ CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoG
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__fwd/stack.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/unistd.h \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/../data_structs/Point.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/../data_structs/Model.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/../data_structs/Point.hpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/../data_structs/Model.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers/glut.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/os/availability.h \
@@ -803,4 +803,4 @@ CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoG
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iomanip \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/../data_structs/Transform.hpp
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/../data_structs/Transform.hpp
