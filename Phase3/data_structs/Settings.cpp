@@ -30,85 +30,87 @@ Group parseGroup(TiXmlElement* groupElement) {
     // Parsing das transformações
     TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
     if (transformElement) {
-        // Processa cada transformação
         for (TiXmlElement* transType = transformElement->FirstChildElement(); 
-            transType; 
-            transType = transType->NextSiblingElement()) {
+             transType; 
+             transType = transType->NextSiblingElement()) {
             
-            Transform transform;
             std::string elementName = transType->Value();
-            char type;
-            Point point;
-            float angle = 0.0f;
-            
+            Transform transform = nullptr;
+
             if (elementName == "translate") {
-                if(transType->Attribute("time")) {
-                    type = 'T';
+                // Verificar se é uma translação temporal
+                if (transType->Attribute("time")) {
                     float time = atof(transType->Attribute("time"));
-                    bool align = false;
-                    if(transType->Attribute("align") && string(transType->Attribute("align")) == "true")
-                    {
-                        align = true; 
+                    bool align = transType->Attribute("align") ? 
+                                (strcasecmp(transType->Attribute("align"), "true") == 0) : false;
+
+                    // Coletar pontos
+                    std::vector<Point> points;
+                    for (TiXmlElement* p = transType->FirstChildElement("point"); 
+                         p; 
+                         p = p->NextSiblingElement("point")) {
+                        points.push_back(makePoint(
+                            atof(p->Attribute("x")),
+                            atof(p->Attribute("y")),
+                            atof(p->Attribute("z"))
+                        ));
                     }
 
-                    std::vector<Point> controlPoints;
-
-                    for (TiXmlElement* pointElement = transType->FirstChildElement("point"); pointElement; pointElement = pointElement->NextSiblingElement()) {
-                        point = makePoint(
-                            atof(pointElement->Attribute("x")),
-                            atof(pointElement->Attribute("y")),
-                            atof(pointElement->Attribute("z"))
-                        );
-                        controlPoints.push_back(point);
+                    // Validar mínimo de 4 pontos
+                    if (points.size() < 4) {
+                        std::cerr << "Erro: Curva Catmull-Rom necessita de pelo menos 4 pontos ("
+                                  << points.size() << " fornecidos). Transformação ignorada.\n";
+                        continue;
                     }
 
-                    if (controlPoints.size() >= 4) {
-                        transform = newTimeBasedTransformation(type, makePoint(0,0,0), time, angle,  align, controlPoints);
-                    } else {
-                        fprintf(stderr, "Error: Catmull-Rom curve requires at leat 4 control points (found %lu)\n", controlPoints.size());
-                        transform = newTransformation('T', makePoint(0,0,0), angle);
-                    }
-                } else {
-                    transform = newTransformation(
-                        'T',
+                    transform = newTransformation('T', makePoint(0,0,0), 0, time, points, align);
+                }
+                else { // Translação estática
+                    transform = newTransformation('T', 
                         makePoint(
                             atof(transType->Attribute("x")),
                             atof(transType->Attribute("y")),
                             atof(transType->Attribute("z"))
-                        ),
-                        angle
-                    );
+                        ), 
+                        0, 0, {}, false);
                 }
-            } else if (elementName == "scale") {
-                type = 'S';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
-                transform = newTransformation(type, point, angle);
             }
             else if (elementName == "rotate") {
-                type = 'R';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
+                float angle = 0, time = 0;
+                bool hasTime = false;
+
+                // Priorizar tempo se existir
                 if (transType->Attribute("time")) {
-                    // Timed rotation (full 360°)
-                    transform = newTimeBasedTransformation(
-                        type, point, atof(transType->Attribute("time")), 360.0f, false, {}
-                    );
-                } else {
-                    // Static rotation
-                    transform = newTransformation(
-                        type, point, atof(transType->Attribute("angle"))
-                    );
+                    time = atof(transType->Attribute("time"));
+                    hasTime = true;
+                } 
+                else if (transType->Attribute("angle")) {
+                    angle = atof(transType->Attribute("angle"));
                 }
+
+                transform = newTransformation('R',
+                    makePoint(
+                        atof(transType->Attribute("x")),
+                        atof(transType->Attribute("y")),
+                        atof(transType->Attribute("z"))
+                    ),
+                    angle,
+                    time
+                );
             }
-            
-            transformations.push_back(transform);
+            else if (elementName == "scale") {
+                transform = newTransformation('S',
+                    makePoint(
+                        atof(transType->Attribute("x")),
+                        atof(transType->Attribute("y")),
+                        atof(transType->Attribute("z"))
+                    ),
+                    0, 0, {}, false);
+            }
+
+            if (transform) {
+                transformations.push_back(transform);
+            }
         }
     }
 

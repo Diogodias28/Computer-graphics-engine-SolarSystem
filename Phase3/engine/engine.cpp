@@ -102,55 +102,52 @@ void drawFigures(Group g) {
     for (auto& t : transformations) {
         char type = getType(t);
         Point tv = getTransVal(t);
+        float time = getTime(t);
 
-        if (type == 'R') {
-            if (getTime(t) > 0) {
-                // Timed rotation
-                float progress = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, getTime(t)) / getTime(t);
-                glRotatef(progress * getAngle(t), getX(tv), getY(tv), getZ(tv));
-            } else {
-                // Static rotation
-                glRotatef(getAngle(t), getX(tv), getY(tv), getZ(tv));
-            }
+        if(type == 'R' && time > 0) {
+            float angle = (glutGet(GLUT_ELAPSED_TIME)/1000.0f/time) * 360.0f;
+            glRotatef(angle, getX(tv), getY(tv), getZ(tv));
         }
-        else if (type == 'T' && getTime(t) > 0) {
+        else if(type == 'T' && time > 0) {
+            std::vector<Point> points = getPoints(t);
+            std::vector<std::vector<float>> controlPoints;
+            for(auto& p : points) {
+                controlPoints.push_back({getX(p), getY(p), getZ(p)});
+            }
             
-            auto points = getControlPoints(t); 
-            float progress = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, getTime(t)) / getTime(t);
-            float tSegment = progress * (points.size()-3);
-            int segment = static_cast<int>(tSegment);
-            float tInSegment = tSegment - segment; 
-
-            Point pos = makePoint(0,0,0); 
-
-            if (segment < points.size()-3) {
-                pos = getCatmullRomPoint(tInSegment, 
-                    points[segment], points[segment+1], 
-                    points[segment+2], points[segment+3]);
-
-                if (getAlign(t)) {
-                    Point deriv = getCatmullRomPoint(tInSegment+0.01f, 
-                        points[segment], points[segment+1],
-                        points[segment+2], points[segment+3]);
-                    Point tangent = normalize(subtractPoints(deriv, pos));
-                    Point up = makePoint(0,1,0);
-                    Point right = crossProduct(tangent, up);
-                    up = crossProduct(right, tangent);
-
-                    float m[16];
-                    buildRotMatrix(right, up, tangent, pos, m);
-                    glMultMatrixf(m);
-                } else {
-                    glTranslatef(getX(pos), getY(pos), getZ(pos));
-                }
+            float pos[3], deriv[3];
+            float gt = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, time)/time;
+            getGlobalCatmullRomPoint(gt, controlPoints, pos, deriv);
+            
+            glTranslatef(pos[0], pos[1], pos[2]);
+            
+            if(getAlign(t)) {
+                float z[3], y[3], rot[16];
+                normalize(deriv);
+                
+                // Vetor Y inicial
+                float up[3] = {0,1,0};
+                cross(deriv, up, z);
+                normalize(z);
+                cross(z, deriv, y);
+                normalize(y);
+                
+                buildRotMatrix(deriv, y, z, rot);
+                glMultMatrixf(rot);
             }
         }
-        else if (type == 'T') {
-            // Static translation
-            glTranslatef(getX(tv), getY(tv), getZ(tv));
-        }
-        else if (type == 'S') {
-            glScalef(getX(tv), getY(tv), getZ(tv));
+        else {
+            switch(type) {
+                case 'R': 
+                    glRotatef(getAngle(t), getX(tv), getY(tv), getZ(tv)); 
+                    break;
+                case 'T': 
+                    glTranslatef(getX(tv), getY(tv), getZ(tv)); 
+                    break;
+                case 'S': 
+                    glScalef(getX(tv), getY(tv), getZ(tv)); 
+                    break;
+            }
         }
     }
     
