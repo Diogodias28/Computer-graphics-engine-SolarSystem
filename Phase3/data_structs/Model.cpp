@@ -117,7 +117,7 @@ std::vector<Point> readFromFile(std::string fileName) {
     std::ifstream file(fileName);
 
     if (file.is_open()) {
-        std::getline(file, line); // Read the first line (number of points), but ignore it
+        std::getline(file, line); // Lê o número de pontos (ignora-os)
 
         while (std::getline(file, line)) {
             std::istringstream iss(line);
@@ -151,10 +151,10 @@ void writeToFile(std::vector<Point> controlPoints, string fileName) {
         return;
     }
 
-    // Number of control points
+    // Número de pontos de controlo
     file << controlPoints.size() << std::endl;
 
-    // Write control points
+    // Escreve os pontos de controlo no formato "x, y, z"
     file << std::fixed << std::setprecision(6);
     for (int i = 0; i<controlPoints.size(); i++) {
         file << getX(controlPoints[i]) << ", " << getY(controlPoints[i]) << ", " << getZ(controlPoints[i]) << std::endl;

@@ -81,7 +81,7 @@ void updateFPS() {
     int time = glutGet(GLUT_ELAPSED_TIME);
     frame++;
 
-    if (time - timebase > 100) { // Atualiza FPS a cada segundo
+    if (time - timebase > 100) { // Atualiza FPS
         fps = frame * 1000.0f / (time - timebase);
         timebase = time;
         frame = 0;
@@ -400,8 +400,6 @@ int main(int argc, char **argv) {
 
     // fps
     glutIdleFunc(updateFPS);
-    
-
     
     // enter GLUT's main cycle
     glutMainLoop();
