@@ -1,6 +1,6 @@
-CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.cpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/data_structs/Matrix.hpp \
+CMakeFiles/data_structs.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Matrix.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Matrix.cpp \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/data_structs/Matrix.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__algorithm/copy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h \

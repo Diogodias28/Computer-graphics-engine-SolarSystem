@@ -62,10 +62,10 @@ void getGlobalCatmullRomPoint(float gt, std::vector<std::vector<float>> controlP
     indices[3] = (indices[2]+1) % pointCount;
 
     float T[4] = { t*t*t, t*t, t, 1 };
-    float M[16] = { -0.5, 1.5, -1.5, 0.5,
-                     1.0, -2.5, 2.0, -0.5,
-                     -0.5, 0.0, 0.5, 0.0,
-                     0.0, 1.0, 0.0, 0.0 };
+    float M[16] = { -0.5f, 1.5f, -1.5f, 0.5f,
+                     1.0f, -2.5f, 2.0f, -0.5f,
+                     -0.5f, 0.0f, 0.5f, 0.0f,
+                     0.0f, 1.0f, 0.0f, 0.0f };
 
     for(int i = 0; i < 3; i++) {
         float P[4] = {
