@@ -34,7 +34,7 @@ Group group;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
 bool showAxes = true;      // Eixos
-
+bool showCurve = true;     // Linha da Curva
 GLuint vertexCount, buffer[2];
 
 
@@ -135,8 +135,9 @@ void drawFigures(Group g) {
                 controlPoints.push_back({getX(p), getY(p), getZ(p)});
             }
             
-            
-            drawCatmullRomCurve(controlPoints);
+            if(showCurve){
+                drawCatmullRomCurve(controlPoints);
+            }
             
             float pos[3], deriv[3];
             float gt = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, time)/time;
@@ -291,6 +292,9 @@ void processKeys(unsigned char c, int xx, int yy) {
             break;
         case 'p': // Altera a visualização dos eixos
             showAxes = !showAxes;
+            break;
+        case 'c': // Altera a visibilidade das linhas das curvas
+            showCurve = !showCurve;
             break;
     }
     updateCamera();

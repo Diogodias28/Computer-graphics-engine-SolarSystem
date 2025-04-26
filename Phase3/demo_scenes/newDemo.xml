@@ -1,0 +1,429 @@
+<world>
+    <window width="512" height="512" />
+    <camera> 
+        <position x="0" y="0" z="0" />
+        <lookAt x="0" y="0" z="0" />
+        <up x="0" y="1" z="0" />
+        <projection fov="60" near="1" far="1000" />
+    </camera>
+
+    <group> 
+
+        <!-- Body -->
+        <group>
+            <transform>
+                <translate x="0" y="0.7" z="0" />
+                <scale x="1.2" y="0.6" z="0.7" />
+            </transform>
+            <models>
+                <color r="0.6" g="0.4" b="0.2" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        
+        <!-- Head -->
+        <group>
+            <transform>
+                <translate x="0.8" y="1.1" z="0" />
+                <scale x="0.6" y="0.5" z="0.5" />
+            </transform>
+            <models>
+                <color r="0.6" g="0.4" b="0.2" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+            
+            <!-- Snout -->
+            <group>
+                <transform>
+                    <translate x="0.6" y="-0.1" z="0" />
+                    <scale x="0.3" y="0.25" z="0.4" />
+                </transform>
+                <models>
+                    <color r="0.5" g="0.3" b="0.15" />
+                    <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+                </models>
+                
+                <!-- Nose -->
+                <group>
+                    <transform>
+                        <translate x="0.5" y="0.1" z="0" />
+                        <scale x="0.1" y="0.1" z="0.1" />
+                    </transform>
+                    <models>
+                        <color r="0.1" g="0.1" b="0.1" />
+                        <model file="sphere_1_8_8.3d" /> <!-- generator sphere 1 8 8 sphere_1_8_8.3d -->
+                    </models>
+                </group>
+            </group>
+            
+            <!-- Left Ear -->
+            <group>
+                <transform>
+                    <translate x="-0.1" y="0.4" z="0.25" />
+                    <rotate angle="-30" x="0" y="0" z="1" />
+                    <scale x="0.2" y="0.3" z="0.1" />
+                </transform>
+                <models>
+                    <color r="0.5" g="0.3" b="0.15" />
+                    <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+                </models>
+            </group>
+            
+            <!-- Right Ear -->
+            <group>
+                <transform>
+                    <translate x="-0.1" y="0.4" z="-0.25" />
+                    <rotate angle="-30" x="0" y="0" z="1" />
+                    <scale x="0.2" y="0.3" z="0.1" />
+                </transform>
+                <models>
+                    <color r="0.5" g="0.3" b="0.15" />
+                    <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+                </models>
+            </group>
+            
+            <!-- Left Eye -->
+            <group>
+                <transform>
+                    <translate x="0.5" y="0.1" z="0.2" />
+                    <scale x="0.1" y="0.1" z="0.1" />
+                </transform>
+                <models>
+                    <color r="0.1" g="0.1" b="0.1" />
+                    <model file="sphere_1_8_8.3d" /> <!-- generator sphere 1 8 8 sphere_1_8_8.3d -->
+                </models>
+            </group>
+            
+            <!-- Right Eye -->
+            <group>
+                <transform>
+                    <translate x="0.5" y="0.1" z="-0.2" />
+                    <scale x="0.1" y="0.1" z="0.1" />
+                </transform>
+                <models>
+                    <color r="0.1" g="0.1" b="0.1" />
+                    <model file="sphere_1_8_8.3d" /> <!-- generator sphere 1 8 8 sphere_1_8_8.3d -->
+                </models>
+            </group>
+        </group>
+        
+        <!-- Tail -->
+        <group>
+            <transform>
+                <translate x="-0.7" y="0.9" z="0" />
+                <rotate angle="30" x="0" y="0" z="1" />
+                <scale x="0.5" y="0.15" z="0.15" />
+            </transform>
+            <models>
+                <color r="0.6" g="0.4" b="0.2" />
+                <model file="box_1_4.3d" /> <!-- generator cone 1 2 8 8 cone_1_2_8_8.3d -->
+            </models>
+        </group>
+        
+        <!-- Front Left Leg -->
+        <group>
+            <transform>
+                <translate x="0.4" y="0.25" z="0.3" />
+                <scale x="0.15" y="0.5" z="0.15" />
+            </transform>
+            <models>
+                <color r="0.55" g="0.35" b="0.18" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        
+        <!-- Front Right Leg -->
+        <group>
+            <transform>
+                <translate x="0.4" y="0.25" z="-0.3" />
+                <scale x="0.15" y="0.5" z="0.15" />
+            </transform>
+            <models>
+                <color r="0.55" g="0.35" b="0.18" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        
+        <!-- Back Left Leg -->
+        <group>
+            <transform>
+                <translate x="-0.4" y="0.25" z="0.3" />
+                <scale x="0.15" y="0.5" z="0.15" />
+            </transform>
+            <models>
+                <color r="0.55" g="0.35" b="0.18" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        
+        <!-- Back Right Leg -->
+        <group>
+            <transform>
+                <translate x="-0.4" y="0.25" z="-0.3" />
+                <scale x="0.15" y="0.5" z="0.15" />
+            </transform>
+            <models>
+                <color r="0.55" g="0.35" b="0.18" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        
+        <!-- Main House -->
+        <!-- Base/Foundation -->
+        <group>
+            <transform>
+                <translate x="0" y="-0.1" z="0" />
+                <scale x="6" y="0.2" z="6" />
+            </transform>
+            <models>
+                <color r="0.5" g="0.5" b="0.5" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        
+        <!-- Floor -->
+        <group>
+            <transform>
+                <translate x="0" y="0.1" z="0" />
+                <scale x="5" y="0.1" z="5" />
+            </transform>
+            <models>
+                <color r="0.8" g="0.6" b="0.4" />
+                <model file="plane_1_10.3d" /> <!-- generator plane 1 10 plane_1_10.3d -->
+            </models>
+        </group>
+
+        <!-- Ceiling -->
+        <group>
+            <transform>
+                <translate x="0" y="3" z="0" />
+                <scale x="5" y="0.1" z="5" />
+                <rotate angle="180" x="1" y="0" z="0" />
+            </transform>
+            <models>
+                <color r="0.8" g="0.6" b="0.4" />
+                <model file="plane_1_10.3d" /> <!-- generator plane 1 10 plane_1_10.3d -->
+            </models>
+        </group>
+
+        <!-- Front Wall -->
+        <group>
+            <transform>
+                <translate x="0" y="1.5" z="2.5" />
+                <scale x="5" y="3" z="5" />
+                <rotate angle="-90" x="1" y="0" z="0" />
+            </transform>
+            <models>
+                <color r="1.0" g="0.9" b="0.8" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+         <group>
+            <transform>
+                <translate x="0" y="1.5" z="2.5" />
+                <scale x="5" y="3" z="5" />
+                <rotate angle="90" x="1" y="0" z="0" />
+            </transform>
+            <models>
+                <color r="1" g="1" b="1" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+            
+        <!-- Back Wall -->
+        <group>
+            <transform>
+                <translate x="0" y="1.5" z="-2.5" />
+                <scale x="5" y="3" z="5" />
+                <rotate angle="-90" x="1" y="0" z="0" />
+            </transform>
+            <models>
+                <color r="1" g="1" b="1" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+         <group>
+            <transform>
+                <translate x="0" y="1.5" z="-2.5" />
+                <scale x="5" y="3" z="5" />
+                <rotate angle="90" x="1" y="0" z="0" />
+            </transform>
+            <models>
+                <color r="1.0" g="0.9" b="0.8" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+            
+        <!-- Left Wall -->
+        <!-- direito -->
+        <group>
+            <transform>
+                <translate x="-2.5" y="1.5" z="1.75" />
+                <scale x="5" y="3" z="1.5" />
+                <rotate angle="-90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1.0" g="0.9" b="0.8" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="-2.5" y="1.5" z="1.75" />
+                <scale x="5" y="3" z="1.5" />
+                <rotate angle="90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1" g="1" b="1" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+
+        <!-- esquerdo -->
+
+        <group>
+            <transform>
+                <translate x="-2.5" y="1.5" z="-1.75" />
+                <scale x="5" y="3" z="1.5" />
+                <rotate angle="-90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1.0" g="0.9" b="0.8" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="-2.5" y="1.5" z="-1.75" />
+                <scale x="5" y="3" z="1.5" />
+                <rotate angle="90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1" g="1" b="1" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+
+        <!-- cima -->
+
+        <group>
+            <transform>
+                <translate x="-2.5" y="2.5" z="0" />
+                <scale x="5" y="1" z="2" />
+                <rotate angle="-90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1.0" g="0.9" b="0.8" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="-2.5" y="2.5" z="0" />
+                <scale x="5" y="1" z="2" />
+                <rotate angle="90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1" g="1" b="1" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+            
+        <!-- Right Wall -->
+        <group>
+            <transform>
+                <translate x="2.5" y="1.5" z="0" />
+                <scale x="5" y="3" z="5" />
+                <rotate angle="-90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1" g="1" b="1" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="2.5" y="1.5" z="0" />
+                <scale x="5" y="3" z="5" />
+                <rotate angle="90" x="0" y="0" z="1" />
+            </transform>
+            <models>
+                <color r="1.0" g="0.9" b="0.8" />
+                <model file="plane_1_10.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+            
+        <!-- Door -->
+        <group>
+            <transform>
+                <translate x="1" y="1" z="2.55" />
+                <scale x="1" y="2" z="0.1" />
+            </transform>
+            <models>
+                <color r="0.6" g="0.3" b="0.1" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+            
+            <!-- Doorknob -->
+            <group>
+                <transform>
+                    <translate x="0.4" y="0" z="0.1" />
+                    <scale x="0.1" y="0.1" z="0.1" />
+                </transform>
+                <models>
+                    <color r="0.8" g="0.8" b="0.0" />
+                    <model file="sphere_1_8_8.3d" /> <!-- generator sphere 1 8 8 sphere_1_8_8.3d -->
+                </models>
+            </group>
+        </group>
+            
+        <!-- Window -->
+        <group>
+            <transform>
+                <translate x="-1.5" y="1.5" z="2.55" />
+                <scale x="1" y="1" z="0.05" />
+            </transform>
+            <models>
+                <color r="0.7" g="0.9" b="1.0" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+                
+            <!-- Window Frame -->
+            <group>
+                <transform>
+                    <translate x="0" y="0" z="0.1" />
+                    <scale x="1.1" y="1.1" z="0.05" />
+                </transform>
+                <models>
+                    <color r="0.6" g="0.3" b="0.1" />
+                    <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+                </models>
+            </group>
+        </group>
+            
+        <!-- Roof -->
+        <group>
+            <transform>
+                <translate x="0" y="3" z="0" />
+                <rotate angle="45" x="0" y="1" z="0" />
+                <scale x="4" y="1" z="4" />
+            </transform>
+            <models>
+                <color r="0.8" g="0.3" b="0.2" />
+                <model file="cone_1_2_4_3.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+            
+        <!-- Chimney -->
+        <group>
+            <transform>
+                <translate x="1.5" y="4" z="-1" />
+                <scale x="0.5" y="2" z="0.5" />
+            </transform>
+            <models>
+                <color r="0.5" g="0.2" b="0.2" />
+                <model file="box_1_4.3d" /> <!-- generator box 1 4 box_1_4.3d -->
+            </models>
+        </group>
+    </group>
+</world>

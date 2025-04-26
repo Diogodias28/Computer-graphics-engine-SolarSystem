@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/generator.cpp.o"
-  "CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/Phase3/gen/generator.cpp.o.d"
+  "CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/generator.cpp.o"
+  "CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/gen/generator.cpp.o.d"
   "generator"
   "generator.pdb"
 )
