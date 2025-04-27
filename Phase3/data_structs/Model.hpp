@@ -40,7 +40,7 @@ GLuint getBuffer_0(Model);
 
 GLuint getBuffer_1(Model);
 
-void initModelGLBuffers(Model);
+void initModelBuffers(Model);
 
 //void addPoint(Model, Point);
 

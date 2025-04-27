@@ -41,7 +41,7 @@ std::vector<Group> getSubgroup(Group g){
 void initGroupBuffers(Group g) {
     std::vector<Model> models = getModels(g);
     for (Model &model : models) {
-        initModelGLBuffers(model);
+        initModelBuffers(model);
     }
 
     std::vector<Group> subgroups = getSubgroup(g);
