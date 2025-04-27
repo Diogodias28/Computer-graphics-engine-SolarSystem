@@ -296,18 +296,6 @@ void genPatch(const std::string& patchFile, int tessellation) {
     size_t numPatches;
     file >> numPatches;
 
-    /*std::vector<std::vector<size_t>> patches(numPatches,
-        std::vector<size_t>(16));
-
-    for (size_t i = 0; i < numPatches; ++i) {
-        for (size_t j = 0; j < 16; ++j) {
-            size_t idx;
-            file >> idx;
-            file.ignore();
-            patches[i][j] = idx;
-        }
-    }*/
-
     std::vector<std::vector<size_t>> patches;
 
     for (size_t i = 0; i < numPatches; ++i) {
