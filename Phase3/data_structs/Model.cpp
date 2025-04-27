@@ -53,7 +53,7 @@ Model makeModel(std::vector<Point> points, float r, float g, float b){
     return m;
 }
 
-void initModelGLBuffers(Model m) {
+void initModelBuffers(Model m) {
     if (!m->buffersInitialized && m->vertexB) {
         glGenBuffers(2, m->buffer);
         glBindBuffer(GL_ARRAY_BUFFER, m->buffer[0]);
@@ -69,11 +69,6 @@ void initModelGLBuffers(Model m) {
         m->buffersInitialized = true;
     }
 }
-
-
-//std::vector<Point> getPoints(Model m){
-//    return m->points;
-//}
 
 void setColor(Model m, float r, float g, float b) {
     m->colorR = r;
@@ -102,12 +97,6 @@ GLuint getBuffer_0(Model m){
 GLuint getBuffer_1(Model m){
     return m->buffer[1];
 }
-
-//void addPoint(Model m, Point p){
-//    if(m!=nullptr){
-//        m->points.push_back(p);
-//    }
-//}
 
 std::vector<Point> readFromFile(std::string fileName) {
     std::vector<Point> points;
