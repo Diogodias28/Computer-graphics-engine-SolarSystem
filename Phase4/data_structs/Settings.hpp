@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "Group.hpp"
 #include "Matrix.hpp"
+#include "Light.hpp"
 
 typedef struct settings* Settings;
 
@@ -44,5 +45,7 @@ float getNear(Settings);
 float getFar(Settings);
 
 Group getGroup(Settings);
+
+Light getLight(Settings);
 
 #endif // Settings

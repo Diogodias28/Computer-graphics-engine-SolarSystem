@@ -31,6 +31,7 @@ float yaw = 0.0f, pitch = 0.0f;
 
 Settings set;
 Group group;
+Light light;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
 bool showAxes = true;      // Eixos
@@ -367,7 +368,41 @@ int main(int argc, char **argv) {
     fov     = getFov(set);
     nearPlane = getNear(set);
     farPlane = getFar(set);
+    light = getLight(set);
     group = getGroup(set);
+
+    // ==============================================
+    // DEBUG: Print Light Attributes
+    // ==============================================
+    printf("\n=== LIGHT DEBUG INFO ===\n");
+    printf("Light Type: %c\n", getType(light));
+
+    if(getType(light) == 'P' || getType(light) == 'S') {
+        printf("Positions:\n");
+        std::vector<Point> positions = getPositions(light);
+        for(size_t i = 0; i < positions.size(); i++) {
+            printf("  [%zu] (%.2f, %.2f, %.2f)\n", 
+                   i, 
+                   getX(positions[i]), 
+                   getY(positions[i]), 
+                   getZ(positions[i]));
+        }
+    }
+    
+    if(getType(light) == 'D' || getType(light) == 'S') {
+        Vector dir = getDirections(light);
+        printf("Direction: (%.2f, %.2f, %.2f)\n", dir.x, dir.y, dir.z);
+    }
+    
+    if(getType(light) == 'S') {
+        printf("Cutoff: %.2f degrees\n", getCutoof(light));
+    }
+    printf("=======================\n\n");
+
+    // ==============================================
+    // ==============================================
+    // ==============================================
+
 
     yaw = atan2f(lookAtz - camz, lookAtx - camx);
     pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));
