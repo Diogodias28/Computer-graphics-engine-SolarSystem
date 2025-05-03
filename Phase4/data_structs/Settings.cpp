@@ -64,16 +64,14 @@ Light parseLight(TiXmlElement* lightsElement) {
             ));
 
             for (TiXmlElement* lightElem = firstLight->NextSiblingElement("light");
-                lightElem;
+                lightElem && std::string(lightElem->Attribute("type")) == "point";
                 lightElem = lightElem->NextSiblingElement("light")) {
-                
-                    if(std::string(lightElem->Attribute("type")) == "point") {
-                        positions.push_back(makePoint(
-                            atof(lightElem->Attribute("posx")),
-                            atof(lightElem->Attribute("posy")),
-                            atof(lightElem->Attribute("posz"))
-                        ));
-                    }
+            
+                positions.push_back(makePoint(
+                    atof(lightElem->Attribute("posx")),
+                    atof(lightElem->Attribute("posy")),
+                    atof(lightElem->Attribute("posz"))
+                ));
             }
         }
     }
