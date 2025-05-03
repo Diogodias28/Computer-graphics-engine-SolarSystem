@@ -17,6 +17,7 @@
 #include <sstream>
 #include <iomanip>
 #include "Transform.hpp"
+#include "Color.hpp"
 
 using namespace std;
 
@@ -24,13 +25,14 @@ typedef struct model* Model;
 
 Model createModel();
 
-Model makeModel(std::vector<Point>,float , float ,float);
+Model makeModel(std::vector<Point>,Color, const char*);
+
 
 //std::vector<Point> getPoints(Model);
 
-void setColor(Model, float,float,float);
+void setColor(Model, Color);
 
-void getColor(Model, float &, float &, float &);
+Color getColor(Model);
 
 float* getVertexB(Model);
 
@@ -47,5 +49,9 @@ void initModelBuffers(Model);
 std::vector<Point> readFromFile(std::string);
 
 void writeToFile(std::vector<Point>, string);
+
+const char* getTextureFile(Model);
+
+void printModelsInfo(Group);
 
 #endif //MODEL 

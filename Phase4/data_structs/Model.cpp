@@ -2,7 +2,8 @@
 
 struct model{
     //std::vector<Point> points;
-    float colorR, colorG, colorB;
+    Color color;
+    const char* textureFile;
     float* vertexB;
     GLuint vertexCount;
     GLuint buffer[2];
@@ -17,9 +18,8 @@ Model createModel(){
     }
 
     //m->points = std::vector<Point>();
-    m->colorR = 1.0f;
-    m->colorG = 0.6f;
-    m->colorB = 0.7f;
+    m->color = createDefaultColor();
+    m->textureFile = nullptr;
     m->vertexB = nullptr;
     m->vertexCount = 0;
     m->vertexB = nullptr;
@@ -28,7 +28,7 @@ Model createModel(){
     return m;
 }
 
-Model makeModel(std::vector<Point> points, float r, float g, float b){
+Model makeModel(std::vector<Point> points, Color color, const char* textureFile){
     Model m = new model();
 
     if (m->vertexB != nullptr) {
@@ -46,12 +46,12 @@ Model makeModel(std::vector<Point> points, float r, float g, float b){
 
     m->vertexCount = points.size();
 
-    m->colorR = r;
-    m->colorG = g;
-    m->colorB = b;
+    m->color = color;
+    m->textureFile = textureFile;
 
     return m;
 }
+
 
 void initModelBuffers(Model m) {
     if (!m->buffersInitialized && m->vertexB) {
@@ -70,16 +70,12 @@ void initModelBuffers(Model m) {
     }
 }
 
-void setColor(Model m, float r, float g, float b) {
-    m->colorR = r;
-    m->colorG = g;
-    m->colorB = b;
+void setColor(Model m, Color c) {
+    m->color = color;
 }
 
-void getColor(Model m, float &r, float &g, float &b) {
-    r = m->colorR;
-    g = m->colorG;
-    b = m->colorB;
+Color getColor(Model m) {
+    return(m->color);
 }
 
 float* getVertexB(Model m){
@@ -151,3 +147,40 @@ void writeToFile(std::vector<Point> controlPoints, string fileName) {
 
     file.close();
 }
+
+const char* getTextureFile(Model m) {
+    return m->textureFile;
+}
+
+// ============================================================
+// ============================================================
+
+void printModelsInfo(Group group) {
+    // Processa modelos deste grupo
+    std::vector<Model> models = getGroupModels(group);
+    for (size_t i = 0; i < models.size(); i++) {
+        printf("Model %zu:\n", i+1);
+        
+        // Informações de cor
+        Color c = getColor(models[i]);
+        printf("  Color Components:\n");
+        printf("    Diffuse:  (%.2f, %.2f, %.2f)\n", c.diffuse.r, c.diffuse.g, c.diffuse.b);
+        printf("    Ambient:  (%.2f, %.2f, %.2f)\n", c.ambient.r, c.ambient.g, c.ambient.b);
+        printf("    Specular: (%.2f, %.2f, %.2f)\n", c.specular.r, c.specular.g, c.specular.b);
+        printf("    Emissive: (%.2f, %.2f, %.2f)\n", c.emissive.r, c.emissive.g, c.emissive.b);
+        printf("    Shininess: %.2f\n", c.shininess);
+        
+        // Informação de textura
+        const char* tex = getTextureFile(models[i]);
+        printf("  Texture: %s\n\n", tex ? tex : "None");
+    }
+
+    // Processa subgrupos recursivamente
+    std::vector<Group> subgroups = getGroupSubgroups(group);
+    for (const auto& subgroup : subgroups) {
+        printModelsInfo(subgroup);
+    }
+}
+
+// ============================================================
+// ============================================================

@@ -176,23 +176,66 @@ Group parseGroup(TiXmlElement* groupElement) {
     // Parsing dos models
     TiXmlElement* modelsElement = groupElement->FirstChildElement("models");
     if (modelsElement) {
-        for (TiXmlElement* modelElement = modelsElement->FirstChildElement();
-             modelElement;
-             modelElement = modelElement->NextSiblingElement()){
+        TiXmlElement* modelElement = modelsElement->FirstChildElement("model");
+        if (modelElement) {
+            const char* filename = modelElement->Attribute("file");
+            std::vector<Point> points = readFromFile(filename);
 
-            if (std::string(modelElement->Value()) == "color") {
+            // Textures
+            const char* textureFile = nullptr;
+            TiXmlElement* textureElem = modelElement->FirstChildElement("texture");
+            if(textureElem) {
+                textureFile = textureElem->Attribute("file");
+            }
+
+            //Colors
+            Color currentColor = createDefaultColor();
+            TiXmlElement* colorElem = modelElement->FirstChildElement("color");
+            if (colorElem) {
                 // Update cor
-                currentR = atof(modelElement->Attribute("r"));
-                currentG = atof(modelElement->Attribute("g"));
-                currentB = atof(modelElement->Attribute("b"));
+                TiXmlElement* diffuseElem = colorElem->FirstChildElement("diffuse");
+                TiXmlElement* ambientElem = colorElem->FirstChildElement("ambient");
+                TiXmlElement* specularElem = colorElem->FirstChildElement("specular");
+                TiXmlElement* emissiveElem = colorElem->FirstChildElement("emissive");
+                TiXmlElement* shininessElem = colorElem->FirstChildElement("shininess");
+
+                if(diffuseElem) {
+                    currentColor.diffuse = createRGB(
+                        atoi(diffuseElem->Attribute("R")),
+                        atoi(diffuseElem->Attribute("G")),
+                        atoi(diffuseElem->Attribute("B"))
+                    );
+                }
+                if(ambientElem) {
+                    currentColor.ambient = createRGB(
+                        atoi(ambientElem->Attribute("R")),
+                        atoi(ambientElem->Attribute("G")),
+                        atoi(ambientElem->Attribute("B"))
+                    );
+                }
+                if(specularElem) {
+                    currentColor.specular = createRGB(
+                        atoi(specularElem->Attribute("R")),
+                        atoi(specularElem->Attribute("G")),
+                        atoi(specularElem->Attribute("B"))
+                    );
+                }
+                if(emissiveElem) {
+                    currentColor.emissive = createRGB(
+                        atoi(emissiveElem->Attribute("R")),
+                        atoi(emissiveElem->Attribute("G")),
+                        atoi(emissiveElem->Attribute("B"))
+                    );
+                }
+                if(shininessElem) {
+                    currentColor.shininess = atof(shininessElem->Attribute("value"));
+                }
             }
-            else if (std::string(modelElement->Value()) == "model") {
-                const char* filename = modelElement->Attribute("file");
-                std::vector<Point> points = readFromFile(filename);
-                Model model = makeModel(points, currentR, currentG, currentB);
-                models.push_back(model);
-            }
+
+            Model model = makeModel(points, currentColor, textureFile);
+            models.push_back(model);
         }
+
     }
     
     // Parsing dos subgrupos

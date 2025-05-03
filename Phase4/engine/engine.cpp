@@ -371,9 +371,9 @@ int main(int argc, char **argv) {
     light = getLight(set);
     group = getGroup(set);
 
-    // ==============================================
-    // DEBUG: Print Light Attributes
-    // ==============================================
+    // ============================================================
+    // DEBUG: Print Light and Models Colors and Textures Attributes
+    // ============================================================
     printf("\n=== LIGHT DEBUG INFO ===\n");
     printf("Light Type: %c\n", getType(light));
 
@@ -399,11 +399,15 @@ int main(int argc, char **argv) {
     }
     printf("=======================\n\n");
 
-    // ==============================================
-    // ==============================================
-    // ==============================================
+    printf("\n=== MODELS COLOR & TEXTURE INFO ===\n");
+    printModelsInfo(group); // Função auxiliar simplificada
+    printf("==================================\n\n");
 
+    // ============================================================
+    // ============================================================
+    // ============================================================
 
+    
     yaw = atan2f(lookAtz - camz, lookAtx - camx);
     pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));
 

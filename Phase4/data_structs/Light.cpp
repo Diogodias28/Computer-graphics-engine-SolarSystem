@@ -8,12 +8,15 @@ struct light{
 };
 
 Light makeLight(char type, std::vector<Point> positions, Vector direction, float cutoff) {
-    Light l = (Light)malloc(sizeof(struct light));
+    Light l = new light();
 
-    l->type = type;
-    l->positions = positions;
-    l->directions = direction;
-    l->cutoof = cutoff;
+    if (l != NULL) {
+        l->type = type;
+        l->positions = positions;
+        l->directions = direction;
+        l->cutoof = cutoff;
+    }
+
     return l;
 }
 
