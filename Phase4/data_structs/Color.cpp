@@ -48,18 +48,38 @@ RGB getDiffuse (Color c) {
     return c->diffuse;
 }
 
+void setDiffuse (Color c, RGB diffuse) {
+    c->diffuse = diffuse;
+}
+
 RGB getAmbient (Color c) {
     return c->ambient;
+}
+
+void setAmbient (Color c, RGB ambient) {
+    c->ambient = ambient;
 }
 
 RGB getSpecular (Color c) {
     return c->specular;
 }
 
+void setSpecular (Color c, RGB specular) {
+    c->specular = specular;
+}
+
 RGB getEmissive (Color c) {
     return c->emissive;
 }
 
+void setEmissive (Color c, RGB emissive) {
+    c->emissive = emissive;
+}
+
 float getShininess(Color c) {
     return c->shininess;
+}
+
+void setShininess (Color c, float shininess) {
+    c->shininess = shininess;
 }

@@ -22,6 +22,10 @@ add_library(
     ../data_structs/Transform.hpp
     ../data_structs/Matrix.cpp
     ../data_structs/Matrix.hpp
+    ../data_structs/Light.cpp
+    ../data_structs/Light.hpp
+    ../data_structs/Color.cpp
+    ../data_structs/Color.hpp
 )
 
 add_library(

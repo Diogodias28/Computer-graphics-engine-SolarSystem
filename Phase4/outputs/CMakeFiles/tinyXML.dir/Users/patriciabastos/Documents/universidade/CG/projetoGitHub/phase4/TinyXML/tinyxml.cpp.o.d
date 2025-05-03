@@ -1,6 +1,5 @@
-CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxmlerror.cpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinyxml.h \
+CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/TinyXML/tinyxml.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/TinyXML/tinyxml.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/__config_site \
@@ -27,6 +26,7 @@ CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGit
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_rune_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_wchar_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_wint_t.h \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/TinyXML/tinyxml.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/_stdio.h \
@@ -108,4 +108,4 @@ CMakeFiles/tinyXML.dir/Users/patriciabastos/Documents/universidade/CG/projetoGit
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/_static_assert.h \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase3/TinyXML/tinystr.h
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/TinyXML/tinystr.h

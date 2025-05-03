@@ -191,12 +191,11 @@ void drawFigures(Group g) {
         }
     }
 
-    
     for (int i = 0; i < models.size(); i++) {
         float r,g,b;
-        getColor(models[i], r, g, b);
+        //getColor(models[i], r, g, b);
 
-        glColor3f(r,g,b);
+        //glColor3f(r,g,b);
 
         vertexCount = getVertexCount(models[i]);
         buffer[0] = getBuffer_0(models[i]);
@@ -339,7 +338,6 @@ void processMouseMotion(int xx, int yy) {
     updateCamera();
 }
 
-
 int main(int argc, char **argv) {
 
     if(argc<2){
@@ -370,43 +368,6 @@ int main(int argc, char **argv) {
     farPlane = getFar(set);
     light = getLight(set);
     group = getGroup(set);
-
-    // ============================================================
-    // DEBUG: Print Light and Models Colors and Textures Attributes
-    // ============================================================
-    printf("\n=== LIGHT DEBUG INFO ===\n");
-    printf("Light Type: %c\n", getType(light));
-
-    if(getType(light) == 'P' || getType(light) == 'S') {
-        printf("Positions:\n");
-        std::vector<Point> positions = getPositions(light);
-        for(size_t i = 0; i < positions.size(); i++) {
-            printf("  [%zu] (%.2f, %.2f, %.2f)\n", 
-                   i, 
-                   getX(positions[i]), 
-                   getY(positions[i]), 
-                   getZ(positions[i]));
-        }
-    }
-    
-    if(getType(light) == 'D' || getType(light) == 'S') {
-        Vector dir = getDirections(light);
-        printf("Direction: (%.2f, %.2f, %.2f)\n", dir.x, dir.y, dir.z);
-    }
-    
-    if(getType(light) == 'S') {
-        printf("Cutoff: %.2f degrees\n", getCutoof(light));
-    }
-    printf("=======================\n\n");
-
-    printf("\n=== MODELS COLOR & TEXTURE INFO ===\n");
-    printModelsInfo(group); // Função auxiliar simplificada
-    printf("==================================\n\n");
-
-    // ============================================================
-    // ============================================================
-    // ============================================================
-
     
     yaw = atan2f(lookAtz - camz, lookAtx - camx);
     pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));

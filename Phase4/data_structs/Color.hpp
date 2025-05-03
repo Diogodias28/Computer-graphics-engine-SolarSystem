@@ -19,12 +19,23 @@ float normalizeColor (int);
 
 RGB getDiffuse (Color);
 
+void setDiffuse (Color, RGB );
+
 RGB getAmbient (Color);
 
-RGB getSpecular (Color);
+void setAmbient (Color, RGB );
+
+RGB getSpecular (Color );
+
+void setSpecular (Color, RGB);
 
 RGB getEmissive (Color);
 
+void setEmissive (Color, RGB); 
+
 float getShininess(Color);
+
+void setShininess (Color, float );
+
 
 #endif

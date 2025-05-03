@@ -71,7 +71,7 @@ void initModelBuffers(Model m) {
 }
 
 void setColor(Model m, Color c) {
-    m->color = color;
+    m->color = c;
 }
 
 Color getColor(Model m) {
@@ -151,36 +151,3 @@ void writeToFile(std::vector<Point> controlPoints, string fileName) {
 const char* getTextureFile(Model m) {
     return m->textureFile;
 }
-
-// ============================================================
-// ============================================================
-
-void printModelsInfo(Group group) {
-    // Processa modelos deste grupo
-    std::vector<Model> models = getGroupModels(group);
-    for (size_t i = 0; i < models.size(); i++) {
-        printf("Model %zu:\n", i+1);
-        
-        // Informações de cor
-        Color c = getColor(models[i]);
-        printf("  Color Components:\n");
-        printf("    Diffuse:  (%.2f, %.2f, %.2f)\n", c.diffuse.r, c.diffuse.g, c.diffuse.b);
-        printf("    Ambient:  (%.2f, %.2f, %.2f)\n", c.ambient.r, c.ambient.g, c.ambient.b);
-        printf("    Specular: (%.2f, %.2f, %.2f)\n", c.specular.r, c.specular.g, c.specular.b);
-        printf("    Emissive: (%.2f, %.2f, %.2f)\n", c.emissive.r, c.emissive.g, c.emissive.b);
-        printf("    Shininess: %.2f\n", c.shininess);
-        
-        // Informação de textura
-        const char* tex = getTextureFile(models[i]);
-        printf("  Texture: %s\n\n", tex ? tex : "None");
-    }
-
-    // Processa subgrupos recursivamente
-    std::vector<Group> subgroups = getGroupSubgroups(group);
-    for (const auto& subgroup : subgroups) {
-        printModelsInfo(subgroup);
-    }
-}
-
-// ============================================================
-// ============================================================

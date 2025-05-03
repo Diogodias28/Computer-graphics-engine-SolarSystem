@@ -52,6 +52,4 @@ void writeToFile(std::vector<Point>, string);
 
 const char* getTextureFile(Model);
 
-void printModelsInfo(Group);
-
 #endif //MODEL 

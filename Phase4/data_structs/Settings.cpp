@@ -24,7 +24,7 @@ Settings newSettings(){
 
 Light parseLight(TiXmlElement* lightsElement) {
     char type = 'N';
-    Vector dir = {0.0f,0.0f,0.0f};
+    std::vector<float> dir;
     std::vector<Point> positions = std::vector<Point>();
     float cutoff = 0.0f;
 
@@ -35,11 +35,9 @@ Light parseLight(TiXmlElement* lightsElement) {
 
         if (lightType == "directional") {
             type = 'D';
-            dir = {
-                atof(firstLight->Attribute("dirx")),
-                atof(firstLight->Attribute("diry")),
-                atof(firstLight->Attribute("dirz")),
-            }
+            dir.push_back(atof(firstLight->Attribute("dirx")));
+            dir.push_back(atof(firstLight->Attribute("diry")));
+            dir.push_back(atof(firstLight->Attribute("dirz")));
         }
         else if (lightType == "spot") {
             type = 'S';
@@ -48,11 +46,11 @@ Light parseLight(TiXmlElement* lightsElement) {
                 atof(firstLight->Attribute("posy")),
                 atof(firstLight->Attribute("posz"))
             ));
-            dir = {
-                atof(firstLight->Attribute("dirx")),
-                atof(firstLight->Attribute("diry")),
-                atof(firstLight->Attribute("dirz")),
-            }
+            
+            dir.push_back(atof(firstLight->Attribute("dirx")));
+            dir.push_back(atof(firstLight->Attribute("diry")));
+            dir.push_back(atof(firstLight->Attribute("dirz")));
+
             cutoff = atof(firstLight->Attribute("cutoff"));
         }
         else if (lightType == "point") {
@@ -200,35 +198,35 @@ Group parseGroup(TiXmlElement* groupElement) {
                 TiXmlElement* shininessElem = colorElem->FirstChildElement("shininess");
 
                 if(diffuseElem) {
-                    currentColor.diffuse = createRGB(
+                    setDiffuse(currentColor, createRGB(
                         atoi(diffuseElem->Attribute("R")),
                         atoi(diffuseElem->Attribute("G")),
                         atoi(diffuseElem->Attribute("B"))
-                    );
+                    ));
                 }
                 if(ambientElem) {
-                    currentColor.ambient = createRGB(
+                    setAmbient(currentColor,createRGB(
                         atoi(ambientElem->Attribute("R")),
                         atoi(ambientElem->Attribute("G")),
                         atoi(ambientElem->Attribute("B"))
-                    );
+                    ));
                 }
                 if(specularElem) {
-                    currentColor.specular = createRGB(
+                    setSpecular(currentColor, createRGB(
                         atoi(specularElem->Attribute("R")),
                         atoi(specularElem->Attribute("G")),
                         atoi(specularElem->Attribute("B"))
-                    );
+                    ));
                 }
                 if(emissiveElem) {
-                    currentColor.emissive = createRGB(
+                    setEmissive(currentColor, createRGB(
                         atoi(emissiveElem->Attribute("R")),
                         atoi(emissiveElem->Attribute("G")),
                         atoi(emissiveElem->Attribute("B"))
-                    );
+                    ));
                 }
                 if(shininessElem) {
-                    currentColor.shininess = atof(shininessElem->Attribute("value"));
+                    setShininess(currentColor, atof(shininessElem->Attribute("value")));
                 }
             }
 
