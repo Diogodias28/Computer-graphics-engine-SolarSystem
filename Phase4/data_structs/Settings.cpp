@@ -15,7 +15,7 @@ struct settings{
 };
 
 Settings newSettings(){
-    Settings newSettings = (Settings)malloc(sizeof(struct settings));
+    Settings newSettings = new settings();
     newSettings->group = createGroup();
     return newSettings;
 }
@@ -30,49 +30,90 @@ Group parseGroup(TiXmlElement* groupElement) {
     // Parsing das transformações
     TiXmlElement* transformElement = groupElement->FirstChildElement("transform");
     if (transformElement) {
-        // Processa cada transformação
         for (TiXmlElement* transType = transformElement->FirstChildElement(); 
-            transType; 
-            transType = transType->NextSiblingElement()) {
+             transType; 
+             transType = transType->NextSiblingElement()) {
             
-            Transform transform;
             std::string elementName = transType->Value();
-            char type;
-            Point point;
-            float angle = 0.0f;
-            
+            Transform transform = nullptr;
+
             if (elementName == "translate") {
-                type = 'T';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
-                transform = newTransformation(type, point, angle);
-            }
-            else if (elementName == "scale") {
-                type = 'S';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
-                );
-                transform = newTransformation(type, point, angle);
+                // Verificar se é uma translação temporal
+                if (transType->Attribute("time")) {
+                    float time = atof(transType->Attribute("time"));
+                    bool align = transType->Attribute("align") ? 
+                                (strcasecmp(transType->Attribute("align"), "true") == 0) : false;
+
+                    // Coletar pontos
+                    std::vector<Point> points;
+                    for (TiXmlElement* p = transType->FirstChildElement("point"); 
+                         p; 
+                         p = p->NextSiblingElement("point")) {
+                        points.push_back(makePoint(
+                            atof(p->Attribute("x")),
+                            atof(p->Attribute("y")),
+                            atof(p->Attribute("z"))
+                        ));
+                    }
+
+                    // Validar mínimo de 4 pontos
+                    if (points.size() < 4) {
+                        std::cerr << "Erro: Curva Catmull-Rom necessita de pelo menos 4 pontos ("
+                                  << points.size() << " fornecidos). Transformação ignorada.\n";
+                        continue;
+                    }
+
+                    transform = newTransformation('T', makePoint(0,0,0), 0, time, points, align);
+                }
+                else { // Translação estática
+                    transform = newTransformation('T', 
+                        makePoint(
+                            atof(transType->Attribute("x")),
+                            atof(transType->Attribute("y")),
+                            atof(transType->Attribute("z"))
+                        ), 
+                        0, 0, {}, false);
+                }
             }
             else if (elementName == "rotate") {
-                type = 'R';
-                point = makePoint(
-                    atof(transType->Attribute("x")),
-                    atof(transType->Attribute("y")),
-                    atof(transType->Attribute("z"))
+                float angle = 0, time = 0;
+                bool hasTime = false;
+
+                // Priorizar tempo se existir
+                if (transType->Attribute("time")) {
+                    time = atof(transType->Attribute("time"));
+                    hasTime = true;
+                } 
+                else if (transType->Attribute("angle")) {
+                    angle = atof(transType->Attribute("angle"));
+                }
+
+                transform = newTransformation('R',
+                    makePoint(
+                        atof(transType->Attribute("x")),
+                        atof(transType->Attribute("y")),
+                        atof(transType->Attribute("z"))
+                    ),
+                    angle,
+                    time
                 );
-                angle = atof(transType->Attribute("angle"));
-                transform = newTransformation(type, point, angle);
             }
-            
-            transformations.push_back(transform);
+            else if (elementName == "scale") {
+                transform = newTransformation('S',
+                    makePoint(
+                        atof(transType->Attribute("x")),
+                        atof(transType->Attribute("y")),
+                        atof(transType->Attribute("z"))
+                    ),
+                    0, 0, {}, false);
+            }
+
+            if (transform) {
+                transformations.push_back(transform);
+            }
         }
     }
+
     
     // Parsing dos models
     TiXmlElement* modelsElement = groupElement->FirstChildElement("models");
@@ -147,6 +188,7 @@ Settings xmlToSettings(const char* filePath){
     }
     return result;
 }
+
 
 void setCamPosition(Settings set, float x, float y, float z){
     set->poscam[0] = x;

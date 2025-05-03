@@ -1,22 +1,24 @@
 #ifndef TRANSFORM
 #define TRANSFORM
+
+#include "Point.hpp"
 #include <vector>
 #include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include "Point.hpp"
-
-
-using namespace std;
 
 typedef struct transform* Transform;
 
-Transform newTransformation(char, Point, float);
+Transform newTransformation(char type, Point transformation, float angle, float time = 0, std::vector<Point> points = {}, bool align = false);
 
-char getType(Transform);
+char getType(Transform t);
 
-Point getTransVal(Transform);
+Point getTransVal(Transform t);
 
-float getAngle(Transform);
+float getAngle(Transform t);
 
-#endif //TRANSFORM
+float getTime(Transform t);
+
+bool getAlign(Transform t);
+
+std::vector<Point> getPoints(Transform t);
+
+#endif

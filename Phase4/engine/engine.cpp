@@ -4,10 +4,14 @@
 #include <GL/glut.h>
 #endif
 
+#include <sys/stat.h>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
 #include "../data_structs/Settings.hpp"
+
+extern void getGlobalCatmullRomPoint(float gt, std::vector<std::vector<float>> controlPoints, float *pos, float *deriv);
 
 // Variáveis da câmara
 int height, width;
@@ -30,6 +34,9 @@ Group group;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
 bool showAxes = true;      // Eixos
+bool showCurve = true;     // Linha da Curva
+GLuint vertexCount, buffer[2];
+
 
 void updateWindowTitle() {
     char coords[100];
@@ -44,7 +51,6 @@ void updateCamera() {
     lookAtx = camx + cos(yaw) * cos(pitch);
     lookAty = camy + sin(pitch);
     lookAtz = camz + sin(yaw) * cos(pitch);
-    
 }
 
 void changeSize(int w, int h) {
@@ -75,7 +81,7 @@ void updateFPS() {
     int time = glutGet(GLUT_ELAPSED_TIME);
     frame++;
 
-    if (time - timebase > 100) { // Atualiza FPS a cada segundo
+    if (time - timebase > 100) { // Atualiza FPS
         fps = frame * 1000.0f / (time - timebase);
         timebase = time;
         frame = 0;
@@ -86,43 +92,120 @@ void updateFPS() {
     glutPostRedisplay();
 }
 
+void drawCatmullRomCurve(const std::vector<std::vector<float>>& controlPoints) {
+    if (controlPoints.size() < 4) return; // Precisa de pelo menos 4 pontos
+    
+    glBegin(GL_LINE_LOOP);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    
+    const int segments = 100;
+    for (int i = 0; i <= segments; ++i) {
+        float t = i / (float)segments;
+        float pos[3];
+        getGlobalCatmullRomPoint(t, controlPoints, pos, nullptr);
+        glVertex3fv(pos);
+    }
+    
+    glEnd();
+}
+
 void drawFigures(Group g) {
 
     std::vector<Transform> transformations = getTransformations(g);
     std::vector<Model> models = getModels(g);
     std::vector<Group> subgroups = getSubgroup(g);
 
+    
     glPushMatrix();
 
-    for (int i = 0; i < transformations.size(); i++) {
-        char type = getType(transformations[i]);
-        Point tv = getTransVal(transformations[i]);
+    for (auto& t : transformations) {
+        char type = getType(t);
+        Point tv = getTransVal(t);
+        float time = getTime(t);
 
-        if(type == 'R'){
-            float angle = getAngle(transformations[i]);
+        if(type == 'R' && time > 0) {
+            
+            float angle = (glutGet(GLUT_ELAPSED_TIME)/1000.0f/time) * 360.0f;
             glRotatef(angle, getX(tv), getY(tv), getZ(tv));
-        } else if (type == 'T'){
-            glTranslatef(getX(tv), getY(tv), getZ(tv));
-        } else if (type == 'S'){
-            glScalef(getX(tv), getY(tv), getZ(tv));
         }
-    }   
+        else if(type == 'T' && time > 0) {
+            std::vector<Point> points = getPoints(t);
+            std::vector<std::vector<float>> controlPoints;
+            for(auto& p : points) {
+                controlPoints.push_back({getX(p), getY(p), getZ(p)});
+            }
+            
+            if(showCurve){
+                drawCatmullRomCurve(controlPoints);
+            }
+            
+            float pos[3], deriv[3];
+            float gt = fmod(glutGet(GLUT_ELAPSED_TIME)/1000.0f, time)/time;
+            getGlobalCatmullRomPoint(gt, controlPoints, pos, deriv);
+            
+            
+            glTranslatef(pos[0], pos[1], pos[2]);
+            
+            
+            if(getAlign(t)) {
+                float z[3], y[3], rot[16];
+                float up[3] = {0,1,0}; 
+                
+                
+                normalizeVector(deriv);
+                
+                
+                cross(deriv, up, z);
+                normalizeVector(z);
+                
+                
+                cross(z, deriv, y);
+                normalizeVector(y);
+                
+               
+                rot[0] = deriv[0]; rot[1] = deriv[1]; rot[2] = deriv[2]; rot[3] = 0;
+                
+                rot[4] = y[0]; rot[5] = y[1]; rot[6] = y[2]; rot[7] = 0;
+                
+                rot[8] = z[0]; rot[9] = z[1]; rot[10] = z[2]; rot[11] = 0;
+                
+                rot[12] = 0; rot[13] = 0; rot[14] = 0; rot[15] = 1;
+                
+                glMultMatrixf(rot);
+            }
+        }
+        else {
+            // Transformações estáticas
+            switch(type) {
+                case 'R': 
+                    glRotatef(getAngle(t), getX(tv), getY(tv), getZ(tv)); 
+                    break;
+                case 'T': 
+                    glTranslatef(getX(tv), getY(tv), getZ(tv)); 
+                    break;
+                case 'S': 
+                    glScalef(getX(tv), getY(tv), getZ(tv)); 
+                    break;
+            }
+        }
+    }
 
-    glBegin(GL_TRIANGLES);
     
     for (int i = 0; i < models.size(); i++) {
-        std::vector<Point> m_points = getPoints(models[i]);
         float r,g,b;
         getColor(models[i], r, g, b);
 
         glColor3f(r,g,b);
 
-        for (int j = 0; j<m_points.size(); j++){
-            glVertex3f(getX(m_points[j]),getY(m_points[j]), getZ(m_points[j]));
-        }
-    }
+        vertexCount = getVertexCount(models[i]);
+        buffer[0] = getBuffer_0(models[i]);
+        buffer[1] = getBuffer_1(models[i]);
 
-    glEnd();
+        glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
+        glVertexPointer(3,GL_FLOAT,0,0);
+
+        glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+    }
 
 
     for(int i = 0; i < subgroups.size(); i++){
@@ -130,6 +213,7 @@ void drawFigures(Group g) {
     }
     glPopMatrix();
 }
+
 
 void renderScene(void) {
     // clear buffers
@@ -209,6 +293,9 @@ void processKeys(unsigned char c, int xx, int yy) {
         case 'p': // Altera a visualização dos eixos
             showAxes = !showAxes;
             break;
+        case 'c': // Altera a visibilidade das linhas das curvas
+            showCurve = !showCurve;
+            break;
     }
     updateCamera();
     glutPostRedisplay();
@@ -257,9 +344,13 @@ int main(int argc, char **argv) {
     if(argc<2){
         fprintf(stderr, "Usage: %s <path_to_xml>\n", argv[0]);
         return 1;
-    }
+    } 
 
     set = xmlToSettings(argv[1]);
+    if (set == NULL) {
+        fprintf(stderr, "Failed to load settings from XML file\n");
+        return 1; 
+    }
 
     height  = getHeight(set);
     width   = getWidth(set);
@@ -277,7 +368,6 @@ int main(int argc, char **argv) {
     nearPlane = getNear(set);
     farPlane = getFar(set);
     group = getGroup(set);
-    
 
     yaw = atan2f(lookAtz - camz, lookAtx - camx);
     pitch = atan2f(lookAty - camy, sqrtf(pow(lookAtx - camx, 2) + pow(lookAtz - camz, 2)));
@@ -285,9 +375,20 @@ int main(int argc, char **argv) {
     // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-    glutInitWindowPosition(100,100);
     glutInitWindowSize(width,height);
+    glutInitWindowPosition(100,100);
     glutCreateWindow("Projeto CG");
+
+    // OpenGL settings
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);   
+
+    //Init model buffers
+    initGroupBuffers(group);
+
+    // VBO and Normal
+    glEnableClientState(GL_VERTEX_ARRAY);
+    //glEnableClientState(GL_NORMAL_ARRAY); (só na próxima fase)
 
     // Inicializar o tempo base para FPS
     timebase = glutGet(GLUT_ELAPSED_TIME);
@@ -303,10 +404,6 @@ int main(int argc, char **argv) {
 
     // fps
     glutIdleFunc(updateFPS);
-    
-    // OpenGL settings
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
     
     // enter GLUT's main cycle
     glutMainLoop();

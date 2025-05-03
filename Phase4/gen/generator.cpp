@@ -117,7 +117,6 @@ void genSphere(float radius, int slices, int stacks) {
             p3 = makePoint(radius * sinf(nextBeta) * sinf(alpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(alpha));
             p4 = makePoint(radius * sinf(nextBeta) * sinf(nextAlpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(nextAlpha));
 
-            // Vamos fazer os triângulos
             // triângulo de cima
             controlPoints.push_back(p1);
             controlPoints.push_back(p4);
@@ -145,7 +144,7 @@ void genBox(int length, int grid) {
             float a = -half + i * part;
             float b = -half + j * part;
 
-            // Front Face
+            // Face Frontal
             controlPoints.push_back(makePoint(a + part, b + part, half));
             controlPoints.push_back(makePoint(a, b + part, half));
             controlPoints.push_back(makePoint(a, b, half));
@@ -154,7 +153,7 @@ void genBox(int length, int grid) {
             controlPoints.push_back(makePoint(a, b, half));
             controlPoints.push_back(makePoint(a + part, b, half));
 
-			// Back Face
+			// Face de trás
 			controlPoints.push_back(makePoint(a, b, -half));
 			controlPoints.push_back(makePoint(a, b + part, -half));
 			controlPoints.push_back(makePoint(a + part, b, -half));
@@ -163,7 +162,7 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(a + part, b + part, -half));
 			controlPoints.push_back(makePoint(a + part, b, -half));
 	  
-			// Left Face
+			// Face da Esquerda
 			controlPoints.push_back(makePoint(-half, a, b));
 			controlPoints.push_back(makePoint(-half, a, b + part));
 			controlPoints.push_back(makePoint(-half, a + part, b));
@@ -172,7 +171,7 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(-half, a + part, b + part));
 			controlPoints.push_back(makePoint(-half, a + part, b));
 	  
-			// Right Face done
+			// Face da direita
 			controlPoints.push_back(makePoint(half, a + part, b + part));
 			controlPoints.push_back(makePoint(half, a, b + part));
 			controlPoints.push_back(makePoint(half, a, b));
@@ -181,7 +180,7 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(half, a, b));
 			controlPoints.push_back(makePoint(half, a + part, b));
 	  
-			// Top Face
+			// Face Superior
 			controlPoints.push_back(makePoint(a, half, b));
 			controlPoints.push_back(makePoint(a + part, half, b + part));
 			controlPoints.push_back(makePoint(a + part, half, b));
@@ -244,162 +243,6 @@ void genCone(const float radius, const float height, const size_t slices, const 
     writeToFile(controlPoints, fileName);
 }
 
-void genBezier(const std::string& patchFile, int tessellation) {
-    std::vector<Point> controlPoints;
-
-    std::ifstream file(patchFile);
-    if (!file.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo de patches: " << patchFile << std::endl;
-        return;
-    }
-
-    size_t numPatches;
-    file >> numPatches;
-
-    std::vector<std::vector<size_t>> patches(numPatches);
-    for (size_t i = 0; i < numPatches; i++) {
-        patches[i].resize(16);
-        for (size_t j = 0; j < 16; j++) {
-            file >> patches[i][j];
-        }
-    }
-
-    size_t numPoints;
-    file >> numPoints;
-    for (size_t i = 0; i < numPoints; i++) {
-        float x, y, z;
-        file >> x >> y >> z;
-        controlPoints.push_back(makePoint(x, y, z));
-    }
-
-    file.close();
-
-    // Gerar os pontos da superfície a partir dos patches e pontos de controle
-    std::vector<Point> points;
-    std::vector<Point> normals;
-
-    for (size_t i = 0; i < numPatches; ++i) {
-        std::vector<Point> patchControlPoints;
-        for (size_t j = 0; j < 16; ++j) {
-          patchControlPoints.push_back(controlPoints[patches[i][j]]);
-        }
-        
-        for (int u = 0; u < tessellation; ++u) {
-            for (int v = 0; v < tessellation; ++v) {
-              float u1 = static_cast<float>(u) / tessellation;
-              float v1 = static_cast<float>(v) / tessellation;
-              float u2 = static_cast<float>(u + 1) / tessellation;
-              float v2 = static_cast<float>(v + 1) / tessellation;
-
-              Point p1 = bezierPatch(patchControlPoints, u1, v1);
-              Point p2 = bezierPatch(patchControlPoints, u2, v1);
-              Point p3 = bezierPatch(patchControlPoints, u1, v2);
-              Point p4 = bezierPatch(patchControlPoints, u2, v2);
-
-              // Add points to the list
-              points.push_back(p1);
-              points.push_back(p3);
-              points.push_back(p2);
-
-              points.push_back(p2);
-              points.push_back(p3);
-              points.push_back(p4);
-
-              Point n1 = computeNormal(patchControlPoints, u1, v1);
-              Point n2 = computeNormal(patchControlPoints, u2, v1);
-              Point n3 = computeNormal(patchControlPoints, u1, v2);
-              Point n4 = computeNormal(patchControlPoints, u2, v2);
-
-              normals.push_back(n1);
-              normals.push_back(n3);
-              normals.push_back(n2);
-
-              normals.push_back(n2);
-              normals.push_back(n3);
-              normals.push_back(n4);
-            }
-        }
-    }
-    writeToFile(points, fileName);
-}
-
-
-
-Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
-    Point result = createPoint();
-
-    // Combinar as funções de Bernstein para u e v
-    for (int i = 0; i < 4; i++) {
-        float bu = bernstein(i, u);
-        for (int j = 0; j < 4; j++) {
-            float bv = bernstein(j, v);
-            float b = bu * bv;
-
-            // Adicionar a contribuição do ponto de controle correspondente
-            result->x += b * getX(patchControlPoints[i * 4 + j]);
-            result->y += b * getY(patchControlPoints[i * 4 + j]);
-            result->z += b * getZ(patchControlPoints[i * 4 + j]);
-        }
-    }
-
-    return result;
-}
-
-Point bezierPatchDU(const std::vector<Point>& patchControlPoints, float u, float v) {
-    Point result = createPoint();
-
-    // Combinar as funções de Bernstein para u e v
-    for (int i = 0; i < 4; i++) {
-        float bu = bernsteinDerivative(i, u);
-        for (int j = 0; j < 4; j++) {
-            float bv = bernstein(j, v);
-            float b = bu * bv;
-
-            // Adicionar a contribuição do ponto de controle correspondente
-            result->x += b * getX(patchControlPoints[i * 4 + j]);
-            result->y += b * getY(patchControlPoints[i * 4 + j]);
-            result->z += b * getZ(patchControlPoints[i * 4 + j]);
-        }
-    }
-
-    return result;
-}
-
-Point bezierPatchDV(const std::vector<Point>& patchControlPoints, float u, float v) {
-    Point result = createPoint();
-
-    // Combinar as funções de Bernstein para u e v
-    for (int i = 0; i < 4; i++) {
-        float bu = bernstein(i, u);
-        for (int j = 0; j < 4; j++) {
-            float bv = bernsteinDerivative(j, v);
-            float b = bu * bv;
-
-            // Adicionar a contribuição do ponto de controle correspondente
-            result->x += b * getX(patchControlPoints[i * 4 + j]);
-            result->y += b * getY(patchControlPoints[i * 4 + j]);
-            result->z += b * getZ(patchControlPoints[i * 4 + j]);
-        }
-    }
-
-    return result;
-}
-
-Point computeNormal(const std::vector<Point>& patchControlPoints, float u, float v) {
-    Point du = bezierPatchDU(patchControlPoints, u, v);
-    Point dv = bezierPatchDV(patchControlPoints, u, v);
-    Point normal = crossProduct(dv,du);  // Ordem ajustada para a orientação
-    float length = std::sqrt(normal->x * normal->x + normal->y * normal->y + normal->z * normal->z);
-
-    if (length != 0.0f) {
-        normal->x /= length;
-        normal->y /= length;
-        normal->z /= length;
-    }
-
-    return normal;
-}
-
 
 float bernstein(int i, float t) {
     switch (i) {
@@ -416,20 +259,114 @@ float bernstein(int i, float t) {
     }
 }
 
-float bernsteinDerivative(int i, float t) {
-    switch (i) {
-        case 0:
-        return -3 * pow(1 - t, 2);
-        case 1:
-        return 3 * pow(1 - t, 2) - 6 * t * (1 - t);
-        case 2:
-        return 6 * t * (1 - t) - 3 * pow(t, 2);
-        case 3:
-        return 3 * pow(t, 2);
-        default:
-        return 0;
+Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
+    Point result = createPoint();
+    float x =0, y=0, z=0;
+
+    // Combinar as funções de Bernstein para u e v
+    for (int i = 0; i < 4; i++) {
+        float bu = bernstein(i, u);
+        for (int j = 0; j < 4; j++) {
+            float bv = bernstein(j, v);
+            float b = bu * bv;
+
+            x += b * getX(patchControlPoints[i * 4 + j]);
+            y += b * getY(patchControlPoints[i * 4 + j]);
+            z += b * getZ(patchControlPoints[i * 4 + j]);
+
+            setX(result, x);
+            setY(result, y);
+            setZ(result, z);
+        }
     }
+
+    return result;
 }
+
+
+void genPatch(const std::string& patchFile, int tessellation) {
+    std::vector<Point> controlPoints;
+
+    std::ifstream file(patchFile);
+    if (!file.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de patches: " << patchFile << std::endl;
+        return;
+    }
+
+    size_t numPatches;
+    file >> numPatches;
+
+    std::vector<std::vector<size_t>> patches;
+
+    for (size_t i = 0; i < numPatches; ++i) {
+        std::vector<size_t> patch;
+        for (size_t j = 0; j < 16; ++j) {
+            size_t idx;
+            char virgula;
+            file >> idx;
+            if (j < 15) file >> virgula; // lê e descarta a vírgula
+            patch.push_back(idx);
+        }
+        patches.push_back(patch);
+    }
+
+    size_t numControlPoints;
+    file >> numControlPoints;
+
+    for (size_t i = 0; i < numControlPoints; ++i) {
+        float x, y, z;
+        char virgula;
+    
+        file >> x >> virgula >> y >> virgula >> z;
+        controlPoints.push_back(makePoint(x, y, z));
+    }
+
+
+    file.close();
+
+    // Verificar tesselação
+    if (tessellation <= 0) {
+        std::cerr << "Tesselação inválida: " << tessellation << std::endl;
+        return;
+    }
+
+    // Gerar os pontos da superfície a partir dos patches e pontos de controlo
+    std::vector<Point> points;
+
+    for (size_t i = 0; i < numPatches; ++i) {
+        std::vector<Point> patchControlPoints;
+        for (size_t j = 0; j < 16; ++j) {
+            patchControlPoints.push_back(controlPoints[patches[i][j]]);
+        }
+
+        for (int u = 0; u < tessellation; ++u) {
+            for (int v = 0; v < tessellation; ++v) {
+                float u1 = (float)(u) / tessellation;
+                float v1 = (float)(v) / tessellation;
+                float u2 = (float)(u + 1) / tessellation;
+                float v2 = (float)(v + 1) / tessellation;
+
+                Point p1 = bezierPatch(patchControlPoints, u1, v1);
+                Point p2 = bezierPatch(patchControlPoints, u2, v1);
+                Point p3 = bezierPatch(patchControlPoints, u1, v2);
+                Point p4 = bezierPatch(patchControlPoints, u2, v2);
+
+                // Adicionar os triângulos
+                points.push_back(p1);
+                points.push_back(p3);
+                points.push_back(p2);
+
+                points.push_back(p2);
+                points.push_back(p3);
+                points.push_back(p4);
+            }
+        }
+    }
+
+    writeToFile(points, fileName);
+}
+
+    
 
 int main(int argc, char *argv[]) {
     
@@ -479,13 +416,14 @@ int main(int argc, char *argv[]) {
             genBox(length, grid);
         }
 
-        else if (strcmp(argv[1], "bezier") == 0) {
+        // patch
+        else if (strcmp(argv[1], "patch") == 0) {
             std::string patchFile = argv[2];
             int tessellation = atoi(argv[3]);
             fileName = argv[4];
-            genBezier(patchFile, tessellation);
+            genPatch(patchFile, tessellation);
         }
-
+        
         else {
             printf("Figura inválida.");
             return 1;
