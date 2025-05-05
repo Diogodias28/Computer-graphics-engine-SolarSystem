@@ -259,6 +259,90 @@ float bernstein(int i, float t) {
     }
 }
 
+float bernsteinDerivative(int i, float t) {
+    switch (i) {
+        case 0:
+        return -3 * pow(1 - t, 2);
+        case 1:
+        return 3 * pow(1 - t, 2) - 6 * t * (1 - t);
+        case 2:
+        return 6 * t * (1 - t) - 3 * pow(t, 2);
+        case 3:
+        return 3 * pow(t, 2);
+        default:
+        return 0;
+    }
+}
+
+Point bezierPatchDU(const std::vector<Point>& patchControlPoints, float u, float v) {
+    Point result = createPoint();
+    float x,y,z;
+
+    // Combinar as funções de Bernstein para u e v
+    for (int i = 0; i < 4; i++) {
+        float bu = bernsteinDerivative(i, u);
+        for (int j = 0; j < 4; j++) {
+            float bv = bernstein(j, v);
+            float b = bu * bv;
+            
+            // Adicionar a contribuição do ponto de controle correspondente
+            x += b * getX(patchControlPoints[i * 4 + j]);
+            y += b * getY(patchControlPoints[i * 4 + j]);
+            z += b * getZ(patchControlPoints[i * 4 + j]);
+        }
+    }
+
+    setX(result, x);
+    setY(result, y);
+    setZ(result, z);
+
+    return result;
+}
+
+Point bezierPatchDV(const std::vector<Point>& patchControlPoints, float u, float v) {
+    Point result = createPoint();
+    float x,y,z;
+
+    // Combinar as funções de Bernstein para u e v
+    for (int i = 0; i < 4; i++) {
+        float bu = bernstein(i, u);
+        for (int j = 0; j < 4; j++) {
+            float bv = bernsteinDerivative(j, v);
+            float b = bu * bv;
+
+            // Adicionar a contribuição do ponto de controle correspondente
+            x += b * getX(patchControlPoints[i * 4 + j]);
+            y += b * getY(patchControlPoints[i * 4 + j]);
+            z += b * getZ(patchControlPoints[i * 4 + j]);
+        }
+    }
+    setX(result, x);
+    setY(result, y);
+    setZ(result, z);
+
+    return result;
+}
+
+Point computeNormal(const std::vector<Point>& patchControlPoints, float u, float v) {
+    Point du = bezierPatchDU(patchControlPoints, u, v);
+    Point dv = bezierPatchDV(patchControlPoints, u, v);
+    Point normal = crossProduct(dv,du);  // Ordem ajustada para a orientação
+    float length = std::sqrt(getX(normal) * getX(normal) + getY(normal) * getY(normal) + getZ(normal) * getZ(normal));
+    float x,y,z;
+    if (length != 0.0f) {
+        x /= length;
+        y /= length;
+        z /= length;
+    }
+
+    setX(normal, x);
+    setY(normal, y);
+    setZ(normal, z);
+
+    return normal;
+}
+
+
 Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
     Point result = createPoint();
     float x =0, y=0, z=0;
@@ -332,6 +416,7 @@ void genPatch(const std::string& patchFile, int tessellation) {
 
     // Gerar os pontos da superfície a partir dos patches e pontos de controlo
     std::vector<Point> points;
+    std::vector<Point> normals;
 
     for (size_t i = 0; i < numPatches; ++i) {
         std::vector<Point> patchControlPoints;
@@ -359,6 +444,19 @@ void genPatch(const std::string& patchFile, int tessellation) {
                 points.push_back(p2);
                 points.push_back(p3);
                 points.push_back(p4);
+
+                Point n1 = computeNormal(patchControlPoints, u1, v1);
+                Point n2 = computeNormal(patchControlPoints, u2, v1);
+                Point n3 = computeNormal(patchControlPoints, u1, v2);
+                Point n4 = computeNormal(patchControlPoints, u2, v2);
+
+                normals.push_back(n1);
+                normals.push_back(n3);
+                normals.push_back(n2);
+
+                normals.push_back(n2);
+                normals.push_back(n3);
+                normals.push_back(n4);
             }
         }
     }
