@@ -95,7 +95,7 @@ GLuint getBuffer_1(Model m){
 }
 
 std::vector<Point> readFromFile(std::string fileName) {
-    std::vector<Point> points;
+    std::vector<Point> points, normals, texCoords;
     std::string line;
 
     fileName = "../3d/" + fileName;
@@ -106,17 +106,31 @@ std::vector<Point> readFromFile(std::string fileName) {
 
         while (std::getline(file, line)) {
             std::istringstream iss(line);
-            std::string xStr, yStr, zStr;
+            std::string xCPstr, yCPstr, zCPstr, xNstr, yNstr, zNstr, xTCstr, yTCstr;
 
-            if (std::getline(iss, xStr, ',') && 
-                std::getline(iss, yStr, ',') && 
-                std::getline(iss, zStr, ',')) {
+            if (std::getline(iss, xCPstr, ',') && 
+                std::getline(iss, yCPstr, ',') && 
+                std::getline(iss, zCPstr, ';') &&
+                std::getline(iss, xNstr, ',') && 
+                std::getline(iss, yNstr, ',') && 
+                std::getline(iss, zNstr, ';') &&
+                std::getline(iss, xTCstr, ',') && 
+                std::getline(iss, yTCstr, ',') && 
+                std::getline(iss, zCPstr)) {
                 
-                float x = std::stof(xStr);
-                float y = std::stof(yStr);
-                float z = std::stof(zStr);
+                float xP = std::stof(xCPstr);
+                float yP = std::stof(yCPstr);
+                float zP = std::stof(zCPstr);
+                points.push_back(makePoint(xP, yP, zP));
 
-                points.push_back(makePoint(x, y, z));
+                float xN = std::stof(xNstr);
+                float yN = std::stof(yNstr);
+                float zN = std::stof(zNstr);
+                normals.push_back(makePoint(xN, yN, zN));
+
+                float xT = std::stof(xTCstr);
+                float yT = std::stof(yTCstr);
+                texCoords.push_back(makeTexturePoint(xT, yT));
             }
         }
         file.close();
@@ -127,7 +141,7 @@ std::vector<Point> readFromFile(std::string fileName) {
     return points;
 }
 
-void writeToFile(std::vector<Point> controlPoints, string fileName) {
+void writeToFile(std::vector<Point> controlPoints, std::vector<Point> normals, std::vector<Point> texCoords, string fileName) {
     fileName = "../3d/" + fileName;
     std::ofstream file(fileName);
 
@@ -142,7 +156,7 @@ void writeToFile(std::vector<Point> controlPoints, string fileName) {
     // Escreve os pontos de controlo no formato "x, y, z"
     file << std::fixed << std::setprecision(6);
     for (int i = 0; i<controlPoints.size(); i++) {
-        file << getX(controlPoints[i]) << ", " << getY(controlPoints[i]) << ", " << getZ(controlPoints[i]) << std::endl;
+        file << getX(controlPoints[i]) << ", " << getY(controlPoints[i]) << ", " << getZ(controlPoints[i]) << ";" << getX(normals[i]) << ", " << getY(normals[i]) << ", " << getZ(normals[i]) << ";" << getX(texCoords[i]) << ", " << getY(texCoords[i]) << std::endl;
     }
 
     file.close();

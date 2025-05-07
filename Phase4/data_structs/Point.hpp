@@ -10,6 +10,10 @@ Point createPoint();
 
 Point makePoint(float, float, float);
 
+Point createTexturePoint();
+
+Point makeTexturePoint(float, float);
+
 float getX(Point);
 
 void setX(Point, float);

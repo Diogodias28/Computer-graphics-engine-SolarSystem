@@ -20,6 +20,21 @@ Point makePoint(float x, float y, float z){
     return p;
 }
 
+Point createTexturePoint() {
+    return makeTexturePoint(0.0f, 0.0f);
+}
+
+Point makeTexturePoint(float x, float y){
+    Point p = new point();
+
+    if (p != NULL) {
+        p->x = x;
+        p->y = y;
+    }
+
+    return p;
+}
+
 float getX(Point p){
     return p->x;
 }
