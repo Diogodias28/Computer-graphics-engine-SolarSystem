@@ -20,6 +20,7 @@ float camx, camy, camz;
 float lookAtx, lookAty, lookAtz;
 float upx, upy, upz;
 float fov, nearPlane, farPlane;
+bool showAxes;
 
 // fps
 int timebase = 0;
@@ -34,8 +35,6 @@ Group group;
 Light light;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
-bool showAxes = true;      // Eixos
-bool showCurve = true;     // Linha da Curva
 GLuint vertexCount, buffer[2];
 
 
@@ -138,7 +137,7 @@ void drawFigures(Group g) {
                 //normais e texturas !!!!!!!!
             }
             
-            if(showCurve){
+            if(getShowOrbit(t)) {
                 drawCatmullRomCurve(controlPoints);
             }
             
@@ -379,6 +378,7 @@ int main(int argc, char **argv) {
     fov     = getFov(set);
     nearPlane = getNear(set);
     farPlane = getFar(set);
+    showAxes = getShowAxes(set);
     light = getLight(set);
     group = getGroup(set);
     

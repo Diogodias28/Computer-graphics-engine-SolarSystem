@@ -12,6 +12,7 @@ Group createGroup(){ //cria grupo vazio
     g->models = std::vector<Model>();
     g->transformations = std::vector<Transform>();
     g->subgroups = std::vector<Group>();
+    group.showOrbit = true;
 
     return g;
 }

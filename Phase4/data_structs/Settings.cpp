@@ -13,12 +13,14 @@ struct settings{
     float projection[3]; // fov, near, far
     Light light;
     Group group;
+    bool showAxes;
 };
 
 Settings newSettings(){
     Settings newSettings = new settings();
     newSettings->light = createLight();
     newSettings->group = createGroup();
+    newSettings->showAxes = true;
     return newSettings;
 }
 
@@ -80,6 +82,7 @@ Group parseGroup(TiXmlElement* groupElement) {
     std::vector<Model> models = std::vector<Model>();
     std::vector<Transform> transformations = std::vector<Transform>();
     std::vector<Group> subgroups = std::vector<Group>();
+    bool showOrbit = true;
 
     float currentR = 1.0f, currentG = 0.6f, currentB = 0.7f;
     
@@ -99,6 +102,8 @@ Group parseGroup(TiXmlElement* groupElement) {
                     float time = atof(transType->Attribute("time"));
                     bool align = transType->Attribute("align") ? 
                                 (strcasecmp(transType->Attribute("align"), "true") == 0) : false;
+                    bool showOrbit = transType->Attribute("showOrbit") ? 
+                                (strcasecmp(transType->Attribute("showOrbit"), "true") == 0) : true;
 
                     // Coletar pontos
                     std::vector<Point> points;
@@ -119,7 +124,7 @@ Group parseGroup(TiXmlElement* groupElement) {
                         continue;
                     }
 
-                    transform = newTransformation('T', makePoint(0,0,0), 0, time, points, align);
+                    transform = newTransformation('T', makePoint(0,0,0), 0, time, points, align, showOrbit);
                 }
                 else { // Translação estática
                     transform = newTransformation('T', 
@@ -263,6 +268,8 @@ Settings xmlToSettings(const char* filePath){
             TiXmlElement* lookAtCamera = camera->FirstChildElement("lookAt"); // lookAt da câmara
             TiXmlElement* upCamera = camera->FirstChildElement("up"); // up da câmara
             TiXmlElement* projectionCamera = camera->FirstChildElement("projection"); // projections
+            TiXmlElement* window = root->FirstChildElement("window"); // exibir eixos
+            TiXmlElement* showAxes = root->FirstChildElement("showAxes");
             result->window[0] = atoi(window->Attribute("width")); //largura da janela
             result->window[1] = atoi(window->Attribute("height")); //altura da janela
             result->poscam[0] = atof(posCamera->Attribute("x")); // coordenada x da posição da câmara
@@ -277,6 +284,7 @@ Settings xmlToSettings(const char* filePath){
             result->projection[0] = atof(projectionCamera->Attribute("fov")); // parâmetro fov do xml
             result->projection[1] = atof(projectionCamera->Attribute("near")); // parâmetro near do xml
             result->projection[2] = atof(projectionCamera->Attribute("far")); // parâmetro far do xml 
+            result->showAxes = (strcmp(showAxes->GetText(), "true") == 0);
             
             TiXmlElement* lights = root->FirstChildElement("lights");
             if(lights) {
@@ -360,6 +368,14 @@ float getFar(Settings set){
     return set->projection[2];
 }
 
+Boolean getShowAxes(Settings set){
+    return set->showAxes;
+}
+
+void setShowAxes(Settings set, Boolean showAxes){
+    set->showAxes = showAxes;
+}
+
 Group getGroup(Settings set){
     return set->group;
 }
@@ -367,4 +383,3 @@ Group getGroup(Settings set){
 Light getLight(Settings set){
     return set->light;
 }
-

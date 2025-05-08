@@ -6,7 +6,7 @@
         <up x="0" y="1" z="0" />
         <projection fov="60" near="0.01" far="2000" />
     </camera>
-
+    <showAxes>true</showAxes>
     <group>
         <!-- Sun -->
         <transform>
@@ -25,7 +25,7 @@
             <!-- Mercury -->
             <group>
                 <transform>
-                    <translate time="12.567" align="true">
+                    <translate time="12.567" align="true" showOrbit="true">
                             <point x="2.193" y="0.0" z="0.0" />
                             <point x="2.086" y="0.0" z="0.678" />
                             <point x="1.774" y="0.0" z="1.289" />
