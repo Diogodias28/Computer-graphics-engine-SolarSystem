@@ -177,7 +177,9 @@ Group parseGroup(TiXmlElement* groupElement) {
         TiXmlElement* modelElement = modelsElement->FirstChildElement("model");
         if (modelElement) {
             const char* filename = modelElement->Attribute("file");
-            std::vector<Point> points = readFromFile(filename);
+            std::vector<Point> points = readFromFile(filename)[0];
+            std::vector<Point> normals = readFromFile(filename)[1];
+            std::vector<Point> texCoord = readFromFile(filename)[2];
 
             // Textures
             const char* textureFile = nullptr;
@@ -230,7 +232,7 @@ Group parseGroup(TiXmlElement* groupElement) {
                 }
             }
 
-            Model model = makeModel(points, currentColor, textureFile);
+            Model model = makeModel(points, normals, texCoord, currentColor, textureFile); // ????????????????????????
             models.push_back(model);
         }
 

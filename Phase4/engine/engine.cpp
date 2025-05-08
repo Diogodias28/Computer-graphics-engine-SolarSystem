@@ -128,12 +128,14 @@ void drawFigures(Group g) {
             
             float angle = (glutGet(GLUT_ELAPSED_TIME)/1000.0f/time) * 360.0f;
             glRotatef(angle, getX(tv), getY(tv), getZ(tv));
+            // trocar aqui??? !!!!!!!!!!!!!!! a iluminação e as normais também rodam?
         }
         else if(type == 'T' && time > 0) {
             std::vector<Point> points = getPoints(t);
             std::vector<std::vector<float>> controlPoints;
             for(auto& p : points) {
                 controlPoints.push_back({getX(p), getY(p), getZ(p)});
+                //normais e texturas !!!!!!!!
             }
             
             if(showCurve){
@@ -188,6 +190,8 @@ void drawFigures(Group g) {
                     glScalef(getX(tv), getY(tv), getZ(tv)); 
                     break;
             }
+
+            //fazer para as texruras e normais???????
         }
     }
 
@@ -200,11 +204,20 @@ void drawFigures(Group g) {
         vertexCount = getVertexCount(models[i]);
         buffer[0] = getBuffer_0(models[i]);
         buffer[1] = getBuffer_1(models[i]);
+        buffer[2] = getBuffer_2(models[i]);
 
         glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
         glVertexPointer(3,GL_FLOAT,0,0);
 
+        glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
+        glNormalPointer(GL_FLOAT, 0, 0);
+    
+        glBindBuffer(GL_ARRAY_BUFFER, buffer[2]);
+        glTexCoordPointer(2, GL_FLOAT, 0, 0);
+
         glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+        
+        //falta o resto
     }
 
 

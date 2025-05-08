@@ -5,6 +5,8 @@ struct model{
     Color color;
     const char* textureFile;
     float* vertexB;
+    float* normals;
+    float* texCoords;
     GLuint vertexCount;
     GLuint buffer[2];
     bool buffersInitialized; // Track estado OpenGL
@@ -28,7 +30,7 @@ Model createModel(){
     return m;
 }
 
-Model makeModel(std::vector<Point> points, Color color, const char* textureFile){
+Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vector<Point> texCoords, Color color, const char* textureFile){
     Model m = new model();
 
     if (m->vertexB != nullptr) {
@@ -36,12 +38,24 @@ Model makeModel(std::vector<Point> points, Color color, const char* textureFile)
     }
     
     m->vertexB = (float *)malloc(points.size() * 3 * sizeof(float));
-    
+    m->normals = (float *)malloc(points.size() * 3 * sizeof(float));
+	m->texCoords = (float *)malloc(points.size() * 2 * sizeof(float));
 
     for(int i=0; i<points.size(); i++){
         m->vertexB[i*3 + 0] = getX(points[i]);
 		m->vertexB[i*3 + 1] = getY(points[i]);
 		m->vertexB[i*3 + 2] = getZ(points[i]);
+    }
+
+    for(int i=0; i<normals.size(); i++){
+        m->normals[i*3 + 0] = getX(normals[i]);
+		m->normals[i*3 + 1] = getY(normals[i]);
+		m->normals[i*3 + 2] = getZ(normals[i]);
+    }
+
+    for(int i=0; i<texCoords.size(); i++){
+        m->texCoords[i*3 + 0] = getX(points[i]);
+		m->texCoords[i*3 + 1] = getY(points[i]);
     }
 
     m->vertexCount = points.size();
@@ -55,15 +69,30 @@ Model makeModel(std::vector<Point> points, Color color, const char* textureFile)
 
 void initModelBuffers(Model m) {
     if (!m->buffersInitialized && m->vertexB) {
-        glGenBuffers(2, m->buffer);
+        glGenBuffers(3, m->buffer);
         glBindBuffer(GL_ARRAY_BUFFER, m->buffer[0]);
         glBufferData(GL_ARRAY_BUFFER, 
                     sizeof(float) * m->vertexCount * 3,
                     m->vertexB, 
                     GL_STATIC_DRAW);
+                    
+        glBindBuffer(GL_ARRAY_BUFFER, m->buffer[1]);
+        glBufferData(GL_ARRAY_BUFFER, 
+                    sizeof(float) * m->vertexCount * 3, //trocar vertexCount por outra coisa?
+                    m->normals,
+                    GL_STATIC_DRAW);
+
+        glBindBuffer(GL_ARRAY_BUFFER, m->buffer[2]);
+        glBufferData(GL_ARRAY_BUFFER,
+                    sizeof(float) * m->vertexCount * 2, //trocar vertexCount por outra coisa?
+                    m->texCoords,
+                    GL_STATIC_DRAW);
         
         // Free CPU memory after uploading to GPU
         free(m->vertexB);
+        free(m->normals);
+        free(m->texCoords);
+
         m->vertexB = nullptr;
         
         m->buffersInitialized = true;
@@ -76,6 +105,14 @@ void setColor(Model m, Color c) {
 
 Color getColor(Model m) {
     return(m->color);
+}
+
+float* normals(Model m){
+    return m->normals;
+}
+
+float* texCoords(Model m){
+    return m->texCoords;
 }
 
 float* getVertexB(Model m){
@@ -94,7 +131,11 @@ GLuint getBuffer_1(Model m){
     return m->buffer[1];
 }
 
-std::vector<Point> readFromFile(std::string fileName) {
+GLuint getBuffer_2(Model m){
+    return m->buffer[2];
+}
+
+std::vector<std::vector<Point>> readFromFile(std::string fileName) {
     std::vector<Point> points, normals, texCoords;
     std::string line;
 
@@ -138,7 +179,13 @@ std::vector<Point> readFromFile(std::string fileName) {
         printf("Error opening file: %s\n", fileName.c_str());
     }
 
-    return points;
+    std::vector<std::vector<Point>> res;
+    res.push_back(points);
+    res.push_back(normals);
+    res.push_back(texCoords);
+
+
+    return res;
 }
 
 void writeToFile(std::vector<Point> controlPoints, std::vector<Point> normals, std::vector<Point> texCoords, string fileName) {

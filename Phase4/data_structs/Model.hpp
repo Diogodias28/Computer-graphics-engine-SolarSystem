@@ -25,8 +25,7 @@ typedef struct model* Model;
 
 Model createModel();
 
-Model makeModel(std::vector<Point>,Color, const char*);
-
+Model makeModel(std::vector<Point>, std::vector<Point>, std::vector<Point>,Color, const char*);
 
 //std::vector<Point> getPoints(Model);
 
@@ -36,19 +35,25 @@ Color getColor(Model);
 
 float* getVertexB(Model);
 
+float* normals(Model);
+
+float* texCoords(Model);
+
 GLuint getVertexCount(Model);
 
 GLuint getBuffer_0(Model);
 
 GLuint getBuffer_1(Model);
 
+GLuint getBuffer_2(Model);
+
 void initModelBuffers(Model);
 
 //void addPoint(Model, Point);
 
-std::vector<Point> readFromFile(std::string);
+std::vector<std::vector<Point>> readFromFile(std::string);
 
-void writeToFile(std::vector<Point>, string);
+void writeToFile(std::vector<Point>, std::vector<Point>, std::vector<Point>, string);
 
 const char* getTextureFile(Model);
 
