@@ -47,7 +47,7 @@ void genPlane(int length, int divisions){
             float tz2 = (z2 + half) / length;
 
 
-            // Triângulo 1
+            // Triângulo 1 (parte de cima)
             controlPoints.push_back(makePoint(x1, 0.0f, z1));
             controlPoints.push_back(makePoint(x1, 0.0f, z2));
             controlPoints.push_back(makePoint(x2, 0.0f, z1));
@@ -56,7 +56,7 @@ void genPlane(int length, int divisions){
             texCoords.push_back(makeTexturePoint(tx1, tz2));
             texCoords.push_back(makeTexturePoint(tx2, tz1));
 
-            // Triângulo 2
+            // Triângulo 2 (parte de cima)
             controlPoints.push_back(makePoint(x2, 0.0f, z1));
             controlPoints.push_back(makePoint(x1, 0.0f, z2));
             controlPoints.push_back(makePoint(x2, 0.0f, z2));
@@ -64,6 +64,16 @@ void genPlane(int length, int divisions){
             texCoords.push_back(makeTexturePoint(tx2, tz1));
             texCoords.push_back(makeTexturePoint(tx1, tz2));
             texCoords.push_back(makeTexturePoint(tx2, tz2));
+
+            // Triângulo 1 (parte de baixo - invertido)
+            controlPoints.push_back(makePoint(x1, 0.0f, z1));
+            controlPoints.push_back(makePoint(x2, 0.0f, z1));
+            controlPoints.push_back(makePoint(x1, 0.0f, z2));
+
+            // Triângulo 2 (parte de baixo - invertido)
+            controlPoints.push_back(makePoint(x2, 0.0f, z1));
+            controlPoints.push_back(makePoint(x2, 0.0f, z2));
+            controlPoints.push_back(makePoint(x1, 0.0f, z2));
             
             for(int k = 0; k < 6; k++){
                 normals.push_back(makePoint(0, 1, 0));
@@ -71,7 +81,8 @@ void genPlane(int length, int divisions){
         }
     }
 
-    writeToFile(controlPoints, normals, texCoords, fileName);}
+    writeToFile(controlPoints, normals, texCoords, fileName);
+}
 
 void genRing(float innerRadius, float outerRadius, int slices) {
     std::vector<Point> controlPoints;
