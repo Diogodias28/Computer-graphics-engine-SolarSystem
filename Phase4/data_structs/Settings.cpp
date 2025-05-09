@@ -268,8 +268,7 @@ Settings xmlToSettings(const char* filePath){
             TiXmlElement* lookAtCamera = camera->FirstChildElement("lookAt"); // lookAt da câmara
             TiXmlElement* upCamera = camera->FirstChildElement("up"); // up da câmara
             TiXmlElement* projectionCamera = camera->FirstChildElement("projection"); // projections
-            TiXmlElement* window = root->FirstChildElement("window"); // exibir eixos
-            TiXmlElement* showAxes = root->FirstChildElement("showAxes");
+            TiXmlElement* showAxes = root->FirstChildElement("showAxes"); //exibir eixos
             result->window[0] = atoi(window->Attribute("width")); //largura da janela
             result->window[1] = atoi(window->Attribute("height")); //altura da janela
             result->poscam[0] = atof(posCamera->Attribute("x")); // coordenada x da posição da câmara
@@ -368,11 +367,11 @@ float getFar(Settings set){
     return set->projection[2];
 }
 
-Boolean getShowAxes(Settings set){
+bool getShowAxes(Settings set){
     return set->showAxes;
 }
 
-void setShowAxes(Settings set, Boolean showAxes){
+void setShowAxes(Settings set, bool showAxes){
     set->showAxes = showAxes;
 }
 

@@ -52,13 +52,38 @@ if (WIN32)
     if (NOT EXISTS "${TOOLKITS_FOLDER}/glut/GL/glut.h" OR NOT EXISTS "${TOOLKITS_FOLDER}/glut/glut32.lib")
         message(FATAL_ERROR "GLUT not found")
     endif()
+    if (NOT EXISTS "${TOOLKITS_FOLDER}/glew/glew32.lib" OR NOT EXISTS "${TOOLKITS_FOLDER}/glew/GL/glew.h")
+        message(FATAL_ERROR "GLEW not found")
+    endif()
+    if (NOT EXISTS "${TOOLKITS_FOLDER}/devil/DevIL.lib" OR NOT EXISTS "${TOOLKITS_FOLDER}/devil/IL/il.h")
+        message(FATAL_ERROR "DevIL not found")
+    endif()
 
-    include_directories(${TOOLKITS_FOLDER}/glut)
-    target_link_libraries(engine ${OPENGL_LIBRARIES} ${TOOLKITS_FOLDER}/glut/glut32.lib)
-    target_link_libraries(generator ${OPENGL_LIBRARIES} ${TOOLKITS_FOLDER}/glut/glut32.lib)
+    include_directories(
+        ${TOOLKITS_FOLDER}/glut
+        ${TOOLKITS_FOLDER}/glew
+        ${TOOLKITS_FOLDER}/devil
+        )
+
+    target_link_libraries(engine 
+        ${OPENGL_LIBRARIES} 
+        ${TOOLKITS_FOLDER}/glut/glut32.lib
+        ${TOOLKITS_FOLDER}/glew/glew32.lib
+        ${TOOLKITS_FOLDER}/devil/DevIL.lib
+        )
+
+    target_link_libraries(generator 
+        ${OPENGL_LIBRARIES} 
+        ${TOOLKITS_FOLDER}/glut/glut32.lib)
 
     if (EXISTS "${TOOLKITS_FOLDER}/glut/glut32.dll")
         file(COPY ${TOOLKITS_FOLDER}/glut/glut32.dll DESTINATION ${CMAKE_BINARY_DIR})
+    endif()
+    if (EXISTS "${TOOLKITS_FOLDER}/glew/glew32.dll")
+        file(COPY ${TOOLKITS_FOLDER}/glew/glew32.dll DESTINATION ${CMAKE_BINARY_DIR})
+    endif()
+    if (EXISTS "${TOOLKITS_FOLDER}/devil/DevIL.dll")
+        file(COPY ${TOOLKITS_FOLDER}/devil/DevIL.dll DESTINATION ${CMAKE_BINARY_DIR})
     endif()
 
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT engine)
@@ -67,17 +92,72 @@ else() # Linux and Mac
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated")
     
     find_package(GLUT REQUIRED)
-    include_directories(${GLUT_INCLUDE_DIR})
+    find_package(GLEW REQUIRED)
+    find_package(DevIL REQUIRED)
+
+    include_directories(
+        ${GLUT_INCLUDE_DIR}
+        )
     
     if(NOT GLUT_FOUND)
         message(FATAL_ERROR "GLUT not found!")
     endif()
 
     if(APPLE)
-        target_link_libraries(engine ${OPENGL_LIBRARIES} "-framework GLUT")
-        target_link_libraries(generator ${OPENGL_LIBRARIES} "-framework GLUT")
+        include_directories(/opt/homebrew/include)
+        link_directories(/opt/homebrew/lib)
+        
+        find_library(IL_LIBRARY NAMES IL PATHS /opt/homebrew/lib REQUIRED)
+        find_library(ILU_LIBRARY NAMES ILU PATHS /opt/homebrew/lib REQUIRED)
+        find_library(ILUT_LIBRARY NAMES ILUT PATHS /opt/homebrew/lib REQUIRED)
+
+        if(TARGET GLEW::GLEW)
+            target_link_libraries(engine 
+                ${OPENGL_LIBRARIES} 
+                "-framework GLUT"
+                "-framework OpenGL"
+                GLEW::GLEW
+                ${IL_LIBRARY}
+                ${ILU_LIBRARY}
+                ${ILUT_LIBRARY}
+                )
+        else()
+            include_directories(${GLEW_INCLUDE_DIRS})
+            target_link_libraries(engine 
+                ${OPENGL_LIBRARIES} 
+                "-framework GLUT"
+                "-framework OpenGL"
+                ${GLEW_LIBRARIES}
+                ${IL_LIBRARY}
+                ${ILU_LIBRARY}
+                ${ILUT_LIBRARY}
+            )
+        endif()
+
+        target_link_libraries(generator 
+            ${OPENGL_LIBRARIES} 
+            "-framework GLUT"
+            "-framework OpenGL"
+            )
     else()
-        target_link_libraries(engine ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
+        include_directories(
+            ${GLEW_INCLUDE_DIRS}
+            ${IL_INCLUDE_DIR}
+        )
+        
+        if(NOT GLEW_FOUND)
+            message(FATAL_ERROR "GLEW not found!")
+        endif()
+        if(NOT IL_FOUND)
+            message(FATAL_ERROR "DevIL not found!")
+        endif()
+
+        target_link_libraries(engine 
+            ${OPENGL_LIBRARIES} 
+            ${GLUT_LIBRARIES}
+            ${GLEW_LIBRARIES}
+            ${IL_LIBRARIES}
+            )
         target_link_libraries(generator ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
     endif()
 endif()

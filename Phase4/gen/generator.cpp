@@ -16,6 +16,8 @@ string fileName;
 
 void genPlane(int length, int divisions){
     std::vector<Point> controlPoints;
+    std::vector<Point> normals;
+    std::vector<Point> texCoords;
     float part = (float)length / divisions;
     float half = length / 2.0f;
 
@@ -38,11 +40,12 @@ void genPlane(int length, int divisions){
         }
     }
 
-    writeToFile(controlPoints, fileName);
-}
+    writeToFile(controlPoints, normals, texCoords, fileName);}
 
 void genRing(float innerRadius, float outerRadius, int slices) {
     std::vector<Point> controlPoints;
+    std::vector<Point> normals;
+    std::vector<Point> texCoords;
 
     const float alpha = (float) 2 * M_PI / slices;
 
@@ -84,12 +87,15 @@ void genRing(float innerRadius, float outerRadius, int slices) {
         controlPoints.push_back(outer_1);
     }
 
-    writeToFile(controlPoints, fileName);
+    writeToFile(controlPoints, normals, texCoords, fileName);
 }
 
 void genSphere(float radius, int slices, int stacks) {
 
     std::vector<Point> controlPoints;
+    std::vector<Point> normals;
+    std::vector<Point> texCoords;
+
 
     // divide o circulo de 360 graus em slices iguais
     float anglePerSlice = (float)(2 * M_PI) / slices;
@@ -129,13 +135,15 @@ void genSphere(float radius, int slices, int stacks) {
         }
     }
     
-    writeToFile(controlPoints, fileName);
+    writeToFile(controlPoints, normals, texCoords, fileName);
 }
 
 
 void genBox(int length, int grid) {
 
     std::vector<Point> controlPoints;
+    std::vector<Point> normals;
+    std::vector<Point> texCoords;
     float part = (float)length / grid; 
     float half = length / 2.0f;
 
@@ -200,12 +208,13 @@ void genBox(int length, int grid) {
 			
         }
     }
-    writeToFile(controlPoints, fileName);
-}
+    writeToFile(controlPoints, normals, texCoords, fileName);}
 
 void genCone(const float radius, const float height, const size_t slices, const size_t stacks) {
     
     std::vector<Point> controlPoints;
+    std::vector<Point> normals;
+    std::vector<Point> texCoords;
 
     const float alpha = (float) 2 * M_PI / slices;
     const float heightPerStack = (float) height / stacks;
@@ -240,7 +249,7 @@ void genCone(const float radius, const float height, const size_t slices, const 
         controlPoints.push_back(base_bottom_left);
     }
 
-    writeToFile(controlPoints, fileName);
+    writeToFile(controlPoints, normals, texCoords, fileName);
 }
 
 
@@ -417,7 +426,8 @@ void genPatch(const std::string& patchFile, int tessellation) {
     // Gerar os pontos da superfície a partir dos patches e pontos de controlo
     std::vector<Point> points;
     std::vector<Point> normals;
-
+    std::vector<Point> texCoords;
+    
     for (size_t i = 0; i < numPatches; ++i) {
         std::vector<Point> patchControlPoints;
         for (size_t j = 0; j < 16; ++j) {
@@ -461,7 +471,7 @@ void genPatch(const std::string& patchFile, int tessellation) {
         }
     }
 
-    writeToFile(points, fileName);
+    writeToFile(points, normals, texCoords, fileName);
 }
 
     

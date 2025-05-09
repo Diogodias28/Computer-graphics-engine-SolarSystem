@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers -F/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks
+CXX_INCLUDES = -I/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers -I/opt/homebrew/include -F/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks
 
 CXX_FLAGSarm64 =  -Wno-deprecated -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk
 

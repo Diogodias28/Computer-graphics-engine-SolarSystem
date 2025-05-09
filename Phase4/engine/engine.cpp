@@ -35,7 +35,7 @@ Group group;
 Light light;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
-GLuint vertexCount, buffer[2];
+GLuint vertexCount, buffer[3];
 
 
 void updateWindowTitle() {
@@ -196,6 +196,8 @@ void drawFigures(Group g) {
 
     for (int i = 0; i < models.size(); i++) {
         float r,g,b;
+        unsigned int texture = getTexture(models[i]);
+
         //getColor(models[i], r, g, b);
 
         //glColor3f(r,g,b);
@@ -204,6 +206,8 @@ void drawFigures(Group g) {
         buffer[0] = getBuffer_0(models[i]);
         buffer[1] = getBuffer_1(models[i]);
         buffer[2] = getBuffer_2(models[i]);
+
+        glBindTexture(GL_TEXTURE_2D, texture);
 
         glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
         glVertexPointer(3,GL_FLOAT,0,0);
@@ -216,7 +220,7 @@ void drawFigures(Group g) {
 
         glDrawArrays(GL_TRIANGLES, 0, vertexCount);
         
-        //falta o resto
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 
 
@@ -305,9 +309,11 @@ void processKeys(unsigned char c, int xx, int yy) {
         case 'p': // Altera a visualização dos eixos
             showAxes = !showAxes;
             break;
-        case 'c': // Altera a visibilidade das linhas das curvas
-            showCurve = !showCurve;
-            break;
+        //case 'c': // Altera a visibilidade das linhas das curvas
+        //    showCurve = !showCurve;
+        //    break;
+
+        //para que o c do showCurves funcione é preciso que o showCures seja algo geral e não algo de transformações específicas
     }
     updateCamera();
     glutPostRedisplay();

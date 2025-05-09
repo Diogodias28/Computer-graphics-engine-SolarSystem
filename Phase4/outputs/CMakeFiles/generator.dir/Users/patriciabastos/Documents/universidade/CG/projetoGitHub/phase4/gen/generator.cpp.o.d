@@ -794,6 +794,7 @@ CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoG
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gltypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /opt/homebrew/include/IL/il.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/sys/_types/_o_sync.h \

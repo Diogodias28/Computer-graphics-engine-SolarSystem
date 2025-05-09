@@ -8,8 +8,9 @@ struct model{
     float* normals;
     float* texCoords;
     GLuint vertexCount;
-    GLuint buffer[2];
+    GLuint buffer[3];
     bool buffersInitialized; // Track estado OpenGL
+    unsigned int texture;
 };
 
 Model createModel(){
@@ -133,6 +134,14 @@ GLuint getBuffer_1(Model m){
 
 GLuint getBuffer_2(Model m){
     return m->buffer[2];
+}
+
+unsigned int getTexture(Model m){ //não sei se posso fazer isto
+    return m->texture;
+}
+
+void setTexture(Model m, unsigned int t){
+    m->texture = t;
 }
 
 std::vector<std::vector<Point>> readFromFile(std::string fileName) {

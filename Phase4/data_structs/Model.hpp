@@ -3,8 +3,10 @@
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
+#include </opt/homebrew/include/IL/il.h>
 #else
 #include <GL/glut.h>
+#include <IL/il.h>
 #endif
 
 #include <vector>
@@ -48,6 +50,10 @@ GLuint getBuffer_1(Model);
 GLuint getBuffer_2(Model);
 
 void initModelBuffers(Model);
+
+unsigned int getTexture(Model);
+
+void setTexture(Model, unsigned int);
 
 //void addPoint(Model, Point);
 

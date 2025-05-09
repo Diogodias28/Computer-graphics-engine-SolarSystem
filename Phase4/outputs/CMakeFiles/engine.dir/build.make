@@ -95,6 +95,10 @@ engine_EXTERNAL_OBJECTS =
 
 engine: CMakeFiles/engine.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/engine/engine.cpp.o
 engine: CMakeFiles/engine.dir/build.make
+engine: /opt/homebrew/lib/libGLEW.2.2.0.dylib
+engine: /opt/homebrew/lib/libIL.dylib
+engine: /opt/homebrew/lib/libILU.dylib
+engine: /opt/homebrew/lib/libILUT.dylib
 engine: libdata_structs.a
 engine: libtinyXML.a
 engine: CMakeFiles/engine.dir/link.txt

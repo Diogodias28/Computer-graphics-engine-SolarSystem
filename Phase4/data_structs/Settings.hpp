@@ -44,6 +44,10 @@ float getNear(Settings);
 
 float getFar(Settings);
 
+bool getShowAxes(Settings);
+
+void setShowAxes(Settings, bool);
+
 Group getGroup(Settings);
 
 Light getLight(Settings);

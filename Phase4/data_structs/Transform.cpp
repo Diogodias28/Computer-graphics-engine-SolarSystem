@@ -18,7 +18,7 @@ Transform newTransformation(char type, Point transformation, float angle, float 
     t->time = time;
     t->points = points;
     t->align = align;
-    t->showOrbit = true;
+    t->showOrbit = showOrbit;
     return t;
 }
 

@@ -7,18 +7,20 @@
 
 typedef struct transform* Transform;
 
-Transform newTransformation(char type, Point transformation, float angle, float time = 0, std::vector<Point> points = {}, bool align = false);
+Transform newTransformation(char type, Point transformation, float angle, float time = 0, std::vector<Point> points = {}, bool align = false, bool showOrbit = true);
 
-char getType(Transform t);
+char getType(Transform);
 
-Point getTransVal(Transform t);
+Point getTransVal(Transform);
 
-float getAngle(Transform t);
+float getAngle(Transform);
 
-float getTime(Transform t);
+float getTime(Transform);
 
-bool getAlign(Transform t);
+bool getAlign(Transform);
 
-std::vector<Point> getPoints(Transform t);
+bool getShowOrbit(Transform);
+
+std::vector<Point> getPoints(Transform);
 
 #endif
