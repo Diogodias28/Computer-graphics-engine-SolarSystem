@@ -48,6 +48,10 @@ bool getShowAxes(Settings);
 
 void setShowAxes(Settings, bool);
 
+bool getShowOrbit(Settings);
+
+void setShowOrbit(Settings, bool);
+
 Group getGroup(Settings);
 
 Light getLight(Settings);

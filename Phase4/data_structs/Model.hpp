@@ -49,11 +49,9 @@ GLuint getBuffer_1(Model);
 
 GLuint getBuffer_2(Model);
 
+const char* getTextureFile(Model);
+
 void initModelBuffers(Model);
-
-unsigned int getTexture(Model);
-
-void setTexture(Model, unsigned int);
 
 //void addPoint(Model, Point);
 
@@ -61,6 +59,6 @@ std::vector<std::vector<Point>> readFromFile(std::string);
 
 void writeToFile(std::vector<Point>, std::vector<Point>, std::vector<Point>, string);
 
-const char* getTextureFile(Model);
+int loadTexture(Model);
 
 #endif //MODEL 

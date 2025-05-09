@@ -95,6 +95,9 @@ generator_EXTERNAL_OBJECTS =
 
 generator: CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.cpp.o
 generator: CMakeFiles/generator.dir/build.make
+generator: /opt/homebrew/lib/libIL.dylib
+generator: /opt/homebrew/lib/libILU.dylib
+generator: /opt/homebrew/lib/libILUT.dylib
 generator: libdata_structs.a
 generator: libtinyXML.a
 generator: CMakeFiles/generator.dir/link.txt

@@ -138,6 +138,9 @@ else() # Linux and Mac
             ${OPENGL_LIBRARIES} 
             "-framework GLUT"
             "-framework OpenGL"
+            ${IL_LIBRARY}
+            ${ILU_LIBRARY}
+            ${ILUT_LIBRARY}
             )
     else()
         include_directories(

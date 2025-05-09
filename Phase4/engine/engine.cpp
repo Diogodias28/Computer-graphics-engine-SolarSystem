@@ -20,7 +20,7 @@ float camx, camy, camz;
 float lookAtx, lookAty, lookAtz;
 float upx, upy, upz;
 float fov, nearPlane, farPlane;
-bool showAxes;
+bool showAxes, showOrbit;
 
 // fps
 int timebase = 0;
@@ -127,7 +127,6 @@ void drawFigures(Group g) {
             
             float angle = (glutGet(GLUT_ELAPSED_TIME)/1000.0f/time) * 360.0f;
             glRotatef(angle, getX(tv), getY(tv), getZ(tv));
-            // trocar aqui??? !!!!!!!!!!!!!!! a iluminação e as normais também rodam?
         }
         else if(type == 'T' && time > 0) {
             std::vector<Point> points = getPoints(t);
@@ -137,7 +136,7 @@ void drawFigures(Group g) {
                 //normais e texturas !!!!!!!!
             }
             
-            if(getShowOrbit(t)) {
+            if(showOrbit) {
                 drawCatmullRomCurve(controlPoints);
             }
             
@@ -196,31 +195,59 @@ void drawFigures(Group g) {
 
     for (int i = 0; i < models.size(); i++) {
         float r,g,b;
-        unsigned int texture = getTexture(models[i]);
+        GLuint texID;
+        Color modelColor = getColor(models[i]);
 
-        //getColor(models[i], r, g, b);
+        RGB diffuse = getDiffuse(modelColor);
+        RGB ambient = getAmbient(modelColor);
+        RGB specular = getSpecular(modelColor);
+        RGB emissive = getEmissive(modelColor);
+        float shininess = getShininess(modelColor);
 
-        //glColor3f(r,g,b);
+        GLfloat diffuseArray[4] = { diffuse.r, diffuse.g, diffuse.b, 1.0f };
+        GLfloat ambientArray[4] = { ambient.r, ambient.g, ambient.b, 1.0f };
+        GLfloat specularArray[4] = { specular.r, specular.g, specular.b, 1.0f };
+        GLfloat emissiveArray[4] = { emissive.r, emissive.g, emissive.b, 1.0f };
+
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseArray);
+        glMaterialfv(GL_FRONT, GL_AMBIENT, ambientArray);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, specularArray);
+        glMaterialfv(GL_FRONT, GL_EMISSION, emissiveArray);
+        glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 
         vertexCount = getVertexCount(models[i]);
         buffer[0] = getBuffer_0(models[i]);
         buffer[1] = getBuffer_1(models[i]);
         buffer[2] = getBuffer_2(models[i]);
+        const char* textureFile = getTextureFile(models[i]);
 
-        glBindTexture(GL_TEXTURE_2D, texture);
+        if(textureFile != nullptr){
 
-        glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
-        glVertexPointer(3,GL_FLOAT,0,0);
+            texID = loadTexture(models[i]);
 
-        glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
-        glNormalPointer(GL_FLOAT, 0, 0);
-    
-        glBindBuffer(GL_ARRAY_BUFFER, buffer[2]);
-        glTexCoordPointer(2, GL_FLOAT, 0, 0);
+            glBindTexture(GL_TEXTURE_2D, texID);
 
-        glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+            glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
+            glVertexPointer(3,GL_FLOAT,0,0);
+
+            glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
+            glNormalPointer(GL_FLOAT, 0, 0);
         
-        glBindTexture(GL_TEXTURE_2D, 0);
+            glBindBuffer(GL_ARRAY_BUFFER, buffer[2]);
+            glTexCoordPointer(2, GL_FLOAT, 0, 0);
+
+            glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+            
+            glBindTexture(GL_TEXTURE_2D, 0);
+        } else{
+            glBindBuffer(GL_ARRAY_BUFFER,buffer[0]);
+            glVertexPointer(3,GL_FLOAT,0,0);
+
+            glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
+            glNormalPointer(GL_FLOAT, 0, 0);
+
+            glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+        }
     }
 
 
@@ -309,11 +336,10 @@ void processKeys(unsigned char c, int xx, int yy) {
         case 'p': // Altera a visualização dos eixos
             showAxes = !showAxes;
             break;
-        //case 'c': // Altera a visibilidade das linhas das curvas
-        //    showCurve = !showCurve;
-        //    break;
+        case 'c': // Altera a visibilidade das linhas das curvas
+            showOrbit = !showOrbit;
+            break;
 
-        //para que o c do showCurves funcione é preciso que o showCures seja algo geral e não algo de transformações específicas
     }
     updateCamera();
     glutPostRedisplay();
@@ -356,6 +382,31 @@ void processMouseMotion(int xx, int yy) {
     updateCamera();
 }
 
+void initGL() {
+
+    // alguns settings para OpenGL
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+
+
+    //converte(); ver isto depois
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glClearColor(0, 0, 0, 0);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glEnable(GL_RESCALE_NORMAL);
+
+    float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+}
+
 int main(int argc, char **argv) {
 
     if(argc<2){
@@ -385,6 +436,7 @@ int main(int argc, char **argv) {
     nearPlane = getNear(set);
     farPlane = getFar(set);
     showAxes = getShowAxes(set);
+    showOrbit = getShowOrbit(set);
     light = getLight(set);
     group = getGroup(set);
     
@@ -398,16 +450,8 @@ int main(int argc, char **argv) {
     glutInitWindowPosition(100,100);
     glutCreateWindow("Projeto CG");
 
-    // OpenGL settings
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);   
-
     //Init model buffers
     initGroupBuffers(group);
-
-    // VBO and Normal
-    glEnableClientState(GL_VERTEX_ARRAY);
-    //glEnableClientState(GL_NORMAL_ARRAY); (só na próxima fase)
 
     // Inicializar o tempo base para FPS
     timebase = glutGet(GLUT_ELAPSED_TIME);
@@ -420,6 +464,13 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(processKeys);
     glutMouseFunc(processMouseButtons);
     glutMotionFunc(processMouseMotion);
+
+#ifndef __APPLE__
+// init GLEW
+    glewInit();
+#endif
+
+    initGL();
 
     // fps
     glutIdleFunc(updateFPS);

@@ -6,11 +6,10 @@ struct transform{
     float angle;
     float time;
     bool align;
-    bool showOrbit;
     std::vector<Point> points;
 };
 
-Transform newTransformation(char type, Point transformation, float angle, float time, std::vector<Point> points, bool align, bool showOrbit) {
+Transform newTransformation(char type, Point transformation, float angle, float time, std::vector<Point> points, bool align) {
     Transform t = (Transform)malloc(sizeof(struct transform));
     t->type = type;
     t->transformation = transformation;
@@ -18,7 +17,6 @@ Transform newTransformation(char type, Point transformation, float angle, float 
     t->time = time;
     t->points = points;
     t->align = align;
-    t->showOrbit = showOrbit;
     return t;
 }
 
@@ -40,10 +38,6 @@ float getTime(Transform t) {
 
 bool getAlign(Transform t) { 
     return t->align; 
-}
-
-bool getShowOrbit(Transform t) {
-    return t->showOrbit;
 }
 
 std::vector<Point> getPoints(Transform t) { 

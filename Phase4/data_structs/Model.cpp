@@ -10,7 +10,6 @@ struct model{
     GLuint vertexCount;
     GLuint buffer[3];
     bool buffersInitialized; // Track estado OpenGL
-    unsigned int texture;
 };
 
 Model createModel(){
@@ -26,6 +25,8 @@ Model createModel(){
     m->vertexB = nullptr;
     m->vertexCount = 0;
     m->vertexB = nullptr;
+    m->normals = nullptr;
+    m->texCoords = nullptr;
     m->buffersInitialized = false;
 
     return m;
@@ -62,7 +63,11 @@ Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vect
     m->vertexCount = points.size();
 
     m->color = color;
-    m->textureFile = textureFile;
+    if(textureFile){
+        m->textureFile = textureFile;
+    }else {
+        m->textureFile = nullptr;
+    }
 
     return m;
 }
@@ -136,12 +141,8 @@ GLuint getBuffer_2(Model m){
     return m->buffer[2];
 }
 
-unsigned int getTexture(Model m){ //não sei se posso fazer isto
-    return m->texture;
-}
-
-void setTexture(Model m, unsigned int t){
-    m->texture = t;
+const char* getTextureFile(Model m){
+    return m->textureFile;
 }
 
 std::vector<std::vector<Point>> readFromFile(std::string fileName) {
@@ -165,8 +166,7 @@ std::vector<std::vector<Point>> readFromFile(std::string fileName) {
                 std::getline(iss, yNstr, ',') && 
                 std::getline(iss, zNstr, ';') &&
                 std::getline(iss, xTCstr, ',') && 
-                std::getline(iss, yTCstr, ',') && 
-                std::getline(iss, zCPstr)) {
+                std::getline(iss, yTCstr)){
                 
                 float xP = std::stof(xCPstr);
                 float yP = std::stof(yCPstr);
@@ -218,6 +218,58 @@ void writeToFile(std::vector<Point> controlPoints, std::vector<Point> normals, s
     file.close();
 }
 
-const char* getTextureFile(Model m) {
-    return m->textureFile;
+int loadTexture(Model m) {
+    unsigned int t, tw, th;
+    unsigned char *texData;
+    unsigned int texID;
+
+    if (!m->textureFile) {
+        printf("Error: Model does not have a texture file.\n");
+        return 0; // Return 0 to indicate no texture was loaded
+    }
+
+    std::string fullPath = std::string("../textures/") + m->textureFile;
+    const char* fileName = fullPath.c_str();
+
+    ilGenImages(1, &t);
+    ilBindImage(t);
+
+
+    // Check if the texture file exists, debugging
+    if (ilLoadImage((ILstring)fileName) == IL_FALSE) {
+        printf("Failed to load texture: %s\n", fileName);
+    }
+    
+    tw = ilGetInteger(IL_IMAGE_WIDTH);
+    th = ilGetInteger(IL_IMAGE_HEIGHT);
+    ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+    texData = ilGetData();
+
+    glGenTextures(1, &texID);
+
+    glBindTexture(GL_TEXTURE_2D, texID);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+    
+    // Check if glGenerateMipmap is available
+    #ifndef __APPLE__    
+    if (GLEW_VERSION_3_0) {
+        glGenerateMipmap(GL_TEXTURE_2D);
+    } else {
+        // Fall back for older OpenGL versions
+        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+    }
+    #else
+    glGenerateMipmap(GL_TEXTURE_2D);
+    #endif
+    
+    // Clean up
+    ilDeleteImages(1, &t);
+
+    return texID;
 }

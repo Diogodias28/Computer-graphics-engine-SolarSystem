@@ -14,6 +14,7 @@ struct settings{
     Light light;
     Group group;
     bool showAxes;
+    bool showOrbit;
 };
 
 Settings newSettings(){
@@ -21,6 +22,7 @@ Settings newSettings(){
     newSettings->light = createLight();
     newSettings->group = createGroup();
     newSettings->showAxes = true;
+    newSettings->showOrbit = true;
     return newSettings;
 }
 
@@ -82,7 +84,6 @@ Group parseGroup(TiXmlElement* groupElement) {
     std::vector<Model> models = std::vector<Model>();
     std::vector<Transform> transformations = std::vector<Transform>();
     std::vector<Group> subgroups = std::vector<Group>();
-    bool showOrbit = true;
 
     float currentR = 1.0f, currentG = 0.6f, currentB = 0.7f;
     
@@ -124,7 +125,7 @@ Group parseGroup(TiXmlElement* groupElement) {
                         continue;
                     }
 
-                    transform = newTransformation('T', makePoint(0,0,0), 0, time, points, align, showOrbit);
+                    transform = newTransformation('T', makePoint(0,0,0), 0, time, points, align);
                 }
                 else { // Translação estática
                     transform = newTransformation('T', 
@@ -182,15 +183,23 @@ Group parseGroup(TiXmlElement* groupElement) {
         TiXmlElement* modelElement = modelsElement->FirstChildElement("model");
         if (modelElement) {
             const char* filename = modelElement->Attribute("file");
-            std::vector<Point> points = readFromFile(filename)[0];
-            std::vector<Point> normals = readFromFile(filename)[1];
-            std::vector<Point> texCoord = readFromFile(filename)[2];
-
+            std::vector<Point> points;
+            std::vector<Point> normals;
+            std::vector<Point> texCoord = std::vector<Point>();
             // Textures
             const char* textureFile = nullptr;
             TiXmlElement* textureElem = modelElement->FirstChildElement("texture");
             if(textureElem) {
                 textureFile = textureElem->Attribute("file");
+                std::vector<std::vector<Point>> all =  readFromFile(filename);
+                points = all[0];
+                normals = all[1];
+                texCoord = all[2];
+            } 
+            else {
+                std::vector<std::vector<Point>> all = readFromFile(filename);
+                points = all[0];
+                normals = all[1];
             }
 
             //Colors
@@ -268,7 +277,18 @@ Settings xmlToSettings(const char* filePath){
             TiXmlElement* lookAtCamera = camera->FirstChildElement("lookAt"); // lookAt da câmara
             TiXmlElement* upCamera = camera->FirstChildElement("up"); // up da câmara
             TiXmlElement* projectionCamera = camera->FirstChildElement("projection"); // projections
-            TiXmlElement* showAxes = root->FirstChildElement("showAxes"); //exibir eixos
+
+            bool showAxes = true;
+            TiXmlElement* axes = root->FirstChildElement("showAxes");
+            if (axes) {
+                result->showAxes = axes->Attribute("bool");
+            }
+
+            bool showOrbit = true;
+            TiXmlElement* orbit = root->FirstChildElement("showOrbit");
+            if (orbit) {
+                result->showOrbit = orbit->Attribute("bool");
+            }
             result->window[0] = atoi(window->Attribute("width")); //largura da janela
             result->window[1] = atoi(window->Attribute("height")); //altura da janela
             result->poscam[0] = atof(posCamera->Attribute("x")); // coordenada x da posição da câmara
@@ -283,8 +303,7 @@ Settings xmlToSettings(const char* filePath){
             result->projection[0] = atof(projectionCamera->Attribute("fov")); // parâmetro fov do xml
             result->projection[1] = atof(projectionCamera->Attribute("near")); // parâmetro near do xml
             result->projection[2] = atof(projectionCamera->Attribute("far")); // parâmetro far do xml 
-            result->showAxes = (strcmp(showAxes->GetText(), "true") == 0);
-            
+
             TiXmlElement* lights = root->FirstChildElement("lights");
             if(lights) {
                 result->light = parseLight(lights);
@@ -373,6 +392,14 @@ bool getShowAxes(Settings set){
 
 void setShowAxes(Settings set, bool showAxes){
     set->showAxes = showAxes;
+}
+
+bool getShowOrbit(Settings set){
+    return set->showOrbit;
+}
+
+void setShowOrbit(Settings set, bool showOrbit){
+    set->showOrbit = showOrbit;
 }
 
 Group getGroup(Settings set){
