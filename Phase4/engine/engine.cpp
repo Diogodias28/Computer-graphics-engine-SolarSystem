@@ -204,10 +204,10 @@ void drawFigures(Group g) {
         RGB emissive = getEmissive(modelColor);
         float shininess = getShininess(modelColor);
 
-        GLfloat diffuseArray[4] = { diffuse.r, diffuse.g, diffuse.b, 1.0f };
-        GLfloat ambientArray[4] = { ambient.r, ambient.g, ambient.b, 1.0f };
-        GLfloat specularArray[4] = { specular.r, specular.g, specular.b, 1.0f };
-        GLfloat emissiveArray[4] = { emissive.r, emissive.g, emissive.b, 1.0f };
+        GLfloat diffuseArray[4] = { diffuse.r, diffuse.g, diffuse.b};
+        GLfloat ambientArray[4] = { ambient.r, ambient.g, ambient.b};
+        GLfloat specularArray[4] = { specular.r, specular.g, specular.b};
+        GLfloat emissiveArray[4] = { emissive.r, emissive.g, emissive.b};
 
         glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseArray);
         glMaterialfv(GL_FRONT, GL_AMBIENT, ambientArray);

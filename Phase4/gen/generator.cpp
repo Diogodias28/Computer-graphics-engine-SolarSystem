@@ -14,6 +14,20 @@ using namespace std;
 
 string fileName;
 
+Point normalize(Point p) {
+    float x = getX(p);
+    float y = getY(p);
+    float z = getZ(p);
+    float length = std::sqrt(x * x + y * y + z * z);
+    if (length != 0.0f) {
+        x /= length;
+        y /= length;
+        z /= length;
+    }
+    
+    return makePoint(x, y, z);
+}
+
 void genPlane(int length, int divisions){
     std::vector<Point> controlPoints;
     std::vector<Point> normals;
@@ -27,16 +41,33 @@ void genPlane(int length, int divisions){
             float z1 = -half + j * part;
             float x2 = x1 + part;
             float z2 = z1 + part;
+            float tx1 = (x1 + half) / length;
+            float tz1 = (z1 + half) / length;
+            float tx2 = (x2 + half) / length;
+            float tz2 = (z2 + half) / length;
+
 
             // Triângulo 1
             controlPoints.push_back(makePoint(x1, 0.0f, z1));
             controlPoints.push_back(makePoint(x1, 0.0f, z2));
             controlPoints.push_back(makePoint(x2, 0.0f, z1));
 
+            texCoords.push_back(makeTexturePoint(tx1, tz1));
+            texCoords.push_back(makeTexturePoint(tx1, tz2));
+            texCoords.push_back(makeTexturePoint(tx2, tz1));
+
             // Triângulo 2
             controlPoints.push_back(makePoint(x2, 0.0f, z1));
             controlPoints.push_back(makePoint(x1, 0.0f, z2));
             controlPoints.push_back(makePoint(x2, 0.0f, z2));
+
+            texCoords.push_back(makeTexturePoint(tx2, tz1));
+            texCoords.push_back(makeTexturePoint(tx1, tz2));
+            texCoords.push_back(makeTexturePoint(tx2, tz2));
+            
+            for(int k = 0; k < 6; k++){
+                normals.push_back(makePoint(0, 1, 0));
+            }
         }
     }
 
@@ -104,34 +135,69 @@ void genSphere(float radius, int slices, int stacks) {
 
     float alpha, beta;
     Point p1, p2, p3, p4;
+    Point n1, n2, n3, n4;
+    Point t1, t2, t3, t4;
 
     for (int j = 0; j < stacks; j++) {
         // ângulo para a stack atual e seguinte
         beta = j * anglePerStack;
         float nextBeta = (j + 1) * anglePerStack;
 
+        float texV = (float)j / stacks;
+        float nextTexV = (float)(j + 1) / stacks;
+
         for (int i = 0; i < slices; i++) {
             // ângulo para o slice atual e seguinte
             alpha = i * anglePerSlice;
             float nextAlpha = (i + 1) * anglePerSlice;
 
+            float texH = (float)i / stacks;
+            float nextTexH = (float)(i + 1) / stacks;
+    
             // pontos na stack atual
             p1 = makePoint(radius * sinf(beta) * sinf(alpha), radius * cosf(beta), radius * sinf(beta) * cosf(alpha));
             p2 = makePoint(radius * sinf(beta) * sinf(nextAlpha), radius * cosf(beta), radius * sinf(beta) * cosf(nextAlpha));
 
+            n1 = normalize(p1);
+            n2 = normalize(p2);
+
+            t1 = makeTexturePoint(texH, texV);
+            t2 = makeTexturePoint(nextTexH, texV); 
+
             // pontos na próxima stack
             p3 = makePoint(radius * sinf(nextBeta) * sinf(alpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(alpha));
             p4 = makePoint(radius * sinf(nextBeta) * sinf(nextAlpha), radius * cosf(nextBeta), radius * sinf(nextBeta) * cosf(nextAlpha));
+
+            n3 = normalize(p3);
+            n4 = normalize(p4);
+
+            t1 = makeTexturePoint(texH, nextTexV);
+            t2 = makeTexturePoint(nextTexH, nextTexV); 
+
 
             // triângulo de cima
             controlPoints.push_back(p1);
             controlPoints.push_back(p4);
             controlPoints.push_back(p2);
 
+            normals.push_back(n1);
+            normals.push_back(n4);
+            normals.push_back(n2);
+
+            texCoords.push_back(t1);
+            texCoords.push_back(t2);
+
             // triângulo de baixo
             controlPoints.push_back(p1);
             controlPoints.push_back(p3);
             controlPoints.push_back(p4);
+
+            normals.push_back(n1);
+            normals.push_back(n3);
+            normals.push_back(n4);
+
+            texCoords.push_back(t3);
+            texCoords.push_back(t4);
         }
     }
     
@@ -151,6 +217,10 @@ void genBox(int length, int grid) {
         for (int j = 0; j < grid; j++) {
             float a = -half + i * part;
             float b = -half + j * part;
+            float ta = (a + half) / length;
+            float tb = (b + half) / length;
+            float tap = (a + part + half) / length;
+            float tbp = (b + part + half) / length;
 
             // Face Frontal
             controlPoints.push_back(makePoint(a + part, b + part, half));
@@ -161,6 +231,19 @@ void genBox(int length, int grid) {
             controlPoints.push_back(makePoint(a, b, half));
             controlPoints.push_back(makePoint(a + part, b, half));
 
+            for(int k = 0; k < 6; k++) {
+                normals.push_back(makePoint(1, 0, 0));
+            }
+
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(ta, tb));
+
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+
 			// Face de trás
 			controlPoints.push_back(makePoint(a, b, -half));
 			controlPoints.push_back(makePoint(a, b + part, -half));
@@ -169,7 +252,20 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(a, b + part, -half));
 			controlPoints.push_back(makePoint(a + part, b + part, -half));
 			controlPoints.push_back(makePoint(a + part, b, -half));
-	  
+            
+            for (int k = 0; k < 6; k++) {
+                normals.push_back(makePoint(-1, 0, 0));
+            }
+
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+
 			// Face da Esquerda
 			controlPoints.push_back(makePoint(-half, a, b));
 			controlPoints.push_back(makePoint(-half, a, b + part));
@@ -178,7 +274,20 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(-half, a, b + part));
 			controlPoints.push_back(makePoint(-half, a + part, b + part));
 			controlPoints.push_back(makePoint(-half, a + part, b));
-	  
+            
+            for (int k=0; k < 6; k++) {
+                normals.push_back(makePoint(0, 0, -1));
+            }
+
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+
 			// Face da direita
 			controlPoints.push_back(makePoint(half, a + part, b + part));
 			controlPoints.push_back(makePoint(half, a, b + part));
@@ -187,7 +296,20 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(half, a + part, b + part));
 			controlPoints.push_back(makePoint(half, a, b));
 			controlPoints.push_back(makePoint(half, a + part, b));
-	  
+
+            for (int k = 0; k < 6; k++) {
+                normals.push_back(makePoint(0, 0, 1));
+            }
+
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(ta, tb));
+
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+
 			// Face Superior
 			controlPoints.push_back(makePoint(a, half, b));
 			controlPoints.push_back(makePoint(a + part, half, b + part));
@@ -196,7 +318,20 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(a, half, b));
 			controlPoints.push_back(makePoint(a, half, b + part));
 			controlPoints.push_back(makePoint(a + part, half, b + part));
-	  
+            
+            for (int k = 0; k < 6; k++) {
+                normals.push_back(makePoint(0, 1, 0));
+            }
+
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tbp));
+
+
 			// Bottom Face
 			controlPoints.push_back(makePoint(a, -half, b));
 			controlPoints.push_back(makePoint(a + part, -half, b));
@@ -206,6 +341,17 @@ void genBox(int length, int grid) {
 			controlPoints.push_back(makePoint(a + part, -half, b));
 			controlPoints.push_back(makePoint(a + part, -half, b + part));
 			
+            for (int k = 0; k < 6; k++) {
+                normals.push_back(makePoint(0, -1, 0));
+            }
+
+            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+
+            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tap, tb));
+            texCoords.push_back(makeTexturePoint(tap, tbp));
         }
     }
     writeToFile(controlPoints, normals, texCoords, fileName);}
@@ -247,6 +393,10 @@ void genCone(const float radius, const float height, const size_t slices, const 
         controlPoints.push_back(base_middle);
         controlPoints.push_back(base_bottom_right);
         controlPoints.push_back(base_bottom_left);
+
+        normals.push_back(makePoint(0, -1, 0));
+        normals.push_back(makePoint(0, -1, 0));
+        normals.push_back(makePoint(0, -1, 0));
     }
 
     writeToFile(controlPoints, normals, texCoords, fileName);
@@ -332,7 +482,8 @@ Point bezierPatchDV(const std::vector<Point>& patchControlPoints, float u, float
     return result;
 }
 
-Point computeNormal(const std::vector<Point>& patchControlPoints, float u, float v) {
+
+Point computeBezierNormal(const std::vector<Point>& patchControlPoints, float u, float v) {
     Point du = bezierPatchDU(patchControlPoints, u, v);
     Point dv = bezierPatchDV(patchControlPoints, u, v);
     Point normal = crossProduct(dv,du);  // Ordem ajustada para a orientação
@@ -455,10 +606,10 @@ void genPatch(const std::string& patchFile, int tessellation) {
                 points.push_back(p3);
                 points.push_back(p4);
 
-                Point n1 = computeNormal(patchControlPoints, u1, v1);
-                Point n2 = computeNormal(patchControlPoints, u2, v1);
-                Point n3 = computeNormal(patchControlPoints, u1, v2);
-                Point n4 = computeNormal(patchControlPoints, u2, v2);
+                Point n1 = computeBezierNormal(patchControlPoints, u1, v1);
+                Point n2 = computeBezierNormal(patchControlPoints, u2, v1);
+                Point n3 = computeBezierNormal(patchControlPoints, u1, v2);
+                Point n4 = computeBezierNormal(patchControlPoints, u2, v2);
 
                 normals.push_back(n1);
                 normals.push_back(n3);

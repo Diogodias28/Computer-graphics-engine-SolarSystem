@@ -212,6 +212,10 @@ void writeToFile(std::vector<Point> controlPoints, std::vector<Point> normals, s
     // Escreve os pontos de controlo no formato "x, y, z"
     file << std::fixed << std::setprecision(6);
     for (int i = 0; i<controlPoints.size(); i++) {
+        if (!controlPoints[i] || !normals[i] || !texCoords[i]) {
+            printf("Error: Null pointer encountered in writeToFile.\n");
+            continue;
+        }
         file << getX(controlPoints[i]) << ", " << getY(controlPoints[i]) << ", " << getZ(controlPoints[i]) << ";" << getX(normals[i]) << ", " << getY(normals[i]) << ", " << getZ(normals[i]) << ";" << getX(texCoords[i]) << ", " << getY(texCoords[i]) << std::endl;
     }
 
