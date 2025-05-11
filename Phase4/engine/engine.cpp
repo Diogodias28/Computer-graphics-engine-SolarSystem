@@ -219,9 +219,9 @@ void drawFigures(Group g) {
         buffer[0] = getBuffer_0(models[i]);
         buffer[1] = getBuffer_1(models[i]);
         buffer[2] = getBuffer_2(models[i]);
-        const char* textureFile = getTextureFile(models[i]);
+        std::string textureFile = getTextureFile(models[i]);
 
-        if(textureFile != nullptr){
+        if(!textureFile.empty()){
 
             texID = loadTexture(models[i]);
 
@@ -257,6 +257,43 @@ void drawFigures(Group g) {
     glPopMatrix();
 }
 
+void setLight(Light l) {
+    
+    glEnable(GL_LIGHT0);
+
+    char type = getType(l);
+    
+    if(type == 'P'){
+        std::vector<Point> positions = getPositions(l);
+        for(int i=0; i<positions.size(); i++){
+            GLenum lightID = GL_LIGHT0 + i; 
+            
+            glEnable(lightID);
+            float pos[4] = {getX(positions[i]), getY(positions[i]), getZ(positions[i]), 1.0f};
+            glLightfv(GL_LIGHT0, GL_POSITION, pos);
+        }
+    }
+    else if(type == 'D'){
+        std::vector<float> direction = getDirections(l);
+        float dir[4] = {direction[0], direction[1], direction[2], 0.0f};
+        glLightfv(GL_LIGHT0, GL_POSITION, dir);
+    }
+    else if(type == 'S'){
+        Point position = getPositions(l)[0];
+        std::vector<float> direction = getDirections(l);
+        float cutoff = getCutoff(l);
+
+
+        float pos[4] = {getX(position), getY(position), getZ(position), 1.0f};
+        glLightfv(GL_LIGHT0, GL_POSITION, pos);
+
+        float dir[3] = {direction[0], direction[1], direction[2]};
+        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, dir);
+
+        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
+    }
+}
+
 
 void renderScene(void) {
     // clear buffers
@@ -270,6 +307,8 @@ void renderScene(void) {
             lookAtx, lookAty, lookAtz,
             upx, upy, upz);
 
+    setLight(light);
+        
     if (showAxes) {
         glBegin(GL_LINES);
         // X axis in red
@@ -388,8 +427,6 @@ void initGL() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
-
-    //converte(); ver isto depois
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -397,7 +434,6 @@ void initGL() {
     glClearColor(0, 0, 0, 0);
 
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
 
     glEnable(GL_TEXTURE_2D);
 
@@ -405,6 +441,7 @@ void initGL() {
 
     float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
 }
 
 int main(int argc, char **argv) {
@@ -450,6 +487,10 @@ int main(int argc, char **argv) {
     glutInitWindowPosition(100,100);
     glutCreateWindow("Projeto CG");
 
+    // init GL
+    initGL();
+    ilInit();
+    
     //Init model buffers
     initGroupBuffers(group);
 
@@ -469,8 +510,6 @@ int main(int argc, char **argv) {
 // init GLEW
     glewInit();
 #endif
-
-    initGL();
 
     // fps
     glutIdleFunc(updateFPS);

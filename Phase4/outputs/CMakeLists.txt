@@ -6,7 +6,21 @@ PROJECT(engine)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_executable(engine ../engine/engine.cpp)
-add_executable(generator ../gen/generator.cpp)
+add_executable(generator 
+    ../gen/generator.cpp
+    ../gen/primitives/cone.cpp
+    ../gen/primitives/cone.hpp
+    ../gen/primitives/box.cpp
+    ../gen/primitives/box.hpp
+    ../gen/primitives/plane.cpp
+    ../gen/primitives/plane.hpp
+    ../gen/primitives/sphere.cpp
+    ../gen/primitives/sphere.hpp
+    ../gen/primitives/ring.cpp
+    ../gen/primitives/ring.hpp
+    ../gen/primitives/bezierPatches.cpp
+    ../gen/primitives/bezierPatches.hpp
+    )
 
 add_library(
     data_structs

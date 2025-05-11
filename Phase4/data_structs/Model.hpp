@@ -49,7 +49,7 @@ GLuint getBuffer_1(Model);
 
 GLuint getBuffer_2(Model);
 
-const char* getTextureFile(Model);
+std::string getTextureFile(Model);
 
 void initModelBuffers(Model);
 

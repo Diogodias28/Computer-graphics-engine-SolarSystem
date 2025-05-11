@@ -4,7 +4,7 @@ struct light{
     char type; // P = point, D = directional, S = spot, N = null
     std::vector<Point> positions;
     std::vector<float> directions;
-    float cutoof;
+    float cutoff;
 };
 
 Light makeLight(char type, std::vector<Point> positions, std::vector<float> direction, float cutoff) {
@@ -14,7 +14,7 @@ Light makeLight(char type, std::vector<Point> positions, std::vector<float> dire
         l->type = type;
         l->positions = positions;
         l->directions = direction;
-        l->cutoof = cutoff;
+        l->cutoff = cutoff;
     }
 
     return l;
@@ -37,6 +37,6 @@ std::vector<float> getDirections(Light l) {
     return l->directions;
 }
 
-float getCutoof(Light l) {
-    return l->cutoof;
+float getCutoff(Light l) {
+    return l->cutoff;
 }

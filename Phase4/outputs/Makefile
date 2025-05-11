@@ -504,6 +504,150 @@ Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generato
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.cpp.s
 .PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.cpp.s
 
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.cpp.s
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.cpp.s
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.s
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.cpp.s
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.cpp.s
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.o: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.o
+
+# target to build an object file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.o
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.o
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.i: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.i
+
+# target to preprocess a source file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.i
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.i
+
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.s: Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.s
+
+# target to generate assembly for a file
+Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.s
+.PHONY : Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -558,6 +702,24 @@ help:
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.o"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.i"
 	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.s"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.o"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.i"
+	@echo "... Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.s"
 .PHONY : help
 
 

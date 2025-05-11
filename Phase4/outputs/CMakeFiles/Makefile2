@@ -128,12 +128,12 @@ CMakeFiles/generator.dir/all: CMakeFiles/data_structs.dir/all
 CMakeFiles/generator.dir/all: CMakeFiles/tinyXML.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=12,13 "Built target generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Built target generator"
 .PHONY : CMakeFiles/generator.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/generator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/generator.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles 0
 .PHONY : CMakeFiles/generator.dir/rule
@@ -145,7 +145,7 @@ generator: CMakeFiles/generator.dir/rule
 # codegen rule for target.
 CMakeFiles/generator.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generator.dir/build.make CMakeFiles/generator.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=12,13 "Finished codegen for target generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Finished codegen for target generator"
 .PHONY : CMakeFiles/generator.dir/codegen
 
 # clean rule for target.
@@ -192,7 +192,7 @@ CMakeFiles/data_structs.dir/clean:
 CMakeFiles/tinyXML.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=14,15,16,17,18 "Built target tinyXML"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=20,21,22,23,24 "Built target tinyXML"
 .PHONY : CMakeFiles/tinyXML.dir/all
 
 # Build rule for subdir invocation for target.
@@ -209,7 +209,7 @@ tinyXML: CMakeFiles/tinyXML.dir/rule
 # codegen rule for target.
 CMakeFiles/tinyXML.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tinyXML.dir/build.make CMakeFiles/tinyXML.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=14,15,16,17,18 "Finished codegen for target tinyXML"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/outputs/CMakeFiles --progress-num=20,21,22,23,24 "Finished codegen for target tinyXML"
 .PHONY : CMakeFiles/tinyXML.dir/codegen
 
 # clean rule for target.

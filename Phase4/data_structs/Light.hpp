@@ -20,6 +20,6 @@ std::vector<Point> getPositions(Light);
 
 std::vector<float> getDirections(Light);
 
-float getCutoof(Light);
+float getCutoff(Light);
 
 #endif

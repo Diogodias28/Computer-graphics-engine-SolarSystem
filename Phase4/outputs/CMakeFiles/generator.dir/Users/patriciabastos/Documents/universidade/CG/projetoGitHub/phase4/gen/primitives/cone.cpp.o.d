@@ -1,5 +1,5 @@
-CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.cpp.o: \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/generator.cpp \
+CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp.o: \
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.cpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/cone.hpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/../../data_structs/Model.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/System/Library/Frameworks/GLUT.framework/Headers/glut.h \
@@ -806,9 +806,4 @@ CMakeFiles/generator.dir/Users/patriciabastos/Documents/universidade/CG/projetoG
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1/iomanip \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/../../data_structs/Transform.hpp \
   /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/../../data_structs/Point.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/../../data_structs/Color.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/ring.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/plane.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/box.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/bezierPatches.hpp \
-  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/sphere.hpp
+  /Users/patriciabastos/Documents/universidade/CG/projetoGitHub/phase4/gen/primitives/../../data_structs/Color.hpp

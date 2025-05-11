@@ -20,6 +20,12 @@ Point makePoint(float x, float y, float z){
     return p;
 }
 
+void deletePoint(Point p) {
+    if (p) {
+        delete p;
+    }
+}
+
 Point createTexturePoint() {
     return makeTexturePoint(0.0f, 0.0f);
 }
@@ -96,3 +102,17 @@ void buildRotMatrix(Point x, Point y, Point z, Point w, float *m) {
     m[2] = getZ(x); m[6] = getZ(y); m[10] = getZ(z); m[14] = getZ(w);
     m[3] = 0;       m[7] = 0;       m[11] = 0;       m[15] = 1;
 } 
+
+Point normalize(Point p) {
+    float x = getX(p);
+    float y = getY(p);
+    float z = getZ(p);
+    float length = std::sqrt(x * x + y * y + z * z);
+    if (length != 0.0f) {
+        x /= length;
+        y /= length;
+        z /= length;
+    }
+    
+    return makePoint(x, y, z);
+}

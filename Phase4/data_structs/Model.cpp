@@ -3,7 +3,7 @@
 struct model{
     //std::vector<Point> points;
     Color color;
-    const char* textureFile;
+    std::string textureFile;
     float* vertexB;
     float* normals;
     float* texCoords;
@@ -35,10 +35,6 @@ Model createModel(){
 Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vector<Point> texCoords, Color color, const char* textureFile){
     Model m = new model();
 
-    if (m->vertexB != nullptr) {
-        free(m->vertexB);
-    }
-    
     m->vertexB = (float *)malloc(points.size() * 3 * sizeof(float));
     m->normals = (float *)malloc(points.size() * 3 * sizeof(float));
 	m->texCoords = (float *)malloc(points.size() * 2 * sizeof(float));
@@ -56,8 +52,8 @@ Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vect
     }
 
     for(int i=0; i<texCoords.size(); i++){
-        m->texCoords[i*3 + 0] = getX(points[i]);
-		m->texCoords[i*3 + 1] = getY(points[i]);
+        m->texCoords[i*2 + 0] = getX(texCoords[i]);
+		m->texCoords[i*2 + 1] = getY(texCoords[i]);
     }
 
     m->vertexCount = points.size();
@@ -141,7 +137,7 @@ GLuint getBuffer_2(Model m){
     return m->buffer[2];
 }
 
-const char* getTextureFile(Model m){
+std::string getTextureFile(Model m){
     return m->textureFile;
 }
 
@@ -212,10 +208,6 @@ void writeToFile(std::vector<Point> controlPoints, std::vector<Point> normals, s
     // Escreve os pontos de controlo no formato "x, y, z"
     file << std::fixed << std::setprecision(6);
     for (int i = 0; i<controlPoints.size(); i++) {
-        if (!controlPoints[i] || !normals[i] || !texCoords[i]) {
-            printf("Error: Null pointer encountered in writeToFile.\n");
-            continue;
-        }
         file << getX(controlPoints[i]) << ", " << getY(controlPoints[i]) << ", " << getZ(controlPoints[i]) << ";" << getX(normals[i]) << ", " << getY(normals[i]) << ", " << getZ(normals[i]) << ";" << getX(texCoords[i]) << ", " << getY(texCoords[i]) << std::endl;
     }
 
@@ -223,56 +215,40 @@ void writeToFile(std::vector<Point> controlPoints, std::vector<Point> normals, s
 }
 
 int loadTexture(Model m) {
+    if (m == nullptr || m->textureFile.empty()) return 0;
+
     unsigned int t, tw, th;
     unsigned char *texData;
     unsigned int texID;
 
-    if (!m->textureFile) {
-        printf("Error: Model does not have a texture file.\n");
-        return 0; // Return 0 to indicate no texture was loaded
-    }
-
-    std::string fullPath = std::string("../textures/") + m->textureFile;
-    const char* fileName = fullPath.c_str();
+    std::string fullPath = "../textures/" + m->textureFile;
 
     ilGenImages(1, &t);
     ilBindImage(t);
 
-
-    // Check if the texture file exists, debugging
-    if (ilLoadImage((ILstring)fileName) == IL_FALSE) {
-        printf("Failed to load texture: %s\n", fileName);
+    if (ilLoadImage((ILstring)fullPath.c_str()) == IL_FALSE) {
+        std::cerr << "ERROR: Failed to load texture: " << fullPath << std::endl;
+        ILenum error = ilGetError();
+        std::cerr << "DevIL error: " << std::endl;
+        ilDeleteImages(1, &t);
+        return 0;
     }
-    
+
     tw = ilGetInteger(IL_IMAGE_WIDTH);
     th = ilGetInteger(IL_IMAGE_HEIGHT);
     ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
     texData = ilGetData();
 
     glGenTextures(1, &texID);
-
     glBindTexture(GL_TEXTURE_2D, texID);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
-    
-    // Check if glGenerateMipmap is available
-    #ifndef __APPLE__    
-    if (GLEW_VERSION_3_0) {
-        glGenerateMipmap(GL_TEXTURE_2D);
-    } else {
-        // Fall back for older OpenGL versions
-        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, texData);
-    }
-    #else
     glGenerateMipmap(GL_TEXTURE_2D);
-    #endif
-    
-    // Clean up
+
     ilDeleteImages(1, &t);
 
     return texID;
