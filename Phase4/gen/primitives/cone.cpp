@@ -9,6 +9,9 @@ void genCone(const float radius, const float height, const size_t slices, const 
     const float alpha = (float) 2 * M_PI / slices;
     const float heightPerStack = (float) height / stacks;
 
+    float slope = height / radius;
+    float slopeLength = sqrt(1.0f + slope * slope);
+
     const Point base_middle = createPoint();
 
     for (int slice = 0; slice < slices; slice++) {
@@ -30,8 +33,8 @@ void genCone(const float radius, const float height, const size_t slices, const 
             controlPoints.push_back(bottom_right);
             controlPoints.push_back(top_right);
 
-            Point n1 = normalize(makePoint(sin(slice * alpha), radius / height, cos(slice * alpha)));
-            Point n2 = normalize(makePoint(sin((slice + 1) * alpha), radius / height, cos((slice + 1) * alpha)));
+            Point n1 = normalize(makePoint(sin(slice * alpha), radius / (height * slopeLength), cos(slice * alpha)));
+            Point n2 = normalize(makePoint(sin((slice + 1) * alpha), radius / (height * slopeLength), cos((slice + 1) * alpha)));
 
             normals.push_back(n1);
             normals.push_back(n1);
@@ -41,10 +44,10 @@ void genCone(const float radius, const float height, const size_t slices, const 
             normals.push_back(n2);
             normals.push_back(n2);
 
-            float sl1 = slice / slices;
-            float sl2 = (slice + 1) / slices;
-            float st1 = stack / stacks;
-            float st2 = (stack + 1) / stacks;
+            float sl1 = (float) 1.0f - (currRadius / radius);
+            float sl2 = (float) (slice + 1) / slices;
+            float st1 = (float) stack / stacks;
+            float st2 = (float) 1.0f - (nextRadius / radius);
 
             texCoords.push_back(makeTexturePoint(sl1, st2));
             texCoords.push_back(makeTexturePoint(sl1, st1));

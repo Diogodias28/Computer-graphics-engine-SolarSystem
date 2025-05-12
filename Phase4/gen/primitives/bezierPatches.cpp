@@ -107,7 +107,7 @@ Point computeBezierNormal(const std::vector<Point>& patchControlPoints, float u,
 
 Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v) {
     Point result = createPoint();
-    float x=0.0f, y=0.0f, z=0.0f;
+    float x = 0.0f, y = 0.0f, z = 0.0f;
 
     // Combinar as funções de Bernstein para u e v
     for (int i = 0; i < 4; i++) {
@@ -119,12 +119,11 @@ Point bezierPatch(const std::vector<Point>& patchControlPoints, float u, float v
             x += b * getX(patchControlPoints[i * 4 + j]);
             y += b * getY(patchControlPoints[i * 4 + j]);
             z += b * getZ(patchControlPoints[i * 4 + j]);
-
-            setX(result, x);
-            setY(result, y);
-            setZ(result, z);
         }
     }
+    setX(result, x);
+    setY(result, y);
+    setZ(result, z);
 
     return result;
 }
@@ -201,12 +200,12 @@ void genPatch(const std::string& patchFile, int tessellation, std::string fileNa
 
                 // Adicionar os triângulos
                 points.push_back(p1);
-                points.push_back(p2);
                 points.push_back(p3);
+                points.push_back(p2);
 
                 points.push_back(p2);
-                points.push_back(p4);
                 points.push_back(p3);
+                points.push_back(p4);
 
                 Point n1 = computeBezierNormal(patchControlPoints, u1, v1);
                 Point n2 = computeBezierNormal(patchControlPoints, u2, v1);
@@ -214,20 +213,20 @@ void genPatch(const std::string& patchFile, int tessellation, std::string fileNa
                 Point n4 = computeBezierNormal(patchControlPoints, u2, v2);
 
                 normals.push_back(n1);
-                normals.push_back(n2);
                 normals.push_back(n3);
+                normals.push_back(n2);
 
                 normals.push_back(n2);
-                normals.push_back(n4);
                 normals.push_back(n3);
+                normals.push_back(n4);
 
                 texCoords.push_back(makeTexturePoint(u1, v1)); 
+                texCoords.push_back(makeTexturePoint(u1, v2)) ; 
                 texCoords.push_back(makeTexturePoint(u2, v1)); 
-                texCoords.push_back(makeTexturePoint(u1, v2)); 
 
                 texCoords.push_back(makeTexturePoint(u2, v1)); 
-                texCoords.push_back(makeTexturePoint(u2, v2)); 
                 texCoords.push_back(makeTexturePoint(u1, v2)); 
+                texCoords.push_back(makeTexturePoint(u2, v2)); 
 
             }
         }

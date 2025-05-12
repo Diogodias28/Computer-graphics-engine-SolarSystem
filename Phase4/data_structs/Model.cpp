@@ -32,7 +32,7 @@ Model createModel(){
     return m;
 }
 
-Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vector<Point> texCoords, Color color, const char* textureFile){
+Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vector<Point> texCoords, Color color, std::string textureFile){
     Model m = new model();
 
     m->vertexB = (float *)malloc(points.size() * 3 * sizeof(float));
@@ -59,10 +59,10 @@ Model makeModel(std::vector<Point> points, std::vector<Point> normals, std::vect
     m->vertexCount = points.size();
 
     m->color = color;
-    if(textureFile){
+    if(!textureFile.empty()){
         m->textureFile = textureFile;
     }else {
-        m->textureFile = nullptr;
+        m->textureFile = "";
     }
 
     return m;

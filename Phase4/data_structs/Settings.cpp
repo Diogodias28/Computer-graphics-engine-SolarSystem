@@ -187,7 +187,7 @@ Group parseGroup(TiXmlElement* groupElement) {
             std::vector<Point> normals;
             std::vector<Point> texCoord = std::vector<Point>();
             // Textures
-            const char* textureFile = nullptr;
+            std::string textureFile = "";
             TiXmlElement* textureElem = modelElement->FirstChildElement("texture");
             if(textureElem) {
                 textureFile = textureElem->Attribute("file");

@@ -30,8 +30,8 @@ void genSphere(float radius, int slices, int stacks, std::string fileName) {
             alpha = i * anglePerSlice;
             float nextAlpha = (i + 1) * anglePerSlice;
 
-            float texH = (float)i / stacks;
-            float nextTexH = (float)(i + 1) / stacks;
+            float texH = (float)i / slices;
+            float nextTexH = (float)(i + 1) / slices;
     
             // pontos na stack atual
             p1 = makePoint(radius * sinf(beta) * sinf(alpha), radius * cosf(beta), radius * sinf(beta) * cosf(alpha));
@@ -50,8 +50,8 @@ void genSphere(float radius, int slices, int stacks, std::string fileName) {
             n3 = normalize(p3);
             n4 = normalize(p4);
 
-            t1 = makeTexturePoint(texH, nextTexV);
-            t2 = makeTexturePoint(nextTexH, nextTexV); 
+            t3 = makeTexturePoint(texH, nextTexV);
+            t4 = makeTexturePoint(nextTexH, nextTexV); 
 
 
             // triângulo de cima
@@ -64,6 +64,7 @@ void genSphere(float radius, int slices, int stacks, std::string fileName) {
             normals.push_back(n2);
 
             texCoords.push_back(t1);
+            texCoords.push_back(t4);
             texCoords.push_back(t2);
 
             // triângulo de baixo
@@ -75,6 +76,7 @@ void genSphere(float radius, int slices, int stacks, std::string fileName) {
             normals.push_back(n3);
             normals.push_back(n4);
 
+            texCoords.push_back(t1);
             texCoords.push_back(t3);
             texCoords.push_back(t4);
         }

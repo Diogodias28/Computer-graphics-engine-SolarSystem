@@ -259,8 +259,6 @@ void drawFigures(Group g) {
 
 void setLight(Light l) {
     
-    glEnable(GL_LIGHT0);
-
     char type = getType(l);
     
     if(type == 'P'){
@@ -270,7 +268,7 @@ void setLight(Light l) {
             
             glEnable(lightID);
             float pos[4] = {getX(positions[i]), getY(positions[i]), getZ(positions[i]), 1.0f};
-            glLightfv(GL_LIGHT0, GL_POSITION, pos);
+            glLightfv(lightID, GL_POSITION, pos);
         }
     }
     else if(type == 'D'){
@@ -278,11 +276,11 @@ void setLight(Light l) {
         float dir[4] = {direction[0], direction[1], direction[2], 0.0f};
         glLightfv(GL_LIGHT0, GL_POSITION, dir);
     }
+
     else if(type == 'S'){
         Point position = getPositions(l)[0];
         std::vector<float> direction = getDirections(l);
         float cutoff = getCutoff(l);
-
 
         float pos[4] = {getX(position), getY(position), getZ(position), 1.0f};
         glLightfv(GL_LIGHT0, GL_POSITION, pos);
@@ -434,7 +432,7 @@ void initGL() {
     glClearColor(0, 0, 0, 0);
 
     glEnable(GL_LIGHTING);
-
+    glEnable(GL_LIGHT0);
     glEnable(GL_TEXTURE_2D);
 
     glEnable(GL_RESCALE_NORMAL);

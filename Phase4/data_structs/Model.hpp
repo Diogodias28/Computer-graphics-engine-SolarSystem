@@ -27,7 +27,7 @@ typedef struct model* Model;
 
 Model createModel();
 
-Model makeModel(std::vector<Point>, std::vector<Point>, std::vector<Point>,Color, const char*);
+Model makeModel(std::vector<Point>, std::vector<Point>, std::vector<Point>,Color, std::string);
 
 //std::vector<Point> getPoints(Model);
 
