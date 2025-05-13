@@ -54,6 +54,6 @@ void setShowOrbit(Settings, bool);
 
 Group getGroup(Settings);
 
-Light getLight(Settings);
+std::vector<Light> getLight(Settings);
 
 #endif // Settings

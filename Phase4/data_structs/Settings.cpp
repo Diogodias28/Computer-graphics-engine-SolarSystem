@@ -11,7 +11,7 @@ struct settings{
     float lookAt[3];
     float up[3];
     float projection[3]; // fov, near, far
-    Light light;
+    std::vector<Light> lights;
     Group group;
     bool showAxes;
     bool showOrbit;
@@ -19,65 +19,61 @@ struct settings{
 
 Settings newSettings(){
     Settings newSettings = new settings();
-    newSettings->light = createLight();
+    newSettings->lights = std::vector<Light>();
     newSettings->group = createGroup();
     newSettings->showAxes = true;
     newSettings->showOrbit = true;
     return newSettings;
 }
 
-Light parseLight(TiXmlElement* lightsElement) {
+std::vector<Light> parseLight(TiXmlElement* lightsElement) {
+    std::vector<Light> lights;
     char type = 'N';
     std::vector<float> dir;
-    std::vector<Point> positions = std::vector<Point>();
+    Point positions = createPoint();
     float cutoff = 0.0f;
 
-    TiXmlElement* firstLight = lightsElement->FirstChildElement("light");
-    if(firstLight) {
+    for (TiXmlElement* lightElem = lightsElement->FirstChildElement("light");
+        lightElem;
+        lightElem = lightElem->NextSiblingElement("light")){
 
-        std::string lightType = firstLight->Attribute("type");
+        std::string lightType = lightElem->Attribute("type");
 
         if (lightType == "directional") {
             type = 'D';
-            dir.push_back(atof(firstLight->Attribute("dirx")));
-            dir.push_back(atof(firstLight->Attribute("diry")));
-            dir.push_back(atof(firstLight->Attribute("dirz")));
+            dir.push_back(atof(lightElem->Attribute("dirx")));
+            dir.push_back(atof(lightElem->Attribute("diry")));
+            dir.push_back(atof(lightElem->Attribute("dirz")));
         }
         else if (lightType == "spot") {
             type = 'S';
-            positions.push_back(makePoint(
-                atof(firstLight->Attribute("posx")),
-                atof(firstLight->Attribute("posy")),
-                atof(firstLight->Attribute("posz"))
-            ));
+            positions = makePoint(
+                atof(lightElem->Attribute("posx")),
+                atof(lightElem->Attribute("posy")),
+                atof(lightElem->Attribute("posz"))
+            );
             
-            dir.push_back(atof(firstLight->Attribute("dirx")));
-            dir.push_back(atof(firstLight->Attribute("diry")));
-            dir.push_back(atof(firstLight->Attribute("dirz")));
+            dir.push_back(atof(lightElem->Attribute("dirx")));
+            dir.push_back(atof(lightElem->Attribute("diry")));
+            dir.push_back(atof(lightElem->Attribute("dirz")));
 
-            cutoff = atof(firstLight->Attribute("cutoff"));
+            cutoff = atof(lightElem->Attribute("cutoff"));
         }
         else if (lightType == "point") {
             type = 'P';
-            positions.push_back(makePoint(
-                atof(firstLight->Attribute("posx")),
-                atof(firstLight->Attribute("posy")),
-                atof(firstLight->Attribute("posz"))
-            ));
+            positions = makePoint(
+                atof(lightElem->Attribute("posx")),
+                atof(lightElem->Attribute("posy")),
+                atof(lightElem->Attribute("posz"))
+            );        
+        }
 
-            for (TiXmlElement* lightElem = firstLight->NextSiblingElement("light");
-                lightElem && std::string(lightElem->Attribute("type")) == "point";
-                lightElem = lightElem->NextSiblingElement("light")) {
-            
-                positions.push_back(makePoint(
-                    atof(lightElem->Attribute("posx")),
-                    atof(lightElem->Attribute("posy")),
-                    atof(lightElem->Attribute("posz"))
-                ));
-            }
+        if(type != 'N'){
+            Light light = makeLight(type, positions, dir, cutoff);
+            lights.push_back(light);
         }
     }
-    return makeLight(type,positions,dir,cutoff);
+    return lights;
 }
 
 Group parseGroup(TiXmlElement* groupElement) {
@@ -304,11 +300,11 @@ Settings xmlToSettings(const char* filePath){
             result->projection[1] = atof(projectionCamera->Attribute("near")); // parâmetro near do xml
             result->projection[2] = atof(projectionCamera->Attribute("far")); // parâmetro far do xml 
 
-            TiXmlElement* lights = root->FirstChildElement("lights");
-            if(lights) {
-                result->light = parseLight(lights);
+            TiXmlElement* light = root->FirstChildElement("lights");
+            if(light) {
+                result->lights = parseLight(light);
             } else {
-                result->light = createLight();
+                result->lights = std::vector<Light>();
             }
 
             TiXmlElement* group = root->FirstChildElement("group"); // obtenção do group do ficheiro
@@ -406,6 +402,6 @@ Group getGroup(Settings set){
     return set->group;
 }
 
-Light getLight(Settings set){
-    return set->light;
+std::vector<Light> getLight(Settings set){
+    return set->lights;
 }

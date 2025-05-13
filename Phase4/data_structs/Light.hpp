@@ -5,18 +5,17 @@
 #include <vector>
 #include "Point.hpp"
 
-
 using namespace std;
 
 typedef struct light* Light;
 
-Light makeLight(char, std::vector<Point>, std::vector<float>, float);
+Light makeLight(char, Point, std::vector<float>, float);
 
 Light createLight();
 
 char getType(Light);
 
-std::vector<Point> getPositions(Light);
+Point getPositions(Light);
 
 std::vector<float> getDirections(Light);
 

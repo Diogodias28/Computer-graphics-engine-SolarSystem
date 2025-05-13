@@ -32,7 +32,7 @@ float yaw = 0.0f, pitch = 0.0f;
 
 Settings set;
 Group group;
-Light light;
+std::vector<Light> light;
 
 GLenum drawmode = GL_LINE; // Modo de Desenho
 GLuint vertexCount, buffer[3];
@@ -204,10 +204,10 @@ void drawFigures(Group g) {
         RGB emissive = getEmissive(modelColor);
         float shininess = getShininess(modelColor);
 
-        GLfloat diffuseArray[4] = { diffuse.r, diffuse.g, diffuse.b};
-        GLfloat ambientArray[4] = { ambient.r, ambient.g, ambient.b};
-        GLfloat specularArray[4] = { specular.r, specular.g, specular.b};
-        GLfloat emissiveArray[4] = { emissive.r, emissive.g, emissive.b};
+        GLfloat diffuseArray[4] = { diffuse.r, diffuse.g, diffuse.b, 1.0f};
+        GLfloat ambientArray[4] = { ambient.r, ambient.g, ambient.b, 1.0f};
+        GLfloat specularArray[4] = { specular.r, specular.g, specular.b, 1.0f};
+        GLfloat emissiveArray[4] = { emissive.r, emissive.g, emissive.b, 1.0f};
 
         glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseArray);
         glMaterialfv(GL_FRONT, GL_AMBIENT, ambientArray);
@@ -257,43 +257,49 @@ void drawFigures(Group g) {
     glPopMatrix();
 }
 
-void setLight(Light l) {
+void setLight(std::vector<Light> lights) {
+    for(int i=0; i<8; i++) {
+        glDisable(GL_LIGHT0 + i);
+    }
     
-    char type = getType(l);
-    
-    if(type == 'P'){
-        std::vector<Point> positions = getPositions(l);
-        for(int i=0; i<positions.size(); i++){
-            GLenum lightID = GL_LIGHT0 + i; 
+    for(int i = 0; i < lights.size() && i<8; i++){
+        char type = getType(lights[i]);
+        GLenum lightID = GL_LIGHT0 + i;
             
-            glEnable(lightID);
-            float pos[4] = {getX(positions[i]), getY(positions[i]), getZ(positions[i]), 1.0f};
+        float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
+        if(type == 'P'){
+            Point positions = getPositions(lights[i]);
+            float pos[4] = {getX(positions), getY(positions), getZ(positions), 1.0f};
+
             glLightfv(lightID, GL_POSITION, pos);
         }
-    }
-    else if(type == 'D'){
-        std::vector<float> direction = getDirections(l);
-        float dir[4] = {direction[0], direction[1], direction[2], 0.0f};
-        glLightfv(GL_LIGHT0, GL_POSITION, dir);
-    }
+        else if(type == 'D'){
+            std::vector<float> direction = getDirections(lights[i]);
+            float dir[4] = {direction[0], direction[1], direction[2], 0.0f};
 
-    else if(type == 'S'){
-        Point position = getPositions(l)[0];
-        std::vector<float> direction = getDirections(l);
-        float cutoff = getCutoff(l);
+            glLightfv(lightID, GL_POSITION, dir);
+        }
+        else if(type == 'S'){
+            Point position = getPositions(lights[i]);
+            std::vector<float> direction = getDirections(lights[i]);
+            float cutoff = getCutoff(lights[i]);
 
-        float pos[4] = {getX(position), getY(position), getZ(position), 1.0f};
-        glLightfv(GL_LIGHT0, GL_POSITION, pos);
+            float pos[4] = {getX(position), getY(position), getZ(position), 1.0f};
+            glLightfv(lightID, GL_POSITION, pos);
 
-        float dir[3] = {direction[0], direction[1], direction[2]};
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, dir);
+            float dir[3] = {direction[0], direction[1], direction[2]};
+            glLightfv(lightID, GL_SPOT_DIRECTION, dir);
 
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
+            glLightf(lightID, GL_SPOT_CUTOFF, cutoff);
+        }
+        glEnable(lightID);
     }
 }
 
-
 void renderScene(void) {
+
     // clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -306,8 +312,9 @@ void renderScene(void) {
             upx, upy, upz);
 
     setLight(light);
-        
+
     if (showAxes) {
+        glDisable(GL_LIGHTING);
         glBegin(GL_LINES);
         // X axis in red
         glColor3f(1.0f, 0.0f, 0.0f);
@@ -324,9 +331,9 @@ void renderScene(void) {
         glVertex3f(0.0f, 0.0f, -100.0f);
         glVertex3f(0.0f, 0.0f, 100.0f);
         glEnd();
+        glEnable(GL_LIGHTING);
     }
-        
-          
+         
     glPolygonMode(GL_FRONT_AND_BACK, drawmode);
     
     drawFigures(group); 
@@ -432,14 +439,9 @@ void initGL() {
     glClearColor(0, 0, 0, 0);
 
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
     glEnable(GL_TEXTURE_2D);
 
     glEnable(GL_RESCALE_NORMAL);
-
-    float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
-
 }
 
 int main(int argc, char **argv) {
