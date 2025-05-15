@@ -44,10 +44,10 @@ void genCone(const float radius, const float height, const size_t slices, const 
             normals.push_back(n2);
             normals.push_back(n2);
 
-            float sl1 = (float) 1.0f - (currRadius / radius);
+            float sl1 = (float) slice / slices;
             float sl2 = (float) (slice + 1) / slices;
-            float st1 = (float) stack / stacks;
-            float st2 = (float) 1.0f - (nextRadius / radius);
+            float st1 = 1.0f - (float) stack / stacks;
+            float st2 = 1.0f - (float) (stack + 1) / stacks;
 
             texCoords.push_back(makeTexturePoint(sl1, st2));
             texCoords.push_back(makeTexturePoint(sl1, st1));

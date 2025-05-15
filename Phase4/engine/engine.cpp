@@ -93,6 +93,8 @@ void updateFPS() {
 }
 
 void drawCatmullRomCurve(const std::vector<std::vector<float>>& controlPoints) {
+    glDisable(GL_LIGHTING);
+
     if (controlPoints.size() < 4) return; // Precisa de pelo menos 4 pontos
     
     glBegin(GL_LINE_LOOP);
@@ -107,6 +109,8 @@ void drawCatmullRomCurve(const std::vector<std::vector<float>>& controlPoints) {
     }
     
     glEnd();
+
+    glEnable(GL_LIGHTING);
 }
 
 void drawFigures(Group g) {
@@ -133,7 +137,6 @@ void drawFigures(Group g) {
             std::vector<std::vector<float>> controlPoints;
             for(auto& p : points) {
                 controlPoints.push_back({getX(p), getY(p), getZ(p)});
-                //normais e texturas !!!!!!!!
             }
             
             if(showOrbit) {
@@ -188,8 +191,6 @@ void drawFigures(Group g) {
                     glScalef(getX(tv), getY(tv), getZ(tv)); 
                     break;
             }
-
-            //fazer para as texruras e normais???????
         }
     }
 
@@ -258,6 +259,7 @@ void drawFigures(Group g) {
 }
 
 void setLight(std::vector<Light> lights) {
+
     for(int i=0; i<8; i++) {
         glDisable(GL_LIGHT0 + i);
     }
@@ -265,9 +267,12 @@ void setLight(std::vector<Light> lights) {
     for(int i = 0; i < lights.size() && i<8; i++){
         char type = getType(lights[i]);
         GLenum lightID = GL_LIGHT0 + i;
-            
-        float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+        
+        float dif[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        glLightfv(lightID, GL_DIFFUSE, dif);
+
+        float spec[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        glLightfv(lightID, GL_SPECULAR, spec);
 
         if(type == 'P'){
             Point positions = getPositions(lights[i]);
@@ -440,6 +445,9 @@ void initGL() {
 
     glEnable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
+
+    float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
 
     glEnable(GL_RESCALE_NORMAL);
 }
