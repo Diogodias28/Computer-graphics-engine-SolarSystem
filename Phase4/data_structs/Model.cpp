@@ -239,6 +239,11 @@ int loadTexture(Model m) {
     ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
     texData = ilGetData();
 
+    if (!texData) {
+        std::cerr << "ERROR: Failed to load texture: " << m->textureFile << std::endl;
+        return 0;
+    }
+
     glGenTextures(1, &texID);
     glBindTexture(GL_TEXTURE_2D, texID);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
