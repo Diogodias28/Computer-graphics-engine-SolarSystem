@@ -30,13 +30,13 @@ void genBox(int length, int grid, std::string fileName) {
                 normals.push_back(makePoint(0, 0, 1));
             }
 
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tb));
 
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tb));
-            texCoords.push_back(makeTexturePoint(tap, tb));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tb));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tb));
 
 
 			// Face de trás
@@ -52,13 +52,13 @@ void genBox(int length, int grid, std::string fileName) {
                 normals.push_back(makePoint(0, 0, -1));
             }
 
-            texCoords.push_back(makeTexturePoint(tap, tb));
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tb));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tb));
 
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tb));
 
 
 			// Face da Esquerda
@@ -74,13 +74,13 @@ void genBox(int length, int grid, std::string fileName) {
                 normals.push_back(makePoint(-1, 0, 0));
             }
 
-            texCoords.push_back(makeTexturePoint(ta, tb));
-            texCoords.push_back(makeTexturePoint(tap, tb));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tb, 1 - ta));
+            texCoords.push_back(makeTexturePoint(tbp, 1 - ta));
+            texCoords.push_back(makeTexturePoint(tb, 1 - tap));
 
-            texCoords.push_back(makeTexturePoint(tap, tb));
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tbp, 1 - ta));
+            texCoords.push_back(makeTexturePoint(tbp, 1 - tap));
+            texCoords.push_back(makeTexturePoint(tb, 1 - tap));
 
 
 			// Face da direita
@@ -96,13 +96,13 @@ void genBox(int length, int grid, std::string fileName) {
                 normals.push_back(makePoint(1, 0, 0));
             }
 
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(tap, tb));
-            texCoords.push_back(makeTexturePoint(ta, tb));
+            texCoords.push_back(makeTexturePoint(tbp, 1 - tap));
+            texCoords.push_back(makeTexturePoint(tbp, 1 - ta));
+            texCoords.push_back(makeTexturePoint(tb, 1 - ta));
 
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(ta, tb));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(tbp, 1 - tap));
+            texCoords.push_back(makeTexturePoint(tb, 1 - ta));
+            texCoords.push_back(makeTexturePoint(tb, 1 - tap));
 
 
 			// Face Superior
@@ -118,13 +118,13 @@ void genBox(int length, int grid, std::string fileName) {
                 normals.push_back(makePoint(0, 1, 0));
             }
 
-            texCoords.push_back(makeTexturePoint(ta, tb));
-            texCoords.push_back(makeTexturePoint(tap, tbp));
-            texCoords.push_back(makeTexturePoint(tap, tb));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tb));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tb));
 
-            texCoords.push_back(makeTexturePoint(ta, tb));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
-            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tb));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tbp));
 
 
 			// Face de baixo
@@ -140,13 +140,13 @@ void genBox(int length, int grid, std::string fileName) {
                 normals.push_back(makePoint(0, -1, 0));
             }
 
-            texCoords.push_back(makeTexturePoint(ta, tb));
-            texCoords.push_back(makeTexturePoint(tap, tb));
-            texCoords.push_back(makeTexturePoint(ta, tbp));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tb));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tb));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tbp));
 
-            texCoords.push_back(makeTexturePoint(ta, tbp));
-            texCoords.push_back(makeTexturePoint(tap, tb));
-            texCoords.push_back(makeTexturePoint(tap, tbp));
+            texCoords.push_back(makeTexturePoint(ta, 1 - tbp));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tb));
+            texCoords.push_back(makeTexturePoint(tap, 1 - tbp));
         }
     }
     writeToFile(controlPoints, normals, texCoords, fileName);

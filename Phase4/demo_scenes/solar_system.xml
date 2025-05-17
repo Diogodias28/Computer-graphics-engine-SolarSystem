@@ -7,8 +7,8 @@
         <projection fov="60" near="0.01" far="2000" />
     </camera>
 
-    <showAxes bool="true" />
-    <showOrbit bool="true" />
+    <showAxes bool="false" />
+    <showOrbit bool="false" />
 
     <lights>
         <light type="point" posx="0" posy="0" posz="0" />

@@ -274,16 +274,38 @@ Settings xmlToSettings(const char* filePath){
             TiXmlElement* upCamera = camera->FirstChildElement("up"); // up da câmara
             TiXmlElement* projectionCamera = camera->FirstChildElement("projection"); // projections
 
-            bool showAxes = true;
             TiXmlElement* axes = root->FirstChildElement("showAxes");
             if (axes) {
-                result->showAxes = axes->Attribute("bool");
+                const char* value = axes->Attribute("bool");
+                if (value) {
+                    if (strcmp(value, "true") == 0) {
+                        result->showAxes = true;
+                    } else if (strcmp(value, "false") == 0) {
+                        result->showAxes = false;
+                    } else {
+                        printf("Warning: Invalid value for showAxes: %s. Defaulting to true.\n", value);
+                        result->showAxes = true; // Default value
+                    }
+                }
+            } else{
+                result->showAxes = true;
             }
 
-            bool showOrbit = true;
             TiXmlElement* orbit = root->FirstChildElement("showOrbit");
             if (orbit) {
-                result->showOrbit = orbit->Attribute("bool");
+                const char* value = orbit->Attribute("bool");
+                if (value) {
+                    if (strcmp(value, "true") == 0) {
+                        result->showOrbit = true;
+                    } else if (strcmp(value, "false") == 0) {
+                        result->showOrbit = false;
+                    } else {
+                        printf("Warning: Invalid value for showOrbit: %s. Defaulting to true.\n", value);
+                        result->showOrbit = true; // Default value
+                    }
+                }
+            } else {
+                result->showOrbit = true;
             }
             result->window[0] = atoi(window->Attribute("width")); //largura da janela
             result->window[1] = atoi(window->Attribute("height")); //altura da janela
