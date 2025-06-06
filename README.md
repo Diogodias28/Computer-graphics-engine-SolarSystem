@@ -1,8 +1,9 @@
 # projetoCG
-Compoutação Gráfica
+Computação Gráfica
 
+__Nota final: 17__
 
-## como usar (mac e linux porque windows ninguém sabe)
+## como usar
 
 
 na pasta ouputs fazer
